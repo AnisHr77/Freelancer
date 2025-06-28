@@ -28,7 +28,7 @@ const Navbar = () => {
                 <p className='font-bold text-blue-600'><span className='  rounded-full py-1 pl-1 bg-gray-100'>Gig</span>Nation</p>
                 <button style={{display : isopen ? "none" : "flex"}} onClick={() => { setIsOpen(true)  }} className='  w-10 h-10'><BsList className=' w-10 h-10 '/></button>
                 <button style={{display : isopen ? "flex" : "none"}} onClick={() => { setIsOpen(false) }} className='hidden w-10 h-10'><IoMdClose className=' w-10 h-10' /></button>
-                <div style={{display : isopen ? "flex" : "none"}} className=" absolute gap-4 items-center top-0  h-screen w-screen  mt-15  hidden flex-col">
+                <div style={{display : isopen ? "flex" : "none"}} className=" z-50 bg-white absolute gap-4 items-center top-0  h-screen w-screen right-0  mt-15  hidden flex-col">
                     <Link href="#">Home</Link>
                     <Link href="#">Project</Link>
                     <Link href="#">Profile</Link>

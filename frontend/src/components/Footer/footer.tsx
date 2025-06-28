@@ -1,11 +1,15 @@
+import Image from 'next/image'
 import React from 'react'
 
 const Footer = () => {
     return (
         <footer className='absolute bottom-0 w-screen '>
-            <div className="conatiner  flex flex-col gap-4 items-center py-15  bg-blue-600 h-auto justify-between md:gap-0 md:px-0 md:flex-row">
-                <div style={{ backgroundColor: 'rgba(128, 128, 128, 0.3)' }} className="text-white font-medium text-[20px] h-50 flex items-center text-center  px-8 rounded-[5px] md:text-left  md:px-15 md:w-120 ">
-                    <p className='w-65 '>Stay Up to Date with our Latest Innovations: Sign Up for Our Newsletters!</p>
+            <div className="conatiner  flex flex-col gap-4 items-center py-15  bg-[#007AFF] h-auto justify-between md:gap-0 md:px-0 md:flex-row">
+                <div style={{ backgroundColor: 'rgba(128, 128, 128, 0.3)' }}
+                    className="text-white font-medium text-[20px] h-50 flex items-center text-center  px-8 rounded-[5px] md:text-left  md:px-15 md:w-120 "
+                >
+                    <p className='w-65 '>Stay Up to Date with our Latest Innovations: Sign Up for Our Newsletter!</p>
+                    <Image src="/dot.png" width={10} height={10} alt='' className='absolute w-10 h-10'></Image>
                 </div>
                 <form className='flex flex-col gap-2 text-white mx-40'>
                     <label>Name*</label>

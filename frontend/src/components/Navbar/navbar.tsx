@@ -12,12 +12,12 @@ const Navbar = () => {
             <div className="hidden container md:flex justify-around my-6 max-w-screen min-w-[320px] items-center">
                 <p className='font-bold text-blue-600'><span className='rounded-full py-1 pl-1 bg-gray-100'>Gig</span>Nation</p>
                 <div className="flex gap-8 ">
-                    <Link className='hover:text-blue-600 active:font-medium' href="#">Home</Link>
+                    <Link className='hover:text-blue-600 active:font-medium' href="/">Home</Link>
                     <Link className='hover:text-blue-600 active:font-medium' href="#">Project</Link>
                     <Link className='hover:text-blue-600 active:font-medium' href="#">Profile</Link>
-                    <Link className='hover:text-blue-600 active:font-medium' href="#">About Us</Link>
-                    <Link className='hover:text-blue-600 active:font-medium' href="#">Blog</Link>
-                    <Link className='hover:text-blue-600 active:font-medium' href="#">Contact</Link>
+                    <Link className='hover:text-blue-600 active:font-medium' href="/About">About Us</Link>
+                    <Link className='hover:text-blue-600 active:font-medium' href="/Blog">Blog</Link>
+                    <Link className='hover:text-blue-600 active:font-medium' href="/Contact">Contact</Link>
                 </div>
                 <div className="flex gap-6 text-center">
                     <button className='border border-[blue] h-10 w-22 rounded-[5px] text-blue-600 cursor-pointer hover:bg-blue-600 hover:text-white active:opacity-50'>Sign In</button>

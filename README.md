@@ -54,7 +54,7 @@ npm run dev
 
 
 
-##🧑‍💻 Utilisation
+## 🧑‍💻 Utilisation
 Créez un compte client ou freelance
 
 Publiez ou candidatez à des missions
@@ -67,7 +67,7 @@ Notez vos collaborateurs pour garantir la qualité
 
 
  
-##🤝 Contribution
+## 🤝 Contribution
 
 je vais faire ce projet avec  Abeljalil 
 

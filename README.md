@@ -38,19 +38,20 @@
 
 ##  backend : 
 
-cd backend
-composer install
-cp .env.example .env
+<p>cd backend</p>
+<p>composer install</p>
+<p>cp .env.example .env</p>
+
 # Configurer .env (base de données, clés, etc.)
-php artisan key:generate
-php artisan migrate --seed
-php artisan serve
+<p>php artisan key:generate</p>
+<p>php artisan migrate --seed</p>
+<p>php artisan serve</p>
 
 ## frontend
 
-cd ../frontend
-npm install
-npm run dev 
+<p>cd ../frontend</p>
+<p>npm install</p>
+<p>npm run dev </p>
 
 
 

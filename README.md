@@ -32,7 +32,7 @@
 
 ### 1. Clone the project
 
-```bash
+
 git clone https://github.com/your-username/project-name.git
 cd project-name
 2. Backend setup
@@ -57,7 +57,8 @@ Modifier
 cd ../frontend
 npm install
 npm run dev
-🧑‍💻 Usage
+
+##🧑‍💻 Usage
 Create a client or freelancer account
 
 Post or apply for freelance jobs
@@ -68,7 +69,7 @@ Track project progress and manage payments
 
 Rate collaborators to ensure service quality
 
-🤝 Contribution
+## 🤝 Contribution
 This project is being developed in collaboration with Abeljalil.
 
 Contributions are welcome! Please follow these steps:

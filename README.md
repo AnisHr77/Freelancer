@@ -72,13 +72,13 @@ Track project progress and manage payments
 Rate collaborators to ensure service quality
 
 ## 🤝 Contribution
-This project is being developed in collaboration with Abeljalil.
+This project is being developed in collaboration with Abdeldjalil.
 
 Contributions are welcome! Please follow these steps:
 
 Fork the repository
 
-Create a new branch: feature/your-feature-name
+
 
 Make clear and descriptive commits
 

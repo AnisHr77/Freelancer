@@ -32,9 +32,13 @@ const Navbar = () => {
                     <Link href="#">Home</Link>
                     <Link href="#">Project</Link>
                     <Link href="#">Profile</Link>
+                    <details>
+                        project
+                    </details>
                     <Link href="#">About Us</Link>
                     <Link href="#">Blog</Link>
                     <Link href="#">Contact</Link>
+                    
                     <button className='border border-[blue] h-10 w-22 rounded-[5px] text-blue-600 cursor-pointer hover:bg-blue-600 hover:text-white active:opacity-50'>Sign In</button>
                     <button className='bg-blue-600 h-10 border w-22 rounded-[5px] text-white cursor-pointer hover:bg-white hover:text-blue-600 active:opacity-50'>Join</button>
                 </div>

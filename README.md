@@ -32,33 +32,35 @@
 
 ### 1. Clone the project
 
+<p></p>
+<p></p> git clone https://github.com/AnisHr77/Freelancer.git
+<p></p> cd project-name<p></p>
 
-git clone https://github.com/your-username/project-name.git
-cd project-name
-2. Backend setup
-bash
+## 2. Backend setup
+
 Copier
 Modifier
-cd backend
-composer install
-cp .env.example .env
-Configure the .env file (database credentials, API keys, etc.)
+<p></p> cd backend
+<p></p> composer install
+<p></p> cp .env.example .env
+<p></p> Configure the .env file (database credentials, API keys, etc.)
 
-bash
+
+<p></p> Copier
+<p></p> Modifier
+<p></p>php artisan key:generate
+<p></p>php artisan migrate --seed
+<p></p>php artisan serve
+
+## 3. Frontend setup
+
 Copier
 Modifier
-php artisan key:generate
-php artisan migrate --seed
-php artisan serve
-3. Frontend setup
-bash
-Copier
-Modifier
-cd ../frontend
-npm install
-npm run dev
+<p></p>cd ../frontend
+<p></p>npm install
+<p></p>npm run dev
 
-##🧑‍💻 Usage
+## 🧑‍💻 Usage
 Create a client or freelancer account
 
 Post or apply for freelance jobs

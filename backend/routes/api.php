@@ -3,5 +3,37 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/freelancers', function () {
-    return ['freelancer 1', 'freelancer 2', 'freelancer 3'];
+    return [
+        ['name' => 'freelancer 1', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 2', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
+
+
+    ];
 });

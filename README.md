@@ -1,86 +1,85 @@
 # Freelance Platform
 
-**Plateforme web complète pour connecter freelances et clients, gérer les missions et faciliter les collaborations.**
+**A complete web platform to connect freelancers and clients, manage projects, and streamline collaboration.**
 
 ---
 
-## 🚀 Fonctionnalités
+## 🚀 Features
 
-- Inscription et connexion sécurisées (freelances & clients)  
-- Profils utilisateurs détaillés avec portfolio  
-- Publication et gestion d’offres de missions  
-- Recherche avancée avec filtres par compétences, tarifs, localisation  
-- Messagerie intégrée pour échanges directs  
-- Gestion des candidatures et suivi des projets  
-- Système de notation et avis utilisateurs  
-- Paiements sécurisés via plusieurs méthodes
+- Secure registration and login (for freelancers & clients)  
+- Detailed user profiles with portfolio  
+- Posting and management of job offers  
+- Advanced search with filters (skills, rates, location)  
+- Integrated messaging system for direct communication  
+- Application management and project tracking  
+- User rating and review system  
+- Secure payments through multiple methods
 
 ---
 
-## 🛠 Technologies utilisées
+## 🛠 Technologies Used
 
 - **Frontend:** Next.js, React, Tailwind CSS  
-- **Backend:** Laravel (PHP), API REST  
-- **Base de données:** MySQL  
-- **Gestion des dépendances:** npm, Composer  
-- **Versioning:** Git & GitHub  
-- **Autres:** Docker (optionnel), Vite
+- **Backend:** Laravel (PHP), REST API  
+- **Database:** MySQL  
+- **Dependency Management:** npm, Composer  
+- **Version Control:** Git & GitHub  
+- **Others:** Docker (optional), Vite
 
 ---
 
-## ⚙️ Installation & configuration
+## ⚙️ Installation & Setup
 
-1. Cloner le projet :  
-   ```bash
-   git clone https://github.com/ton-utilisateur/nom-du-projet.git
-   cd nom-du-projet
+### 1. Clone the project
 
+<p></p>
+<p></p> git clone https://github.com/AnisHr77/Freelancer.git
+<p></p> cd project-name<p></p>
 
-##  backend : 
+## 2. Backend setup
 
-<p>cd backend</p>
-<p>composer install</p>
-<p>cp .env.example .env</p>
-
-# Configurer .env (base de données, clés, etc.)
-<p>php artisan key:generate</p>
-<p>php artisan migrate --seed</p>
-<p>php artisan serve</p>
-
-## frontend
-
-<p>cd ../frontend</p>
-<p>npm install</p>
-<p>npm run dev </p>
+Copier
+Modifier
+<p></p> cd backend
+<p></p> composer install
+<p></p> cp .env.example .env
+<p></p> Configure the .env file (database credentials, API keys, etc.)
 
 
+<p></p> Copier
+<p></p> Modifier
+<p></p>php artisan key:generate
+<p></p>php artisan migrate --seed
+<p></p>php artisan serve
 
-## 🧑‍💻 Utilisation
-Créez un compte client ou freelance
+## 3. Frontend setup
 
-Publiez ou candidatez à des missions
+Copier
+Modifier
+<p></p>cd ../frontend
+<p></p>npm install
+<p></p>npm run dev
 
-Communiquez via la messagerie intégrée
+## 🧑‍💻 Usage
+Create a client or freelancer account
 
-Suivez l’avancement et gérez les paiements
+Post or apply for freelance jobs
 
-Notez vos collaborateurs pour garantir la qualité
+Communicate using the built-in messaging system
 
+Track project progress and manage payments
 
- 
+Rate collaborators to ensure service quality
+
 ## 🤝 Contribution
+This project is being developed in collaboration with Abdeldjalil.
 
-je vais faire ce projet avec  Abeljalil 
+Contributions are welcome! Please follow these steps:
 
-Les contributions sont ouvertes !
-Merci de :
-
-Forker le dépôt
-
-Créer une branche dédiée (feature/nom-fonctionnalité)
-
-Faire un commit clair et descriptif
-
-Ouvrir une Pull Request
+Fork the repository
 
 
+
+Make clear and descriptive commits
+
+Open a Pull Request

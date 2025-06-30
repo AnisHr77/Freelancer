@@ -1,63 +1,90 @@
+'use client'
 import React from 'react'
 import { FcGoogle } from "react-icons/fc";
+import Sidebar from '@/components/welcome-sidebar/sidebar';
+import Link from 'next/link';
+import axios from 'axios';
 const Page = () => {
+        const Signup = async (formdata: FormData) => {
+        const firstname = formdata.get("firstname");
+        const lastname = formdata.get("lastname");
+        const email = formdata.get("email");
+        const password = formdata.get("password");
+        try {
+            const response = await axios.post("", {
+                firstname,
+                lastname,
+                email,
+                password,
+            })
+            alert("sign up success");
+            console.log(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
-        <div className="relative">
-            <svg className=' absolute top-0  w-full' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <path
-                    fill="#007AFF" fill-opacity="1" d="M0,224L30,213.3C60,203,120,181,180,197.3C240,213,300,267,360,282.7C420,299,480,277,540,240C600,203,660,149,720,133.3C780,117,840,139,900,170.7C960,203,1020,245,1080,261.3C1140,277,1200,267,1260,250.7C1320,235,1380,213,1410,202.7L1440,192L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z">
-                </path>
-            </svg>
-            {/* <svg className=' z-0 absolute top-0   w-full' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#007AFF"   fill-opacity="1" d="M0,96L30,128C60,160,120,224,180,218.7C240,213,300,139,360,138.7C420,139,480,213,540,250.7C600,288,660,288,720,282.7C780,277,840,267,900,229.3C960,192,1020,128,1080,112C1140,96,1200,128,1260,117.3C1320,107,1380,53,1410,26.7L1440,0L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z">
-            </path></svg> */}
-            <div className="h-screen flex items-center justify-center">
-                <div className="relative pt-5 mb-5 flex flex-col gap-2 items-center shadow-2xl z-200 h-110 mt-20 w-90 rounded-[10px] bg-white ">
-                    <p className='text-[25px] font-bold  '>Join us </p>
-                    <form className="flex flex-col gap-4 items-center mt-2 ">
+        <div className='flex h-screen w-screen'>
+            <div className="w-[60%]  ">
+                <p className='text-[40px]  text-[#007AFF] ml-18'>GigNation</p>
+                <p className='mt-5 text-[20px] ml-20 '>Welcom to our community</p>
+                <p className='ml-20 mt-2'>Sign up to get started!</p>
+                <form onSubmit={Signup} className='flex flex-col  pl-20 mt-5'>
+                    <div className="flex gap-32 ">
+                        <label>First Name</label>
+                        <label>Last Name</label>
+                    </div>
+                    <div className="flex gap-10 ">
                         <input
                             type='text'
                             name='firstname'
                             placeholder='First name'
-                            className='w-60 h-10 rounded-[5px] pl-2  border-[1.5px]   '
+                            className='w-45 h-10 rounded-[5px] pl-2  border-[1.5px]   '
                             required
                         />
                         <input
                             type='text'
                             name='lastname'
                             placeholder='Last name'
-                            className='w-60 h-10 rounded-[5px] pl-2  border-[1.5px]   '
+                            className='w-45 h-10 rounded-[5px] pl-2  border-[1.5px]   '
                             required
                         />
-                        <input
-                            type='email'
-                            name='email'
-                            placeholder='Email'
-                            className='w-60 h-10 rounded-[5px] pl-2  border-[1.5px]   '
-                            required
-                        />
-                        <input
-                            type='password'
-                            name='password'
-                            placeholder='Password'
-                            className='w-60 h-10 rounded-[5px] pl-2  border-[1.5px]   '
-                            required
-                        />
-                        <button
-                            type='submit'
-                            className='w-60 h-10 bg-[#007AFF] rounded-[5px] text-white cursor-pointer hover:opacity-60 active:opacity-50 ' >
-                            Join
-                        </button>
-                    </form>
-                    <div className="flex">
-                        <hr className='text-black mt-3 mr-1 w-20 h-5'></hr>
-                        Or
-                        <hr className='text-black mt-3 ml-1 w-20 h-5'></hr>
                     </div>
+                    <label className='mt-4'>Email</label>
+                    <input
+                        type='email'
+                        name='email'
+                        placeholder='Email'
+                        className='w-100 h-10 rounded-[5px] pl-2  border-[1.5px]   '
+                        required
+                    />
+                    <label className='mt-4'>Password</label>
+                    <input
+                        type='password'
+                        name='password'
+                        placeholder='Password'
+                        className='w-100 h-10 rounded-[5px] pl-2  border-[1.5px]  active:border-[#007AFF]  '
+                        required
+                    />
                     <button
-                        className='w-60 h-10 rounded-[5px] flex justify-center items-center gap-2 border  cursor-pointer'>
-                        <FcGoogle className='w-6 h-6' />Continue with Google
+                        type='submit'
+                        className='w-100 h-10 mt-6 bg-[#007AFF] rounded-[5px] text-white cursor-pointer hover:opacity-60 active:opacity-50 ' >
+                        Join
                     </button>
+                </form>
+                <div className="flex ml-20 mt-5">
+                    <hr className='text-black mt-3 mr-1 w-45 h-5'></hr>
+                    Or
+                    <hr className='text-black mt-3 ml-1 w-45 h-5'></hr>
                 </div>
+                <button
+                    className='w-100 h-10 mt-2 rounded-[5px] flex justify-center items-center gap-2 border ml-20 cursor-pointer'>
+                    <FcGoogle className='w-6 h-6' />Continue with Google
+                </button>
+                <p className='flex gap-2 mr-45 mt-4 justify-center'>Already have account? <Link className='text-[#007AFF]' href="/auth/Login" >Sign In</Link></p>
+            </div>
+            <div className="w-[45%]  items-center text-center h-full bg-[#007AFF]   flex flex-col justify-center">
+                <Sidebar />
             </div>
         </div>
     )

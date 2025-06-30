@@ -1,3 +1,4 @@
+'use client'
 import Link from 'next/link';
 import React from 'react'
 import { FcGoogle } from "react-icons/fc";
@@ -5,14 +6,30 @@ import { SiFreelancer } from "react-icons/si";
 import { FaUser } from "react-icons/fa";
 import { SiSpringsecurity } from "react-icons/si";
 import { FaRankingStar } from "react-icons/fa6";
+import Sidebar from '@/components/welcome-sidebar/sidebar';
+import axios from 'axios';
 const Page = () => {
+    const Signin = async (formdata: FormData) => {
+        const email = formdata.get("email");
+        const password = formdata.get("password");
+        try {
+            const response = await axios.post("", {
+                email,
+                password,
+            })
+            alert("sign in success");
+            console.log(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
         <div className='flex h-screen w-screen'>
             <div className="w-[60%]  mt-5">
                 <p className='text-[40px] text-[#007AFF] ml-18'>GigNation</p>
                 <p className='mt-5 text-[20px] ml-20 '>Welcom Back!</p>
                 <p className='ml-20 mt-2'>Sign in to get started!</p>
-                <form className='flex flex-col  pl-20 mt-10'>
+                <form onSubmit={Signin} className='flex flex-col  pl-20 mt-10'>
                     <label>Email</label>
                     <input
                         type='email'
@@ -32,7 +49,7 @@ const Page = () => {
                     <button
                         type='submit'
                         className='w-100 h-10 mt-6 bg-[#007AFF] rounded-[5px] text-white cursor-pointer hover:opacity-60 active:opacity-50 ' >
-                        Join
+                        Sign in
                     </button>
                 </form>
                 <div className="flex ml-20 mt-5">
@@ -46,18 +63,9 @@ const Page = () => {
                 </button>
                 <p className='flex gap-2 mr-45 mt-4 justify-center'>Don't have account? <Link className='text-[#007AFF]' href="/auth/Register" >Sign Up</Link></p>
             </div>
-            <div className="w-[45%]  items-center text-center h-full bg-[#007AFF] pl-5 flex flex-col justify-center">
-                <p className='text-[30px] text-white font-bold '>Welcome to GigNation</p>
-                <p className='  w-[80%] text-white mt-5 flex gap-2 '> <span className=''>Join our community of talented freelancers and connect with clients from around the world.</span></p>
-                <div className=" flex justify-center gap-10 text-white mt-10">
-                    <SiFreelancer className='w-10 h-10' />
-                    <FaUser className='w-10 h-10' />
-                    <SiSpringsecurity className='w-10 h-10' />
-                    <FaRankingStar className='w-10 h-10' />
-                    <p className='w-10 h-10 bg-white rounded-full flex items-center text-[#007AFF] '>+97k</p>
-                </div>
+            <div className="w-[45%]  items-center text-center h-full bg-[#007AFF]   flex flex-col justify-center">
+                <Sidebar />
             </div>
-
         </div>
     )
 }

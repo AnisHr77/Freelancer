@@ -4,9 +4,16 @@ import React, { use, useState } from 'react'
 import { Inter } from 'next/font/google'
 import { BsList } from "react-icons/bs";
 import { IoMdClose } from "react-icons/io";
+import {  useRouter } from 'next/router';
+//  const route  =  useRouter();
 const Navbar = () => {
     const [isopen, setIsOpen] = useState(false);
     const [isclose , setIsClose]  = useState(false);
+   
+    const register  = () =>{
+        const route  =  useRouter();
+        route.push("/auth/Register");
+    }
     return (
         <nav className='container    max-w-screen min-w-[320px]  '>
             <div className="hidden container md:flex justify-around my-6 max-w-screen min-w-[320px] items-center">
@@ -20,8 +27,8 @@ const Navbar = () => {
                     <Link className='hover:text-blue-600 active:font-medium' href="/Contact">Contact</Link>
                 </div>
                 <div className="flex gap-6 text-center">
-                    <button className='border border-[blue] h-10 w-22 rounded-[5px] text-blue-600 cursor-pointer hover:bg-blue-600 hover:text-white active:opacity-50'>Sign In</button>
-                    <button className='bg-blue-600 h-10 border w-22 rounded-[5px] text-white cursor-pointer hover:bg-white hover:text-blue-600 active:opacity-50'>Join</button>
+                    <button   className='border border-[blue] h-10 w-22 rounded-[5px] text-blue-600 cursor-pointer hover:bg-blue-600 hover:text-white active:opacity-50'>Sign In</button>
+                    <button onClick={register} className='bg-blue-600 h-10 border w-22 rounded-[5px] text-white cursor-pointer hover:bg-white hover:text-blue-600 active:opacity-50'>Join</button>
                 </div>
             </div>
             <div className="md:hidden max-w-[600px] flex justify-between mx-2 items-center ">
@@ -32,9 +39,6 @@ const Navbar = () => {
                     <Link href="#">Home</Link>
                     <Link href="#">Project</Link>
                     <Link href="#">Profile</Link>
-                    <details>
-                        project
-                    </details>
                     <Link href="#">About Us</Link>
                     <Link href="#">Blog</Link>
                     <Link href="#">Contact</Link>

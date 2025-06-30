@@ -38,11 +38,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${comfortaa.className} antialiased`}
       >
-        <Navbar />
+        {/* <Navbar /> */}
         <main>
           {children}
         </main>
-        <Footer/>
+        {/* <Footer/> */}
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import React, { use, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Inter } from 'next/font/google'
 import { BsList } from "react-icons/bs";
 import { IoMdClose } from "react-icons/io";

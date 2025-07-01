@@ -11,5 +11,3 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/login', function () {
     return response()->json(['message' => 'Please login'], 401);
 })->name('login');
-
-

@@ -1,39 +1,7 @@
 <?php
+use App\Http\Controllers\AuthController;
 
-use Illuminate\Support\Facades\Route;
+Route::post('/login', [AuthController::class, 'login']);
+Route::middleware('auth:sanctum')->get('/user', [AuthController::class, 'me']);
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
-Route::get('/freelancers', function () {
-    return [
-        ['name' => 'freelancer 1', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 2', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-        ['name' => 'freelancer 3', 'image' => 'http/url.img', 'Salaire'=>50],
-
-
-    ];
-});

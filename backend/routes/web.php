@@ -1,13 +1,22 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
-// Show register form + handle register
-Route::get('/register', [AuthController::class, 'showForm']);
+Route::get('/register', [AuthController::class, 'showRegisterForm']);
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
-// ✅ Add this login route (even if you're not using it via web)
-Route::get('/login', function () {
-    return response()->json(['message' => 'Please login'], 401);
-})->name('login');
+Route::get('/login', [AuthController::class, 'showLoginForm']);
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/dashboard', function () {
+    $user = Auth::user();
+
+    if ($user && str_contains($user->email, '@admin')) {
+        return view('dashboard');
+    }
+
+    abort(403, 'Access denied.');
+})->middleware('auth');
+

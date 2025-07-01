@@ -1,6 +1,14 @@
 <?php
-use App\Http\Controllers\AuthController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProposalController;
+use App\Http\Controllers\ContractController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ReviewController;
 
-Route::post('/login', [AuthController::class, 'login']);
-Route::middleware('auth:sanctum')->get('/user', [AuthController::class, 'me']);
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+Route::apiResource('projects', ProjectController::class);
+Route::apiResource('proposals', ProposalController::class);
+Route::apiResource('contracts', ContractController::class);
+Route::apiResource('messages', MessageController::class);
+Route::apiResource('reviews', ReviewController::class);

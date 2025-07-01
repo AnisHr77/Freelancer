@@ -3,18 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
+    use HasFactory; // ✅ Enables factory()
+
     protected $fillable = ['name', 'email', 'password', 'role'];
 
-    public function projects()
+    public function projects(): HasMany
     {
         return $this->hasMany(Project::class);
     }
-
-
 
     public function proposals(): HasMany
     {

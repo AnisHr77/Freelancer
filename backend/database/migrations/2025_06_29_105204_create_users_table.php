@@ -11,16 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-       Schema::create('users', function (Blueprint $table) {
-           $table->id();
-           $table->string('name');
-           $table->string('email')->unique();
-           $table->string('password');
-           $table->enum('role', ['client', 'freelancer']);
-           $table->timestamps();
-       });
-
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable(); // ✅ Add this
+            $table->string('password');
+            $table->enum('role', ['client', 'freelancer']);
+            $table->rememberToken(); // ✅ Add this for authentication
+            $table->timestamps();
+        });
     }
+
 
     /**
      * Reverse the migrations.

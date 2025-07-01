@@ -1,17 +1,18 @@
 <?php
 
+
+// app/Http/Controllers/UserController.php
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index()
+    public function me(Request $request)
     {
-        return response()->json([
-            ['id' => 1, 'name' => 'Anis'],
-            ['id' => 2, 'name' => 'Ali'],
-            ['id' => 3, 'name' => 'Sara'],
-        ]);
+        return response()->json($request->user());
     }
 }
+
+
+

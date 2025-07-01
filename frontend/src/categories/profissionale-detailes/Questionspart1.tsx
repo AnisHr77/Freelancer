@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 type ButtonProps = {
-  onClick: () => void; // no args, returns nothing
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 interface questions {
   title: String,
@@ -10,10 +10,11 @@ interface questions {
   Q2: String,
   Q3: String,
   value: String,
-  onClick :ButtonProps,
+  
 }
+type Questioncard =  questions & ButtonProps;
 
-const Questionspart1 = ({ title, desc, Q1, Q2, Q3, value,onClick }: questions, ) => {
+const Questionspart1 = ({ title, desc, Q1, Q2, Q3, value , onClick }: Questioncard) => {
 
   return (
     <div className=' '>

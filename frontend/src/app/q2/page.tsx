@@ -1,5 +1,5 @@
 import Questionspart1 from '@/categories/profissionale-detailes/Questionspart1'
-import Sidebar from '@/components/welcome-sidebar/sidebar'
+import Sidebar from '@/components/sidebar'
 import React from 'react'
 
 const Page = () => {

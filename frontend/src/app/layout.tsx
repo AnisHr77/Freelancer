@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar/navbar";
-import Footer from "@/components/Footer/footer";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 import { Lexend } from "next/font/google";
 import { Comfortaa } from "next/font/google";
- 
-const lexend = Lexend({
+import { Roboto } from "next/font/google";
+const roboto = Roboto({
   subsets : ['latin']
 })
 const comfortaa =  Comfortaa({
@@ -36,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${comfortaa.className} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${roboto.className} antialiased`}
       >
         {/* <Navbar /> */}
         <main>

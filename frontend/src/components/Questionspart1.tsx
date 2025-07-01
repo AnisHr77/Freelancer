@@ -18,7 +18,8 @@ const Questionspart1 = ({ title, desc, Q1, Q2, Q3, value , onClick }: Questionca
 
   return (
     <div className=' '>
-      <div className="flex flex-col pl-10 pt-10 justify-center gap-10">
+      <p className=' logo text-[35px] absolute ml-4 mt-4 font-bold text-[#007AFF]'>GitNotaion</p>
+      <div className="flex flex-col items-center pl-10 pt-15 justify-center gap-10">
         <p className='font-bold text-[30px]'>{title}</p>
         <p className='text-[16px]'>{desc}</p>
         <form className='flex flex-col gap-4'>
@@ -28,7 +29,7 @@ const Questionspart1 = ({ title, desc, Q1, Q2, Q3, value , onClick }: Questionca
             type="text"
             name='answer1'
             placeholder='Put your answer here'
-            className='w-100 h-10 rounded-[5px] border pl-2 outline-none'
+            className='w-150 h-10 rounded-[5px] border pl-2 outline-none'
             required
           />
 
@@ -37,7 +38,7 @@ const Questionspart1 = ({ title, desc, Q1, Q2, Q3, value , onClick }: Questionca
             type="text"
             name='answer2'
             placeholder='Put your answer here'
-            className='w-100 h-10 rounded-[5px] border pl-2 outline-none'
+            className='w-150 h-10 rounded-[5px] border pl-2 outline-none'
             required
           />
 
@@ -46,7 +47,7 @@ const Questionspart1 = ({ title, desc, Q1, Q2, Q3, value , onClick }: Questionca
             type="text"
             name='answer3'
             placeholder='Put your answer here'
-            className='w-100 h-10 rounded-[5px] border pl-2 outline-none'
+            className='w-150 h-10 rounded-[5px] border pl-2 outline-none'
             required
           />
 

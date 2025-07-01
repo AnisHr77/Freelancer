@@ -9,12 +9,28 @@
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-800px);
-    
+
   }
 }
 
 .animate-slide {
   animation: slideRight 0.5s ease forwards;
+}
+
+@keyframes  move {
+  from {
+    rotate: 0deg;
+  }
+
+  to {
+    rotate: 360deg;
+
+  }
+}
+
+.logo {
+  animation: move 0.5s ease forwards;
 }

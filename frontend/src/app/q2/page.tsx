@@ -1,4 +1,4 @@
-import Questionspart1 from '@/categories/profissionale-detailes/Questionspart1'
+import Questionspart1 from '@/components/Questionspart1'
 import Sidebar from '@/components/sidebar'
 import React from 'react'
 

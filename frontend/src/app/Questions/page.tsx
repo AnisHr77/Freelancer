@@ -1,5 +1,5 @@
 'use client'
-import Questionspart1 from '@/categories/profissionale-detailes/Questionspart1'
+import Questionspart1 from '@/components/Questionspart1'
 import Sidebar from '@/components/sidebar'
 import { useRouter } from 'next/navigation'
 import React from 'react'
@@ -14,7 +14,7 @@ const Page = () => {
 
     return (
         <div className='flex h-screen w-screen'>
-            <div className={` ${animate ? 'animate-slide' : ''} w-[55%] h-full`}>
+            <div className={` ${animate ? 'animate-slide' : ''}  w-full h-full`}>
                 <Questionspart1
                     title="proffisional detailes"
                     desc="please add your answer inside the input field"
@@ -24,9 +24,9 @@ const Page = () => {
                     value="Next"
                     onClick={click} />
             </div>
-            <div className="w-[45%] z-50  items-center text-center h-full bg-[#007AFF]   flex flex-col justify-center">
+            {/* <div className="w-[45%] z-50  items-center text-center h-full bg-[#007AFF]   flex flex-col justify-center">
                 <Sidebar />
-            </div>
+            </div> */}
         </div>
     )
 }

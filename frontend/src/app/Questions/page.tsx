@@ -1,6 +1,7 @@
 'use client'
 import Questionspart1 from '@/components/Questionspart1'
 import Sidebar from '@/components/sidebar'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { useState } from 'react'
@@ -14,7 +15,7 @@ const Page = () => {
 
     return (
         <div className='flex h-screen w-screen'>
-            <div className={` ${animate ? 'animate-slide' : ''}  w-full h-full`}>
+            <div className={` ${animate ? 'animate-slide' : ''} w-[55%]    h-full`}>
                 <Questionspart1
                     title="proffisional detailes"
                     desc="please add your answer inside the input field"
@@ -24,9 +25,15 @@ const Page = () => {
                     value="Next"
                     onClick={click} />
             </div>
-            {/* <div className="w-[45%] z-50  items-center text-center h-full bg-[#007AFF]   flex flex-col justify-center">
-                <Sidebar />
-            </div> */}
+            <div className="w-[45%] z-50  items-center text-center h-full     flex flex-col justify-center">
+                {/* <Sidebar /> */}
+                <Image 
+                    width={800}
+                    height={70}
+                    src="/Freelancer.gif"
+                    alt=''
+                /> 
+            </div>
         </div>
     )
 }

@@ -13,7 +13,7 @@ const Page = () => {
         const email = formdata.get("email");
         const password = formdata.get("password");
         try {
-            const response = await axios.post("http://127.0.0.1:8000/freelancers", {
+            const response = await axios.post("http://127.0.0.1:8000/register", {
                 firstname,
                 lastname,
                 email,

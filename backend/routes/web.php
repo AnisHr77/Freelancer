@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
+// Auth Routes
 Route::get('/register', [AuthController::class, 'showRegisterForm']);
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
@@ -10,13 +13,20 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/dashboard', function () {
-    $user = Auth::user();
-
-    if ($user && str_contains($user->email, '@admin')) {
+// Protected Routes
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function () {
         return view('dashboard');
-    }
+    });
 
-    abort(403, 'Access denied.');
-})->middleware('auth');
+    Route::get('/home', function () {
+        return view('home');
+    });
+});
+
+
+
+
+
+
 

@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Register</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
-
 <h2>Register</h2>
 
 @if ($errors->any())
@@ -21,29 +19,19 @@
 
 <form method="POST" action="{{ route('register') }}">
     @csrf
-
-    <label>Name</label><br>
     <input type="text" name="name" placeholder="Name"><br>
-
-    <label>Email</label><br>
     <input type="email" name="email" placeholder="Email"><br>
-
-    <label>Password</label><br>
     <input type="password" name="password" placeholder="Password"><br>
-
-    <label>Confirm Password</label><br>
     <input type="password" name="password_confirmation" placeholder="Confirm Password"><br>
 
-    <label>Role</label><br>
     <select name="role">
         <option value="client">Client</option>
         <option value="freelancer">Freelancer</option>
-    </select><br><br>
+    </select><br>
 
     <button type="submit">Register</button>
 </form>
 
-<p><a href="/login">Already have an account?</a></p>
-
+<a href="/login">Already have an account?</a>
 </body>
 </html>

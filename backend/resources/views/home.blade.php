@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin Dashboard</title>
+    <title>Home</title>
 </head>
 <body>
-<h2>Welcome to the Admin Dashboard</h2>
+<h2>Welcome Home!</h2>
 
-<p>Hello, {{ Auth::user()->name }} ({{ Auth::user()->email }})</p>
+<p>Hello, {{ Auth::user()->name }} ({{ Auth::user()->role }})</p>
 
 <form method="POST" action="{{ route('logout') }}">
     @csrf

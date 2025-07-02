@@ -25,15 +25,15 @@ class AuthController extends Controller
             'role'     => 'required|in:client,freelancer',
         ]);
 
-        $user = User::create([
+        User::create([
             'name'     => $request->name,
             'email'    => $request->email,
             'password' => Hash::make($request->password),
             'role'     => $request->role,
         ]);
 
-        Auth::login($user); // Auto-login after register
-        return redirect('/dashboard');
+        // ✅ After successful registration, go to login
+        return redirect('/login')->with('success', 'Registration successful! Please login.');
     }
 
     // Show login form
@@ -42,7 +42,6 @@ class AuthController extends Controller
         return view('login');
     }
 
-    // Handle login
     // Handle login
     public function login(Request $request)
     {
@@ -55,23 +54,19 @@ class AuthController extends Controller
             $request->session()->regenerate();
             $user = Auth::user();
 
-            // ✅ Only allow access to dashboard for admin email
+            // ✅ Admin → dashboard
             if (str_contains($user->email, '@admin')) {
                 return redirect('/dashboard');
             }
 
-            // ❌ If not admin, logout and deny access
-            Auth::logout();
-            return redirect('/login')->withErrors([
-                'email' => 'You are not authorized to access the dashboard.',
-            ]);
+            // ✅ Normal users → home
+            return redirect('/home');
         }
 
         return back()->withErrors([
             'email' => 'Invalid credentials.',
         ]);
     }
-
 
     // Handle logout
     public function logout(Request $request)

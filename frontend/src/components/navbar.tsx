@@ -13,6 +13,7 @@ const Navbar = () => {
     const register = () => {
         router.push("/auth/Register");
     };
+    
 
     return (
         <nav className="container max-w-screen min-w-[320px]">
@@ -24,7 +25,7 @@ const Navbar = () => {
                 <div className="flex gap-8">
                     <Link className="hover:text-blue-600 active:font-medium" href="/">Home</Link>
                     <Link className="hover:text-blue-600 active:font-medium" href="#">Project</Link>
-                    <Link className="hover:text-blue-600 active:font-medium" href="#">Profile</Link>
+                    <Link className="hover:text-blue-600 active:font-medium" href="/auth/Questions">Profile</Link>
                     <Link className="hover:text-blue-600 active:font-medium" href="/About">About Us</Link>
                     <Link className="hover:text-blue-600 active:font-medium" href="/Blog">Blog</Link>
                     <Link className="hover:text-blue-600 active:font-medium" href="/Contact">Contact</Link>

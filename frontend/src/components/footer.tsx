@@ -6,7 +6,7 @@ import React from 'react'
 const Footer = () => {
     return (
         <footer className="absolute bottom-0 w-screen">
-            <div className="container flex flex-col gap-4 items-center py-15 bg-[#007AFF] h-auto justify-between md:gap-0 md:px-0 md:flex-row">
+            <div className="container flex flex-col gap-4 items-center w-screen py-15 bg-[#007AFF] h-auto justify-between md:gap-0 md:px-0 md:flex-row">
                 <div
                     style={{ backgroundColor: 'rgba(128, 128, 128, 0.3)' }}
                     className="text-white font-medium text-[20px] h-50 flex items-center text-center px-8 rounded-[5px] md:text-left md:px-15 md:w-120"

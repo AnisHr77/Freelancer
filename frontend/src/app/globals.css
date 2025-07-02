@@ -7,11 +7,11 @@
 
 @keyframes slideRight {
   from {
-    transform: translateX(0);
+    transform: translateX(-800px);
   }
 
   to {
-    transform: translateX(-800px);
+    transform: translateX(0);
 
   }
 }

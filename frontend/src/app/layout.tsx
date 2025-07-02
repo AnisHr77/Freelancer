@@ -1,7 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
+<<<<<<< HEAD
 import { Geist, Geist_Mono, Roboto } from "next/font/google";
 
+=======
+import { Roboto } from "next/font/google";
+import LayoutWrapper from "@/components/LayoutWrapper";
+const roboto = Roboto({
+  subsets: ['latin']
+})
+>>>>>>> 6b36369 (reslove problem of Register)
 const geistSans = Geist({
     subsets: ["latin"],
     variable: "--font-geist-sans",
@@ -23,6 +31,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
+<<<<<<< HEAD
                                        children,
                                    }: {
     children: React.ReactNode;
@@ -36,4 +45,40 @@ export default function RootLayout({
         </body>
         </html>
     );
+=======
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${roboto.className} antialiased`}
+      >
+        <LayoutWrapper>{children}</LayoutWrapper>
+      </body>
+    </html>
+  );
+
+>>>>>>> 6b36369 (reslove problem of Register)
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

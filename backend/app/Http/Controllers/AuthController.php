@@ -6,43 +6,53 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+
 
 class AuthController extends Controller
 {
-    // Show registration form
+
     public function showRegisterForm()
     {
         return view('register');
     }
 
-    // Handle registration
+
     public function register(Request $request)
     {
-        $request->validate([
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|email|unique:users,email',
+        $validator = Validator::make($request->all(), [
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'email' => 'required|email|unique:users',
             'password' => 'required|confirmed|min:6',
-            'role'     => 'required|in:client,freelancer',
         ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
+        }
 
         User::create([
-            'name'     => $request->name,
-            'email'    => $request->email,
+            'name' => $request->firstname . ' ' . $request->lastname,
+            'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role'     => $request->role,
         ]);
 
-        // ✅ After successful registration, go to login
-        return redirect('/login')->with('success', 'Registration successful! Please login.');
+
+        return response()->json([
+            'message' => 'User registered successfully'
+        ], 201);
     }
 
-    // Show login form
+
+
     public function showLoginForm()
     {
         return view('login');
     }
 
-    // Handle login
+
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -54,7 +64,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
             $user = Auth::user();
 
-            // ✅ Admin → dashboard
+
             if (str_contains($user->email, '@admin')) {
                 return redirect('/dashboard');
             }

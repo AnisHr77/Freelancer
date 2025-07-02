@@ -7,24 +7,46 @@ import axios from 'axios';
 import { FormEvent } from 'react';
 const Page = () => {
     const Signup = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         const formdata = new FormData(e.currentTarget);
         const firstname = formdata.get("firstname");
         const lastname = formdata.get("lastname");
         const email = formdata.get("email");
         const password = formdata.get("password");
+
         try {
-            const response = await axios.post("http://127.0.0.1:8000/register", {
+            const response = await axios.post("http://127.0.0.1:8001/api/register", {
+
                 firstname,
                 lastname,
                 email,
                 password,
-            })
-            alert("sign up success");
-            console.log(response.data);
-        } catch (error) {
-            console.log(error);
+                password_confirmation: password // Laravel expects this
+            }, {
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            });
+
+            alert("Sign up successful!");
+            window.location.href = "/auth/Login"; // or use next/router
+        } catch (error: any) {
+            if (error.response) {
+                // Laravel returned a validation or server error
+                console.log("Backend responded:", error.response.data);
+                alert("Registration failed: " + JSON.stringify(error.response.data.errors || error.response.data.message));
+            } else if (error.request) {
+                // Request sent but no response received
+                console.log("No response received:", error.request);
+                alert("Registration failed: No response from server");
+            } else {
+                // Something else went wrong
+                console.log("Error setting up request:", error.message);
+                alert("Registration failed: " + error.message);
+            }
         }
-    }
+
+    };
     return (
         <div className='min-w-[320px] flex h-screen w-screen'>
             <div className="w-[60%]  ">

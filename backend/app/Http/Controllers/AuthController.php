@@ -55,27 +55,14 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->validate([
-            'email'    => 'required|email',
-            'password' => 'required',
-        ]);
+        $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            $user = Auth::user();
-
-
-            if (str_contains($user->email, '@admin')) {
-                return redirect('/dashboard');
-            }
-
-            // ✅ Normal users → home
-            return redirect('/home');
+            return response()->json(['message' => 'Login successful']);
         }
 
-        return back()->withErrors([
-            'email' => 'Invalid credentials.',
-        ]);
+        return response()->json(['message' => 'Invalid credentials'], 422);
     }
 
     // Handle logout

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import axios from 'axios';
 import { FormEvent } from 'react';
 import { handleApiError } from '@/utils/handelerror';
+
 const Page = () => {
     const Signup = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -14,6 +15,7 @@ const Page = () => {
         const lastname = formdata.get("lastname");
         const email = formdata.get("email");
         const password = formdata.get("password");
+
         try {
             const response = await axios.post("http://localhost:8001/api/register", {
                 firstname,
@@ -21,8 +23,7 @@ const Page = () => {
                 email,
                 password,
                 password_confirmation: password
-            },
-            );
+            });
 
             alert("Sign up success");
             console.log(response.data);
@@ -31,6 +32,7 @@ const Page = () => {
             handleApiError(error);
         }
     }
+
     return (
         <div className='min-w-[320px] flex h-screen w-screen'>
             <div className="w-[60%]  ">

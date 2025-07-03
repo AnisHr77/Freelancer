@@ -11,6 +11,7 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/login', [AuthController::class, 'showLoginForm']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
+
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Protected Routes
@@ -23,10 +24,3 @@ Route::middleware('auth')->group(function () {
         return view('home');
     });
 });
-
-
-
-
-
-
-

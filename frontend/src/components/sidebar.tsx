@@ -3,10 +3,6 @@ import { SiFreelancer } from "react-icons/si";
 import { FaUser } from "react-icons/fa";
 import { SiSpringsecurity } from "react-icons/si";
 import { FaRankingStar } from "react-icons/fa6";
-// interface sidebar {
-//     title: String,
-//     desc: String,
-// }
 const Sidebar = () => {
 
     return (

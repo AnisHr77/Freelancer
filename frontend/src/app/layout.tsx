@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Roboto } from "next/font/google";
 import LayoutWrapper from "@/components/LayoutWrapper";
+import Footer from "@/components/footer";
 const roboto = Roboto({
   subsets: ['latin']
 })
@@ -27,12 +28,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html  >
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${roboto.className} antialiased`}
       >
-        {/* <LayoutWrapper>{children}</LayoutWrapper> */}
-        {children}
+        <LayoutWrapper>{children}</LayoutWrapper>
+        {/* {children}
+        <Footer /> */}
       </body>
     </html>
   );

@@ -1,8 +1,13 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
-
+import { IoLogoFacebook } from "react-icons/io5";
+import { FaYoutube } from "react-icons/fa6";
+import { TfiTwitterAlt } from "react-icons/tfi";
+import { TiSocialLinkedin } from "react-icons/ti";
+import { FaInstagram } from "react-icons/fa";
 const Footer = () => {
     return (
         <footer className="absolute bottom-0 w-screen">
@@ -45,6 +50,73 @@ const Footer = () => {
                         Subscribe
                     </button>
                 </form>
+            </div>
+            <div className=" container  flex flex-col gap-4 pb-5  bg-[#01003d]">
+
+                <div className="flex justify-around  gap-4 items-start py-22 ">
+
+                    <div className="flex flex-col gap-12   text-white">
+                        <p className='text-[25px] text-[#007AFF] font-semibold'><span className='bg-white rounded-full py-1'>Gig</span>Notion</p>
+                        <p className='text-[gray] w-[380px]'>
+                            Lorem ipsum dolor sit amet, consecteture adipiscing elit.
+                            Donec at nulla nibh.Pellentesque vel orci mauris.
+                            Fusce quis rhoncus lectus,et fringila sapien.
+                            Duis porttitor id dolor ut volutpat
+                        </p>
+                        <div className="flex gap-4">
+                            <Link href="#"><IoLogoFacebook className='w-6 h-6 text-[gray]' /></Link>
+                            <Link href="#" className='rounded-full bg-[gray] w-6 h-6 flex items-center justify-center ' ><FaYoutube className='w-4 h-4 text-[#01003d] ' /></Link>
+                            <Link href="#" className='rounded-full bg-[gray] w-6 h-6 flex items-center justify-center '><TiSocialLinkedin className='w-5 h-5 text-[#01003d]' /></Link>
+                            <Link href="#" className='rounded-full bg-[gray] w-6 h-6 flex items-center justify-center '><TfiTwitterAlt className='w-3 h-3 text-[#01003d] ' /></Link>
+                            <Link href="#" className='rounded-full bg-[gray] w-6 h-6 flex items-center justify-center '><FaInstagram className='w-4 h-4 text-[#01003d] ' /></Link>
+                        </div>
+                    </div>
+
+                    <div className="flex flex-col gap-2    text-white">
+                        <p className='font-semibold'>Quick Links</p>
+                        <div className="flex flex-col gap-2 text-[gray] text-left">
+                            <Link href="#">Home</Link>
+                            <Link href="#">Services</Link>
+                            <Link href="#">Freelancers</Link>
+                            <Link href="#">Employers</Link>
+                            <Link href="#">Project</Link>
+                            <Link href="#">About Us</Link>
+                            <Link href="#">Testiomonials</Link>
+                            <Link href="#">Blog</Link>
+                            <Link href="#">Support Page</Link>
+                        </div>
+                    </div>
+
+                    <div className="flex flex-col gap-2   text-white">
+                        <p className='font-semibold'>Resources</p>
+                        <div className="flex flex-col gap-2 text-[gray] text-left">
+                            <Link href="#">FAQ</Link>
+                            <Link href="#">Help Center</Link>
+                            <Link href="#">Pricing</Link>
+                            <Link href="#">Payment method</Link>
+                            <Link href="#">Careers</Link>
+                            <Link href="#">Contact Us</Link>
+                        </div>
+                    </div>
+
+                    <div className="flex flex-col gap-2   text-white">
+                        <p className='font-semibold'>Terms</p>
+                        <div className="flex flex-col gap-2 text-[gray] text-left">
+                            <Link href="#">Privacy Policy</Link>
+                            <Link href="#">Terms and Conditions</Link>
+                            <Link href="#">Copyright  Policy</Link>
+                            <Link href="#">Code of Conduct</Link>
+                            <Link href="#">Fees and Charged</Link>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div className="mx-20">
+                    <hr className='text-[gray]    h-2'></hr>
+                </div>
+
+                <p className=' text-[gray] text-center '>GigNotion Freelancer and Project - 2025 All Rights Reserved</p>
             </div>
         </footer>
     )

@@ -33,8 +33,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${roboto.className} antialiased`}
       >
         <LayoutWrapper>{children}</LayoutWrapper>
-        {/* {children}
-        <Footer /> */}
       </body>
     </html>
   );

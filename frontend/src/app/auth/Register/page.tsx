@@ -34,7 +34,7 @@ const Page = () => {
     }
 
     return (
-        <div className='min-w-[320px] flex h-screen w-screen'>
+        <div className='min-w-[320px] flex h-screen w-full'>
             <div className="w-[60%]  ">
                 <p className='text-[40px]  text-[#007AFF]  ml-5 md:ml-18'>GigNation</p>
                 <p className='mt-1 text-[20px]  ml-5 md:ml-20 '>Welcom to our community</p>
@@ -49,7 +49,7 @@ const Page = () => {
                             type='text'
                             name='firstname'
                             placeholder='First name'
-                            className='w-80 md:w-45 h-9 rounded-[5px] pl-2  border   '
+                            className='w-80  md:w-full md:max-w-45  h-9 rounded-[5px] pl-2  border   '
                             required
                         />
                         <label className='mt-2 md:hidden'>Last Name</label>
@@ -57,7 +57,7 @@ const Page = () => {
                             type='text'
                             name='lastname'
                             placeholder='Last name'
-                            className=' w-80 md:w-45  h-9 rounded-[5px] pl-2  border   '
+                            className=' w-80 md:w-full md:max-w-45  h-9 rounded-[5px] pl-2  border   '
                             required
                         />
                     </div>
@@ -102,7 +102,7 @@ const Page = () => {
                 </button>
                 <p className='flex gap-2  w-85 md:ml-30  mt-1 justify-center 2xl:mt-15'>Already have account? <Link className='text-[#007AFF]' href="/auth/Login" >Sign in</Link></p>
             </div>
-            <div className="max-w-[45%]  items-center text-center h-full bg-[#007AFF]    flex-col justify-center hidden md:flex">
+            <div className="w-full max-w-[45%]  items-center text-center h-full bg-[#007AFF]    flex-col justify-center hidden md:flex">
                 <Sidebar />
             </div>
         </div>

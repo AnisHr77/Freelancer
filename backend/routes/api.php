@@ -25,3 +25,4 @@ Route::apiResource('contracts', ContractController::class);
 Route::apiResource('messages', MessageController::class);
 Route::apiResource('reviews', ReviewController::class);
 Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);

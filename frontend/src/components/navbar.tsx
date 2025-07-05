@@ -27,23 +27,23 @@ const Navbar = () => {
                     <span className="rounded-full py-1 pl-1 bg-gray-100">Gig</span>Nation
                 </p>
                 <div className="flex gap-8">
-                    <Link className="hover:text-blue-600 active:font-medium" href="/">Home</Link>
-                    <Link className="hover:text-blue-600 active:font-medium" href="#">Project</Link>
-                    <Link className="hover:text-blue-600 active:font-medium" href="#">Profile</Link>
-                    <Link className="hover:text-blue-600 active:font-medium" href="/About">About Us</Link>
-                    <Link className="hover:text-blue-600 active:font-medium" href="/Blog">Blog</Link>
-                    <Link className="hover:text-blue-600 active:font-medium" href="/Contact">Contact</Link>
+                    <Link className="hover:text-[#3F5FFF] active:font-medium" href="/">Home</Link>
+                    <Link className="hover:text-[#3F5FFF] active:font-medium" href="#">Project</Link>
+                    <Link className="hover:text-[#3F5FFF] active:font-medium" href="#">Profile</Link>
+                    <Link className="hover:text-[#3F5FFF] active:font-medium" href="/About">About Us</Link>
+                    <Link className="hover:text-[#3F5FFF] active:font-medium" href="/Blog">Blog</Link>
+                    <Link className="hover:text-[#3F5FFF] active:font-medium" href="/Contact">Contact</Link>
                 </div>
                 <div className="flex gap-6 text-center">
                     <button
                         onClick={Login}
-                        className="border border-blue-600 h-10 w-22 rounded-[5px] text-blue-600 hover:bg-blue-600 hover:text-white active:opacity-50 cursor-pointer"
+                        className="border border-[#3F5FFF] h-10 w-22 rounded-[5px] text-[#3F5FFF] hover:[#3F5FFF] hover:text-white active:opacity-50 cursor-pointer"
                     >
                         Sign In
                     </button>
                     <button
                         onClick={register}
-                        className="bg-blue-600 h-10 w-22 rounded-[5px] text-white hover:bg-white hover:border hover:text-blue-600 active:opacity-50  cursor-pointer"
+                        className="bg-[#3F5FFF] h-10 w-22 rounded-[5px] text-white hover:bg-white hover:border hover:text-[#3F5FFF] active:opacity-50  cursor-pointer"
                     >
                         Join
                     </button>
@@ -53,7 +53,7 @@ const Navbar = () => {
             {/* Mobile Navbar */}
             <div className="md:hidden">
                 <div className=" max-w-[600px] flex justify-between mx-2 items-center">
-                    <p className="font-bold text-blue-600">
+                    <p className="font-bold text-[#3F5FFF] ">
                         <span className="rounded-full py-1 pl-1 bg-gray-100">Gig</span>Nation
                     </p>
                     <button style={{ display: isOpen ? "none" : "block" }} onClick={() => setIsOpen(true)} className="w-10 h-10">
@@ -71,10 +71,10 @@ const Navbar = () => {
                     <Link onClick={hidnavbar} href="/About">About Us</Link>
                     <Link onClick={hidnavbar} href="/Blog">Blog</Link>
                     <Link onClick={hidnavbar} href="/Contact">Contact</Link>
-                    <button className="border border-blue-600 h-10 w-22 rounded-[5px] text-blue-600 hover:bg-blue-600 hover:text-white active:opacity-50">
+                    <button className="border border-[#3F5FFF] h-10 w-22 rounded-[5px] text-[#3F5FFF] hover:bg-[#3F5FFF] hover:text-white active:opacity-50">
                         Sign In
                     </button>
-                    <button onClick={register} className="bg-blue-600 h-10 w-22 rounded-[5px] text-white hover:bg-white hover:text-blue-600 active:opacity-50">
+                    <button onClick={register} className="bg-[#3F5FFF] h-10 w-22 rounded-[5px] text-white hover:bg-white hover:text-[#3F5FFF] active:opacity-50">
                         Join
                     </button>
                 </div>

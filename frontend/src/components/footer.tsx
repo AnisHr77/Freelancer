@@ -10,8 +10,8 @@ import { TiSocialLinkedin } from "react-icons/ti";
 import { FaInstagram } from "react-icons/fa";
 const Footer = () => {
     return (
-        <footer className="overflow-x-hidden mt-[100%]   w-full min-w-[320px] max-w-[1440px] mx-auto">
-            <div className="   flex flex-col gap-4 items-center justify-between py-15 bg-[#007AFF] h-auto  md:gap-0 md:px-0 md:flex-row">
+        <footer className="overflow-x-hidden mt-[10%]   w-full min-w-[320px] max-w-[1440px] mx-auto">
+            <div className="   flex flex-col gap-4 items-center justify-between py-15 bg-[#3F5FFF] h-auto  md:gap-0 md:px-0 md:flex-row">
                 <div
                     style={{ backgroundColor: 'rgba(128, 128, 128, 0.3)' }}
                     className="text-white font-medium text-[20px] h-50 flex items-center text-center px-8 rounded-[5px] md:text-left md:px-15 md:w-120"

@@ -28,8 +28,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${roboto.className} antialiased`}
       >
-        
-        <div>{children}</div>
+
+        <LayoutWrapper>{children}</LayoutWrapper>
       </body>
     </html>
   );

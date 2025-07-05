@@ -8,7 +8,7 @@ import { SiSpringsecurity } from "react-icons/si";
 import { FaRankingStar } from "react-icons/fa6";
 import Sidebar from '@/components/sidebar';
 import axios from 'axios';
-import Cookies from 'js-cookie';
+
 
 const Page = () => {
     const Signin = async (e: FormEvent<HTMLFormElement>) => {
@@ -18,23 +18,9 @@ const Page = () => {
         const password = formdata.get("password");
 
         try {
-            // Step 1: Get CSRF cookie
-            await axios.get("http://localhost:8001/sanctum/csrf-cookie", {
-                withCredentials: true
-            });
-
-            // Step 2: Get XSRF token from cookie and decode it
-            const xsrfToken = Cookies.get("XSRF-TOKEN");
-
-            // Step 3: Submit login request
-            const response = await axios.post("http://localhost:8001/login", {
+            const response = await axios.post("http://localhost:8001/api/login", {
                 email,
                 password,
-            }, {
-                withCredentials: true,
-                headers: {
-                    'X-XSRF-TOKEN': decodeURIComponent(xsrfToken || '')
-                }
             });
 
             alert("Sign in success");
@@ -87,7 +73,7 @@ const Page = () => {
                     Don't have an account? <Link className='text-[#007AFF]' href="/auth/Register">Sign Up</Link>
                 </p>
             </div>
-            <div className="max-w-[45%] items-center text-center h-full bg-[#007AFF] hidden md:flex flex-col justify-center">
+            <div className=" w-full max-w-[45%] items-center text-center h-full bg-[#007AFF] hidden md:flex flex-col justify-center">
                 <Sidebar />
             </div>
         </div>

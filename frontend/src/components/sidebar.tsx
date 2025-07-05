@@ -3,17 +3,13 @@ import { SiFreelancer } from "react-icons/si";
 import { FaUser } from "react-icons/fa";
 import { SiSpringsecurity } from "react-icons/si";
 import { FaRankingStar } from "react-icons/fa6";
-// interface sidebar {
-//     title: String,
-//     desc: String,
-// }
 const Sidebar = () => {
 
     return (
         <div className=" ">
             <p className='text-[30px] text-white font-bold '>Welcome to GigNation</p>
             <p className='  w-[80%] ml-15 text-white mt-5 flex gap-2 '> <span className=''>Join our community of talented freelancers and connect with clients from around the world.</span></p>
-            <div className=" flex justify-center gap-10 text-white mt-10">
+            <div className=" grid grid-cols-3  lg:grid-cols-5  ml-8 gap-10 text-white mt-10">
                 <SiFreelancer className='w-10 h-10' />
                 <FaUser className='w-10 h-10' />
                 <SiSpringsecurity className='w-10 h-10' />

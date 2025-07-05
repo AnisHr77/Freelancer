@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Roboto } from "next/font/google";
 import LayoutWrapper from "@/components/LayoutWrapper";
+import Footer from "@/components/footer";
 const roboto = Roboto({
   subsets: ['latin']
 })
@@ -23,7 +24,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
+<<<<<<< HEAD
       <html lang="en">
+=======
+    <html  >
+>>>>>>> 0f315f58f4c4ec01675f158324af97213caa76fa
       <body
           className={`${geistSans.variable} ${geistMono.variable} ${roboto.className} antialiased`}
       >

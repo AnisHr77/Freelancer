@@ -4,14 +4,14 @@ import "./globals.css";
 import { Roboto } from "next/font/google";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import Footer from "@/components/footer";
+
 const roboto = Roboto({
   subsets: ['latin']
-})
+});
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
-
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -24,38 +24,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-<<<<<<< HEAD
-      <html lang="en">
-=======
-    <html  >
->>>>>>> 0f315f58f4c4ec01675f158324af97213caa76fa
+    <html lang="en">
       <body
-          className={`${geistSans.variable} ${geistMono.variable} ${roboto.className} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${roboto.className} antialiased`}
       >
-      {/* <LayoutWrapper>{children}</LayoutWrapper> */}
-      <div>{children}</div>
+        
+        <div>{children}</div>
       </body>
-      </html>
+    </html>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

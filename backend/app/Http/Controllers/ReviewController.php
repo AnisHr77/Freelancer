@@ -41,4 +41,22 @@ class ReviewController extends Controller
         $review->delete();
         return response()->json(['message' => 'Review deleted']);
     }
+
+    public function userReviews()
+    {
+        $freelancerId = 1; // ou auth()->id()
+
+        $reviews = Review::whereExists(function ($query) use ($freelancerId) {
+            $query->select('*')
+                ->from('contracts')
+                ->join('proposals', 'contracts.proposal_id', '=', 'proposals.id')
+                ->whereColumn('reviews.contract_id', 'contracts.id')
+                ->where('proposals.freelancer_id', $freelancerId);
+        })->get();
+
+
+
+
+        return response()->json($reviews);
+    }
 }

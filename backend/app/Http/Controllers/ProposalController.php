@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Proposal;
 use Illuminate\Http\Request;
 
+
 class ProposalController extends Controller
 {
     public function index()
@@ -42,5 +43,20 @@ class ProposalController extends Controller
         $proposal->delete();
         return response()->json(['message' => 'Proposal deleted']);
     }
+
+
+
+    public function userProposals()
+    {
+        $userId = 1; // Remplacer par auth()->id()
+
+        $proposals = Proposal::with('project')
+            ->where('freelancer_id', $userId)
+            ->get();
+
+        return response()->json($proposals);
+    }
+
+
 }
 

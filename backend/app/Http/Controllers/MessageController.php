@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Message;
 use Illuminate\Http\Request;
@@ -39,6 +40,22 @@ class MessageController extends Controller
     {
         $message->delete();
         return response()->json(['message' => 'Message deleted']);
+    }
+
+    public function conversations()
+    {
+        $userId = 1; // Remplacer par auth()->id()
+
+        // récupérer les conversations uniques (sender + receiver)
+        $conversations = Message::select(DB::raw('
+            IF(sender_id = '.$userId.', receiver_id, sender_id) as user_id
+        '))
+            ->where('sender_id', $userId)
+            ->orWhere('receiver_id', $userId)
+            ->groupBy('user_id')
+            ->get();
+
+        return response()->json($conversations);
     }
 }
 

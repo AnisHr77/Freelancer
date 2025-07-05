@@ -19,6 +19,7 @@ return new class extends Migration
            $table->decimal('budget', 10, 2);
            $table->enum('status', ['open', 'in_progress', 'completed'])->default('open');
            $table->timestamps();
+
        });
 
     }

@@ -57,5 +57,27 @@ class MessageController extends Controller
 
         return response()->json($conversations);
     }
+
+    public function getMessages($id)
+    {
+        $messages = Message::where('conversation_id', $id)
+            ->with('sender:id,name') // charge le nom du sender
+            ->orderBy('created_at', 'asc')
+            ->get()
+            ->map(function ($message) {
+                return [
+                    'id' => $message->id,
+                    'sender_id' => $message->sender_id,
+                    'sender_name' => $message->sender->name ?? 'Unknown',
+                    'message' => $message->message,
+                    'created_at' => $message->created_at,
+                ];
+            });
+
+        return response()->json([
+            'conversation_id' => (int) $id,
+            'messages' => $messages,
+        ]);
+    }
 }
 

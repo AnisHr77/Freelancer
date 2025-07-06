@@ -1,12 +1,16 @@
 "use client";
-const projects = [
-    { name: "Steven Terry", project: "Landing page", price: "$800", time: "1 days 2 hours", progress: 90 },
-    { name: "Audrey Jones", project: "Development", price: "$300", time: "4 days 8 hours", progress: 50 },
-    { name: "Brian Fisher", project: "Translator", price: "$180", time: "14 days 2 hours", progress: 95 },
-    { name: "Molly Mills", project: "Data Analyst", price: "$920", time: "8 days 20 hours", progress: 20 },
-];
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function ActiveProjects() {
+    const [projects, setProjects] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:8001/api/dashboard/active-projects")
+            .then((res) => setProjects(res.data))
+            .catch((err) => console.error("Failed to fetch active projects", err));
+    }, []);
+
     return (
         <div className="bg-white shadow rounded-xl p-6">
             <h2 className="text-lg font-bold mb-4">Active Projects</h2>
@@ -20,7 +24,7 @@ export default function ActiveProjects() {
                         <div className="text-sm text-gray-600">{p.price}</div>
                         <div className="text-sm text-gray-600">{p.time}</div>
                         <div className="w-full md:w-1/4 bg-gray-200 h-2 rounded">
-                            <div className="bg-purple-500 h-2 rounded" style={{ width: `${p.progress}%` }} />
+                            <div className="bg-[#7A4D8B] h-2 rounded" style={{ width: `${p.progress}%` }} />
                         </div>
                     </div>
                 ))}

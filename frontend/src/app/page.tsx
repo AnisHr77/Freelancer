@@ -1,13 +1,16 @@
 import Card from "@/components/Card";
+import FeaturesCard from "@/components/features-card";
 import Header from "@/components/Home/Header";
-import Logos from "@/components/Home/Logos";
+import Joinsection from "@/components/Home/Joinsection";
+import ServicesCards from "@/components/Home/Services-Cards";
 
 export default function HomePage() {
     return (
-        <div className="">
+        <div className=" flex flex-col gap-20 ">
             <Header />
-            {/* <Logos/> */}
-            <div className="flex justify-around ">
+            <ServicesCards/>
+            <Joinsection/>
+            {/* <div className="flex justify-around ">
                 <Card
                     title="Card Title"
                     desc="Card Description"
@@ -17,7 +20,7 @@ export default function HomePage() {
                     price="$100"
                     rating="4.5"
                 />
-                 <Card
+                <Card
                     title="Card Title"
                     desc="Card Description"
                     imageUrl="/Freelancer.png"
@@ -26,7 +29,7 @@ export default function HomePage() {
                     price="$100"
                     rating="4.5"
                 />
-                 <Card
+                <Card
                     title="Card Title"
                     desc="Card Description"
                     imageUrl="/images.jpeg"
@@ -35,7 +38,7 @@ export default function HomePage() {
                     price="$100"
                     rating="4.5"
                 />
-                 <Card
+                <Card
                     title="Card Title"
                     desc="Card Description"
                     imageUrl="/images.jpeg"
@@ -44,8 +47,8 @@ export default function HomePage() {
                     price="$100"
                     rating="4.5"
                 />
-                
-            </div>
+
+            </div> */}
 
         </div>
     );

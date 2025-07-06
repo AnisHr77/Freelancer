@@ -5,7 +5,7 @@ import React, { FormEvent } from 'react';
 import axios from 'axios';
 import { handleApiError } from '@/utils/handelerror';
 import Sidebar from '@/components/sidebar';
-
+import { FcGoogle } from "react-icons/fc";
 axios.defaults.withCredentials = true;
 function getCookie(name: string) {
     const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
@@ -80,7 +80,8 @@ const Page = () => {
 
                 <button
                     className='w-full max-w-100 min-w-80 mx-5 md:mx-0 h-10 mt-2 rounded-[5px] flex justify-center items-center gap-2 border md:ml-20 cursor-pointer'>
-                    <span>Continue with Google</span>
+                    <FcGoogle className=' w-6 h-6 ' />
+                    <span> Continue with Google</span>
                 </button>
 
                 <p className='flex gap-2 w-85 md:ml-30 mt-4 justify-center'>

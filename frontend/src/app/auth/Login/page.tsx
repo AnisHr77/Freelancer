@@ -24,16 +24,16 @@ const Page = () => {
             // D'abord récupérer le cookie CSRF
             await axios.get('http://localhost:8001/sanctum/csrf-cookie');
 
-            const csrfToken = getCookie('XSRF-TOKEN'); // ✅ maintenant le cookie existe
+            const csrfToken = getCookie('XSRF-TOKEN'); 
 
-            // Ensuite on envoie les identifiants avec le bon header
+            
             const response = await axios.post(
                 'http://localhost:8001/login',
                 { email, password },
                 {
                     withCredentials: true,
                     headers: {
-                        'X-XSRF-TOKEN': csrfToken ?? '', // sécuriser au cas où
+                        'X-XSRF-TOKEN': csrfToken ?? '', 
                     },
                 }
             );

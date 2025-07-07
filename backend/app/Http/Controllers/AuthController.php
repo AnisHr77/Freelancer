@@ -56,14 +56,13 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
-
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return response()->json(['message' => 'Login successful']);
+        if (!Auth::attempt($credentials)) {
+            return response()->json(['message' => 'Invalid credentials'], 401);
         }
-
-        return response()->json(['message' => 'Invalid credentials'], 422);
+        // Authentifié, tu peux retourner l'utilisateur ou juste un message
+        return response()->json(['message' => 'Logged in successfully', 'user' => auth()->user()]);
     }
+
 
     // Handle logout
     public function logout(Request $request)

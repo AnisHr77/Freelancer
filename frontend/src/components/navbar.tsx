@@ -37,7 +37,7 @@ const Navbar = () => {
                 <div className="flex gap-6 text-center">
                     <button
                         onClick={Login}
-                        className="border border-[#3F5FFF] h-10 w-22 rounded-[5px] text-[#3F5FFF] hover:[#3F5FFF] hover:text-white active:opacity-50 cursor-pointer"
+                        className="border border-[#3F5FFF] h-10 w-22 rounded-[5px] text-[#3F5FFF] hover:bg-[#3F5FFF] hover:text-white active:opacity-50 cursor-pointer"
                     >
                         Sign In
                     </button>

@@ -21,7 +21,7 @@ const Page = () => {
         const password = formData.get("password");
 
         try {
-            // D'abord récupérer le cookie CSRF
+
             await axios.get('http://localhost:8001/sanctum/csrf-cookie');
 
             const csrfToken = getCookie('XSRF-TOKEN'); 

@@ -7,7 +7,7 @@ export default function Joinsection() {
         router.push("/auth/Register");
     };
     return (
-        <div className="flex flex-col items-center gap-10 px-25 ">
+        <div className="flex flex-col items-center gap-10 px-25 mt-20 ">
             <h1 className="text-center font-bold text-[25px]   md:text-[30px] w-80 md:w-148" >For more features you can  <span className="text-[#3F5FFF]">Join our community</span> by clicking in <span className="text-[#3F5FFF]">blue</span> button  </h1>
             <div  className=" join-section w-80 md:w-full   rounded-[5px] relative ">
                 <div

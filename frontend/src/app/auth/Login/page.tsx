@@ -6,14 +6,17 @@ import axios from 'axios';
 import { handleApiError } from '@/utils/handelerror';
 import Sidebar from '@/components/sidebar';
 import { FcGoogle } from "react-icons/fc";
+import { useRouter } from 'next/navigation';
 axios.defaults.withCredentials = true;
 
 function getCookie(name: string): string | null {
     const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
     return match ? decodeURIComponent(match[2]) : null;
 }
+const csrfToken = getCookie('XSRF-TOKEN');
 
 const Page = () => {
+    const router = useRouter();
     const Signin = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
@@ -21,24 +24,21 @@ const Page = () => {
         const password = formData.get("password");
 
         try {
-
-            await axios.get('http://localhost:8001/sanctum/csrf-cookie');
-
-            const csrfToken = getCookie('XSRF-TOKEN'); 
-
-            
-            const response = await axios.post(
-                'http://localhost:8001/login',
-                { email, password },
+            const response = await axios.post('http://localhost:8001/login',
+                {
+                    email,
+                    password,
+                },
                 {
                     withCredentials: true,
                     headers: {
-                        'X-XSRF-TOKEN': csrfToken ?? '', 
+                        'X-XSRF-TOKEN': csrfToken ?? '',
                     },
                 }
             );
 
             alert("Sign in success");
+            router.push("/home");
             console.log(response.data);
         } catch (error: any) {
             handleApiError(error);

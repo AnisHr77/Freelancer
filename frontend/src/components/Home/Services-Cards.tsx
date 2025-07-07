@@ -4,7 +4,7 @@ import { Cards } from "@/lib/CardsData";
 
 export default function ServicesCards() {
     return (
-        <div className=" flex flex-col items-center gap-20 ">
+        <div className=" flex flex-col items-center gap-20 mt-20 ">
             <h1 className="text-center font-bold text-[25px]  md:text-[30px] w-90 md:w-148 " >We're dedicated to your success. Join our community today and
                 <span className=" text-[#3F5FFF] ">discover the power of freelance talent and quality services</span>
             </h1>

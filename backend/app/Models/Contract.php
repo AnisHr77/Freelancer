@@ -9,10 +9,11 @@ class Contract extends Model
 {
     protected $fillable = ['proposal_id', 'start_date', 'end_date', 'payment_amount', 'status'];
 
-    public function proposal(): BelongsTo
+    public function proposal()
     {
-        return $this->belongsTo(Proposal::class);
+        return $this->belongsTo(Proposal::class, 'proposal_id', 'id');
     }
+
 
     public function reviews(): HasMany
     {

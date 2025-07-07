@@ -6,15 +6,16 @@ use App\Models\Project;
 use App\Models\Proposal;
 use App\Models\Message;
 use App\Models\Contract;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-
 class DashboardController extends Controller
 {
-    public function overview()
+
+    public function overview(Request $request)
     {
-        $userId = auth()->id() ?? 1;
+        $userId = $request->user()->id ?? 1; // récupère l'utilisateur connecté ou 1 par défaut (à adapter)
 
         $activeProjectsCount = Project::where('user_id', $userId)
             ->where('status', 'active')
@@ -33,12 +34,17 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function earningChart()
-    {
 
-        $earnings = \App\Models\Contract::selectRaw('MONTH(end_date) as month, SUM(payment_amount) as income')
+    public function earningChart(Request $request)
+    {
+        $userId = $request->user()->id ?? 2;
+
+        $earnings = Contract::selectRaw('MONTH(end_date) as month, SUM(payment_amount) as income')
             ->where('status', 'completed')
             ->whereYear('end_date', now()->year)
+            ->whereHas('proposal', function ($query) use ($userId) {
+                $query->where('freelancer_id', $userId);
+            })
             ->groupByRaw('MONTH(end_date)')
             ->get();
 
@@ -46,16 +52,16 @@ class DashboardController extends Controller
         $data = collect(range(1, 12))->map(function ($month) use ($earnings) {
             $found = $earnings->firstWhere('month', $month);
             return [
-                'month' => Carbon::create()->month($month)->format('M'),
-                'income' => $found ? (float)$found->income : 0,
+                'month' => \Carbon\Carbon::create()->month($month)->format('M'),
+                'income' => $found ? (float) $found->income : 0,
             ];
         });
 
+        $totalIncome = $data->reduce(function ($carry, $item) {
+            return $carry + (float) $item['income'];
+        }, 0);
 
-        $totalIncome = $data->sum('income');
-
-
-        $growth = rand(5, 25);
+        $growth = rand(5, 25); // exemple de croissance aléatoire
 
         return response()->json([
             'income' => $totalIncome,
@@ -64,17 +70,18 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function analytics()
+
+    public function analytics(Request $request)
     {
-        $userId = auth()->id() ?? 2;
+        $userId = $request->user()->id ?? 1;
 
-        $completed = Contract::whereHas('proposal', fn($q) =>
-        $q->where('freelancer_id', $userId)
-        )->where('status', 'completed')->count();
+        $completed = Contract::whereHas('proposal', function ($q) use ($userId) {
+            $q->where('freelancer_id', $userId);
+        })->where('status', 'completed')->count();
 
-        $total = Contract::whereHas('proposal', fn($q) =>
-        $q->where('freelancer_id', $userId)
-        )->count();
+        $total = Contract::whereHas('proposal', function ($q) use ($userId) {
+            $q->where('freelancer_id', $userId);
+        })->count();
 
         $completionRate = $total > 0 ? round(($completed / $total) * 100) : 0;
 
@@ -82,26 +89,26 @@ class DashboardController extends Controller
             'completed_tasks' => $completed,
             'total_contracts' => $total,
             'completion_rate' => $completionRate,
-            'response_rate' => 85, // tu peux calculer ça plus tard si tu veux
-            'tasks_progress' => $completionRate
+            'response_rate' => 85,
+            'tasks_progress' => $completionRate,
         ]);
     }
 
+
     public function analyticsAll()
     {
-        // Récupérer tous les freelances
-        $freelancers = \App\Models\User::where('role', 'freelancer')->get();
+        $freelancers = User::where('role', 'freelancer')->get();
 
         $data = [];
 
         foreach ($freelancers as $freelancer) {
             $userId = $freelancer->id;
 
-            $completed = \App\Models\Contract::whereHas('proposal', function ($q) use ($userId) {
+            $completed = Contract::whereHas('proposal', function ($q) use ($userId) {
                 $q->where('freelancer_id', $userId);
             })->where('status', 'completed')->count();
 
-            $total = \App\Models\Contract::whereHas('proposal', function ($q) use ($userId) {
+            $total = Contract::whereHas('proposal', function ($q) use ($userId) {
                 $q->where('freelancer_id', $userId);
             })->count();
 
@@ -113,13 +120,14 @@ class DashboardController extends Controller
                 'completed_tasks' => $completed,
                 'total_contracts' => $total,
                 'completion_rate' => $completionRate,
-                'response_rate' => 85, // tu peux changer la logique ici plus tard
+                'response_rate' => 85,
                 'tasks_progress' => $completionRate,
             ];
         }
 
         return response()->json($data);
     }
+
 
     public function activeProjects()
     {
@@ -145,19 +153,19 @@ class DashboardController extends Controller
         return response()->json($contracts);
     }
 
-    public function applicationStatus()
-    {
-        // Simuler un freelancer pour l'instant (ex: id 2)
-        $freelancerId = 2;
 
-        $proposals = \App\Models\Proposal::with('project')
+    public function applicationStatus(Request $request)
+    {
+        $freelancerId = $request->user()->id ?? 2;
+
+        $proposals = Proposal::with('project')
             ->where('freelancer_id', $freelancerId)
             ->orderBy('created_at', 'desc')
             ->take(10)
             ->get();
 
         $data = $proposals->map(function ($proposal) {
-            $status = $proposal->status; // ex: pending, rejected, accepted...
+            $status = $proposal->status; // pending, rejected, accepted, etc.
             $label = match ($status) {
                 'pending' => null,
                 'rejected' => 'Not selected',
@@ -168,15 +176,12 @@ class DashboardController extends Controller
             return [
                 'title' => $proposal->project->title ?? 'N/A',
                 'status' => $status,
-                'date' => \Carbon\Carbon::parse($proposal->created_at)->format('M d'),
-                'tags' => ['Remote', 'Contract'], // facultatif, tu peux les relier à des champs plus tard
+                'date' => Carbon::parse($proposal->created_at)->format('M d'),
+                'tags' => ['Remote', 'Contract'], // à adapter si besoin
                 'label' => $label,
             ];
         });
 
         return response()->json($data);
     }
-
-
-
 }

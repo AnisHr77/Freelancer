@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Http\Request;
+use App\Models\Project;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProposalController;

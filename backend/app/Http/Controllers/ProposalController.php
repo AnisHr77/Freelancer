@@ -17,9 +17,9 @@ class ProposalController extends Controller
     {
         $validated = $request->validate([
             'project_id' => 'required|exists:projects,id',
-            'user_id' => 'required|exists:users,id',
-            'amount' => 'required|numeric',
-            'message' => 'required|string',
+            'freelancer_id' => 'required|exists:users,id',
+            'cover_letter' => 'required|string',
+            'bid_amount' => 'required|numeric',
             'status' => 'nullable|string',
         ]);
 

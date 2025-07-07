@@ -10,24 +10,41 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ConversationController;
-
+use App\Http\Controllers\UserController;
 
 Route::get('/dashboard/overview', [DashboardController::class, 'overview']);
+
 Route::get('dashboard/earning-chart', [DashboardController::class, 'earningChart']);
+
 Route::get('/projects/active', [ProjectController::class, 'activeProjects']);
+
 Route::get('/proposals/user', [ProposalController::class, 'userProposals']);
+
 Route::get('/messages/conversations', [MessageController::class, 'conversations']);
+
 Route::get('/reviews/user', [ReviewController::class, 'userReviews']);
+
 Route::get('/dashboard/analytics', [DashboardController::class, 'analytics']);
+
 Route::get('/dashboard/analyticsall', [DashboardController::class, 'analyticsAll']);
+
 Route::get('/dashboard/active-projects', [DashboardController::class, 'activeProjects']);
+
 Route::get('dashboard/application-status', [DashboardController::class, 'applicationStatus']);
+
 Route::get('/user/profile', function () {
     return response()->json([
         'name' => 'Anis Hadj Ramdane',
         'location' => 'Alger, Algeria',
     ]);
 });
+
+Route::get('/users', [UserController::class, 'index']);
+
+Route::post('/users', [UserController::class, 'store']); // Add user
+
+Route::put('/users/{id}', [UserController::class, 'update']); // Edit role/status
+
 //tt3awed
 Route::get('/conversations', [ConversationController::class, 'index']);
 Route::get('/conversations/{id}', [ConversationController::class, 'show']);

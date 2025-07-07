@@ -1,19 +1,213 @@
-export const Questions: Record<string, { label: string, type: string }[]> = {
-    personaldeitailes: [
-        { label: "What services do you offer?", type: "text" },
-        { label: "What is your expertise area?", type: "text" },
-        { label: "Years of experience?", type: "number" },
-    ],
-    skillsandtools: [
-        { label: "List your key skills", type: "select" },
-        { label: "Which tools do you use?", type: "text" },
-        { label: "Certifications?", type: "file" },
-    ],
-    portfolioexperience: [
-        { label: "Worked on freelance platforms?", type: "text" },
-        { label: "Upload sample work", type: "file" },
-        { label: "Portfolio link", type: "url" },
-    ]
+// export const Questions: Record<string, { label: string, type: string }[]> = {
+//     personaldeitailes: [
+//         { label: "What services do you offer?", type: "select" },
+//         { label: "What is your expertise area?", type: "select" },
+//         { label: "Years of experience?", type: "select" },
+//     ],
+//     skillsandtools: [
+//         { label: "List your key skills", type: "select" },
+//         { label: "Which tools do you use?", type: "select" },
+//         { label: "Certifications?", type: "file" },
+//     ],
+//     portfolioexperience: [
+//         { label: "Worked on freelance platforms?", type: "select" },
+//         { label: "Upload sample work", type: "file" },
+//         { label: "Portfolio link", type: "url" },
+//     ]
+// };
+
+// export const categoryOrder = ["personaldeitailes", "skillsandtools", "portfolioexperience"];
+
+
+
+export type FreelancerCategory = {
+    id: number;
+    name: string;
 };
 
-export const categoryOrder = ["personaldeitailes", "skillsandtools", "portfolioexperience"];
+export const freelancerCategories: FreelancerCategory[] = [
+    { id: 1, name: "Web Development"  },
+    { id: 2, name: "Graphic Design"  },
+    { id: 3, name: "Logo Design"  },
+    { id: 4, name: "Mobile App Development"  },
+    { id: 5, name: "Digital Marketing"  },
+    { id: 6, name: "SEO Services"  },
+    { id: 7, name: "Content Writing"  },
+    { id: 8, name: "Translation" },
+    { id: 9, name: "Video Editing"  },
+    { id: 10, name: "Voice Over" },
+    { id: 11, name: "Virtual Assistance"  },
+    { id: 12, name: "E-learning & Tutoring"  },
+    { id: 13, name: "Data Entry"  },
+    { id: 14, name: "UI/UX Design"  },
+    { id: 15, name: "Game Development"  },
+    { id: 16, name: "Social Media Management"  },
+    { id: 17, name: "Photography"  },
+    { id: 18, name: "Accounting & Finance" },
+];
+
+export const Years = [
+    { value: "0-1", label: "Less than 1 year" },
+    { value: "1-2", label: "1–2 years" },
+    { value: "2-5", label: "2–5 years" },
+    { value: "5-10", label: "5–10 years" },
+    { value: "10+", label: "More than 10 years" },
+]
+
+
+
+export const freelancerCategoryTools: Record<string, string[]> = {
+    "Web Development": [
+        "VS Code",
+        "GitHub",
+        "Git",
+        "React",
+        "Next.js",
+        "Node.js",
+        "Laravel",
+        "Django",
+        "Postman",
+        "Figma",
+    ],
+    "Graphic Design": [
+        "Adobe Photoshop",
+        "Adobe Illustrator",
+        "CorelDRAW",
+        "Canva",
+        "Figma",
+        "Inkscape",
+    ],
+    "Logo Design": [
+        "Adobe Illustrator",
+        "Figma",
+        "Affinity Designer",
+        "Canva",
+        "Looka",
+        "LogoMakr",
+    ],
+    "Mobile App Development": [
+        "Android Studio",
+        "Xcode",
+        "React Native",
+        "Flutter",
+        "Firebase",
+        "Expo",
+        "Swift",
+        "Kotlin",
+    ],
+    "Digital Marketing": [
+        "Google Ads",
+        "Meta Ads Manager",
+        "HubSpot",
+        "Hootsuite",
+        "Mailchimp",
+        "Google Analytics",
+        "Semrush",
+    ],
+    "SEO Services": [
+        "Ahrefs",
+        "Semrush",
+        "Google Search Console",
+        "Yoast SEO",
+        "Moz",
+        "Ubersuggest",
+    ],
+    "Content Writing": [
+        "Grammarly",
+        "Google Docs",
+        "Hemingway App",
+        "Notion",
+        "ChatGPT",
+        "WordPress",
+    ],
+    "Translation": [
+        "DeepL",
+        "Google Translate",
+        "Trados Studio",
+        "MemoQ",
+        "Smartcat",
+        "Wordfast",
+    ],
+    "Video Editing": [
+        "Adobe Premiere Pro",
+        "Final Cut Pro",
+        "DaVinci Resolve",
+        "CapCut",
+        "Filmora",
+        "After Effects",
+    ],
+    "Voice Over": [
+        "Audacity",
+        "Adobe Audition",
+        "GarageBand",
+        "Reaper",
+        "Logic Pro X",
+        "Blue Yeti Mic",
+    ],
+    "Virtual Assistance": [
+        "Trello",
+        "Slack",
+        "Zoom",
+        "Google Workspace",
+        "Notion",
+        "Calendly",
+        "Asana",
+    ],
+    "E-learning & Tutoring": [
+        "Zoom",
+        "Google Meet",
+        "Kahoot",
+        "Loom",
+        "Notion",
+        "Miro",
+        "Moodle",
+    ],
+    "Data Entry": [
+        "Microsoft Excel",
+        "Google Sheets",
+        "Airtable",
+        "Notion",
+        "Zoho",
+        "ClickUp",
+    ],
+    "UI/UX Design": [
+        "Figma",
+        "Sketch",
+        "Adobe XD",
+        "InVision",
+        "Maze",
+        "Balsamiq",
+    ],
+    "Game Development": [
+        "Unity",
+        "Unreal Engine",
+        "Godot",
+        "Blender",
+        "Photoshop",
+        "Visual Studio",
+    ],
+    "Social Media Management": [
+        "Hootsuite",
+        "Buffer",
+        "Canva",
+        "Meta Business Suite",
+        "Later",
+        "ContentStudio",
+    ],
+    "Photography": [
+        "Adobe Lightroom",
+        "Adobe Photoshop",
+        "Capture One",
+        "Snapseed",
+        "Pixlr",
+        "Google Photos",
+    ],
+    "Accounting & Finance": [
+        "QuickBooks",
+        "Xero",
+        "FreshBooks",
+        "Excel",
+        "Wave",
+        "Zoho Books",
+    ],
+};

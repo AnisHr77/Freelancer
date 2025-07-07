@@ -13,7 +13,7 @@ function getCookie(name: string): string | null {
     const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
     return match ? decodeURIComponent(match[2]) : null;
 }
-const csrfToken = getCookie('XSRF-TOKEN');
+
 
 const Page = () => {
     const router = useRouter();
@@ -24,6 +24,7 @@ const Page = () => {
         const password = formData.get("password");
 
         try {
+            const csrfToken = getCookie('XSRF-TOKEN');
             const response = await axios.post('http://localhost:8001/login',
                 {
                     email,
@@ -38,7 +39,7 @@ const Page = () => {
             );
 
             alert("Sign in success");
-            router.push("/home");
+            router.push("/auth/Questions/profile");
             console.log(response.data);
         } catch (error: any) {
             handleApiError(error);

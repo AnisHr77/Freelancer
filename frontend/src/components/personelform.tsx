@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { motivation, workstyle, communication } from "@/lib/questionsData";
 import Select from "react-select";
 import { useState } from "react";
-
+import Image from "next/image";
 type Option = {
     value: string;
     label: string;
@@ -37,7 +37,7 @@ export default function ProfileForm() {
     }))
 
     return (
-        <>
+        <div className="flex justify-around" >
             <div className="pl-10 py-5 ">
                 <p className=" font-medium text-[20px] " >Please put your answer in the input feild </p>
                 <form onSubmit={submit} >
@@ -80,8 +80,8 @@ export default function ProfileForm() {
                 </form>
             </div>
             <div className="">
-
+                <Image alt="" src={"/Working.png"} width={200} height={100} className=" w-100 h-100 mt-10 " />
             </div>
-        </>
+        </div>
     );
 }

@@ -1,18 +1,19 @@
 'use client'
-import {  useRouter } from "next/navigation";
-import { freelancerCategories , Years , freelancerCategoryTools } from "@/lib/questionsData";
+import { useRouter } from "next/navigation";
+import { freelancerCategories, Years, freelancerCategoryTools } from "@/lib/questionsData";
 import Select from "react-select";
 import { useState } from "react";
-
+import Image from "next/image";
+import Link from "next/link";
 type Option = {
     value: string;
     label: string;
 }
 
 export default function SkillsForm() {
-const router = useRouter();
+    const router = useRouter();
 
-    const submit = async()=>{
+    const submit = async () => {
         console.log("form submited");
         router.push("/auth/Questions/portfolio")
     }
@@ -40,8 +41,8 @@ const router = useRouter();
     }))
 
     return (
-        <>
-            <div className="pl-10 py-10    ">
+        <div className="flex justify-around " >
+            <div className="  py-10    ">
                 <p className=" font-medium text-[20px] " >Please put your answer in the input feild </p>
                 <form>
                     <label className="block pb-3 mt-5 " >What services do you offer?</label>
@@ -73,17 +74,25 @@ const router = useRouter();
                         className=" w-150 h-10 border  rounded-[5px] "
                         required
                     />
-                    <button
-                        type="submit"
-                        className="w-30 h-10 rounded-[5px] bg-[#3F5FFF] text-white mt-10 ml-120 cursor-pointer border hover:text-[#3F5FFF] hover:bg-[white] hover:border-[#3F5FFF] active:opacity-50 "
-                    >
-                        Next
-                    </button>
+                    <div className="flex justify-between">
+                        <Link
+                            href="/auth/Questions/personal"
+                            className=" w-20 h-10 mt-10 rounded-[5px] flex items-center justify-center bg-[#3f5fff] text-white font-medium hover:bg-blue-700 transition "
+                        >
+                            Back
+                        </Link>
+                        <button
+                            type="submit"
+                            className="w-30 h-10 rounded-[5px] bg-[#3F5FFF] text-white mt-10   cursor-pointer border hover:text-[#3F5FFF] hover:bg-[white] hover:border-[#3F5FFF] active:opacity-50 "
+                        >
+                            Next
+                        </button>
+                    </div>
                 </form>
             </div>
             <div className="">
-
+                <Image alt="" src={"/Working.png"} width={200} height={100} className=" w-100 h-100 mt-10 " />
             </div>
-        </>
+        </div>
     );
 }

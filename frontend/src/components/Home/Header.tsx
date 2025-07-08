@@ -10,7 +10,7 @@ export default function Header() {
                 </p>
                 <p className=" text-[gray] lg:max-w-[520px] lg:text-left  ">
                     Whether you're a business owner or a freelancer,
-                    GigNotion is your one-stop-shop for finding or offering freelance services.
+                    Tasklinker is your one-stop-shop for finding or offering freelance services.
                     Join our community today and start getting things done!
                 </p>
                 <form className="flex flex-col gap-2 justify-center items-center  lg:justify-start md:flex-row">

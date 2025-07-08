@@ -42,7 +42,7 @@ export default function SkillsForm() {
 
     return (
         <div className="flex justify-around " >
-            <div className="  py-10    ">
+            <div className="  py-10 flex flex-col items-center md:items-start   ">
                 <p className=" font-medium text-[20px] " >Please put your answer in the input feild </p>
                 <form>
                     <label className="block pb-3 mt-5 " >What services do you offer?</label>
@@ -52,7 +52,7 @@ export default function SkillsForm() {
                         value={selectcategory}
                         onChange={(option) => setSelectcategory(option as Option[])}
                         placeholder="Select services or type to search..."
-                        className=" w-150 h-10 border  rounded-[5px] "
+                        className=" w-80 md:w-150 h-10 border  rounded-[5px] "
                         required
                     />
                     <label className="block pb-3 mt-5">Years of experience?</label>
@@ -61,7 +61,7 @@ export default function SkillsForm() {
                         value={selectyear}
                         onChange={(option) => setSelectyear(option as Option)}
                         placeholder="Select years or type to search..."
-                        className=" w-150 h-10 border  rounded-[5px] "
+                        className=" w-80 md:w-150 h-10 border  rounded-[5px] "
                         required
                     />
                     <label className="block pb-3 mt-5 ">Which tools do you use</label>
@@ -71,7 +71,7 @@ export default function SkillsForm() {
                         value={selectedOptions}
                         onChange={(selected) => setSelectedOptions(selected as Option[])}
                         placeholder="Select tools or type to search..."
-                        className=" w-150 h-10 border  rounded-[5px] "
+                        className=" w-80 md:w-150 h-10 border  rounded-[5px] "
                         required
                     />
                     <div className="flex justify-between">
@@ -90,7 +90,7 @@ export default function SkillsForm() {
                     </div>
                 </form>
             </div>
-            <div className="">
+            <div className="hidden lg:flex ">
                 <Image alt="" src={"/Working.png"} width={200} height={100} className=" w-100 h-100 mt-10 " />
             </div>
         </div>

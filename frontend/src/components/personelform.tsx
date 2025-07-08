@@ -38,7 +38,7 @@ export default function ProfileForm() {
 
     return (
         <div className="flex justify-around" >
-            <div className="pl-10 py-5 ">
+            <div className="pl-10 py-5 flex flex-col items-center md:items-start  ">
                 <p className=" font-medium text-[20px] " >Please put your answer in the input feild </p>
                 <form onSubmit={submit} >
                     <label className="block pb-3 mt-5 " >What is your preferred communication tool?</label>
@@ -48,7 +48,7 @@ export default function ProfileForm() {
                         value={selectcategory}
                         onChange={(option) => setSelectcategory(option as Option[])}
                         placeholder="Select services or type to search..."
-                        className=" w-150 h-10 border  rounded-[5px] "
+                        className="  w-80 md:w-150  h-10 border  rounded-[5px] "
                         required
                     />
                     <label className="block pb-3 mt-5">What motivates you the most in your work?</label>
@@ -58,7 +58,7 @@ export default function ProfileForm() {
                         value={selectyear}
                         onChange={(option) => setSelectyear(option as Option[])}
                         placeholder="Select years of experience..."
-                        className=" w-150 h-10 border  rounded-[5px] "
+                        className="  w-80 md:w-150  h-10 border  rounded-[5px] "
                         required
                     />
                     <label className="block pb-3 mt-5 ">How would you describe your work style?</label>
@@ -68,7 +68,7 @@ export default function ProfileForm() {
                         value={selectedOptions}
                         onChange={(selected) => setSelectedOptions(selected as Option[])}
                         placeholder="Select tools or type to search..."
-                        className=" w-150 h-10 border  rounded-[5px] "
+                        className="  w-80 md:w-150  h-10 border  rounded-[5px] "
                         required
                     />
                     <button
@@ -79,7 +79,7 @@ export default function ProfileForm() {
                     </button>
                 </form>
             </div>
-            <div className="">
+            <div className="hidden lg:flex ">
                 <Image alt="" src={"/Working.png"} width={200} height={100} className=" w-100 h-100 mt-10 " />
             </div>
         </div>

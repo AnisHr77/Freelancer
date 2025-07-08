@@ -10,46 +10,6 @@ export default function HomePage() {
             <Header />
             <ServicesCards/>
             <Joinsection/>
-            {/* <div className="flex justify-around ">
-                <Card
-                    title="Card Title"
-                    desc="Card Description"
-                    imageUrl="/images.jpeg"
-                    name="John Doe"
-                    profileImage="/header.png"
-                    price="$100"
-                    rating="4.5"
-                />
-                <Card
-                    title="Card Title"
-                    desc="Card Description"
-                    imageUrl="/Freelancer.png"
-                    name="John Doe"
-                    profileImage="/header.png"
-                    price="$100"
-                    rating="4.5"
-                />
-                <Card
-                    title="Card Title"
-                    desc="Card Description"
-                    imageUrl="/images.jpeg"
-                    name="John Doe"
-                    profileImage="/header.png"
-                    price="$100"
-                    rating="4.5"
-                />
-                <Card
-                    title="Card Title"
-                    desc="Card Description"
-                    imageUrl="/images.jpeg"
-                    name="John Doe"
-                    profileImage="/header.png"
-                    price="$100"
-                    rating="4.5"
-                />
-
-            </div> */}
-
         </div>
     );
 }

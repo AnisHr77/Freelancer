@@ -54,7 +54,7 @@ const Footer = () => {
             <div className="   flex flex-col gap-4 pb-5 w-screen bg-[#01003d]">
                 <div className=" flex flex-col justify-around items-start py-5 px-5   md:gap-20 md:flex-row md:py-22 md:px-15   ">
                     <div className="  flex flex-col  gap-12    text-white">
-                        <p className='text-[25px] text-[#007AFF] font-semibold'><span className='bg-white rounded-full py-1'>Gig</span>Notion</p>
+                        <p className='text-[25px] text-[#3f5fff] font-semibold'>Tasklinker</p>
                         <p className='text-[gray] w-full  max-w-[370px]'>
                             Lorem ipsum dolor sit amet, consecteture adipiscing elit.
                             Donec at nulla nibh.Pellentesque vel orci mauris.
@@ -112,7 +112,7 @@ const Footer = () => {
                 <div className="mx-5 md:mx-20">
                     <hr className='text-[gray]    h-2'></hr>
                 </div>
-                <p className=' text-[gray] text-center text-[12px] md:text-[16px]'>GigNotion Freelancer and Project - 2025 All Rights Reserved</p>
+                <p className=' text-[gray] text-center text-[12px] md:text-[16px]'>Tasklinker Freelancer and Project - 2025 All Rights Reserved</p>
             </div>
         </footer>
     )

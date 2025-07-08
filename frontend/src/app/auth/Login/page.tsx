@@ -49,7 +49,7 @@ const Page = () => {
     return (
         <div className='min-w-[320px] flex h-screen w-screen'>
             <div className="w-[60%] flex flex-col mt-5">
-                <p className='text-[40px] text-[#3F5FFF] ml-5 md:ml-18'>GigNation</p>
+                <p className='text-[40px] font-semibold text-[#3F5FFF] ml-5 md:ml-18'>Tasklinker</p>
                 <p className='mt-5 text-[20px] ml-5 md:ml-20'>Welcome Back!</p>
                 <p className='w-50 ml-5 md:ml-20 mt-2'>Sign in to get started!</p>
 

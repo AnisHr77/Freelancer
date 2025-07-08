@@ -23,8 +23,8 @@ const Navbar = () => {
         <nav className="container max-w-screen min-w-[320px]">
             {/* Desktop Navbar */}
             <div className="hidden md:flex justify-around my-6 items-center">
-                <p className="font-bold text-blue-600">
-                    <span className="rounded-full py-1 pl-1 bg-gray-100">Gig</span>Nation
+                <p className="font-bold text-[#3f5fff] text-[20px] ">
+                    Tasklinker
                 </p>
                 <div className="flex gap-8">
                     <Link className="hover:text-[#3F5FFF] active:font-medium" href="/">Home</Link>

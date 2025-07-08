@@ -7,7 +7,7 @@ const Sidebar = () => {
 
     return (
         <div className=" ">
-            <p className='text-[30px] text-white font-bold '>Welcome to GigNation</p>
+            <p className='text-[30px] text-white font-bold '>Welcome to Tasklinker</p>
             <p className='  w-[80%] ml-15 text-white mt-5 flex gap-2 '> <span className=''>Join our community of talented freelancers and connect with clients from around the world.</span></p>
             <div className=" grid grid-cols-3  lg:grid-cols-5  ml-8 gap-10 text-white mt-10">
                 <SiFreelancer className='w-10 h-10' />

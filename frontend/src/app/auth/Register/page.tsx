@@ -38,7 +38,7 @@ const Page = () => {
     return (
         <div className='min-w-[320px] flex h-screen w-full'>
             <div className="w-[60%]  ">
-                <p className='text-[40px]  text-[#3F5FFF]  ml-5 md:ml-18'>GigNation</p>
+                <p className='text-[40px] font-semibold  text-[#3F5FFF]  ml-5 md:ml-18'>Tasklinker</p>
                 <p className='mt-1 text-[20px]  ml-5 md:ml-20 '>Welcom to our community</p>
                 <p className=' ml-5 md:ml-20 mt-2'>Sign up to get started!</p>
                 <form onSubmit={Signup} className='flex flex-col px-5 md:pl-20 2xl:mt-10 mt-5'>

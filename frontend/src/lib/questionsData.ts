@@ -1,48 +1,22 @@
-// export const Questions: Record<string, { label: string, type: string }[]> = {
-//     personaldeitailes: [
-//         { label: "What services do you offer?", type: "select" },
-//         { label: "What is your expertise area?", type: "select" },
-//         { label: "Years of experience?", type: "select" },
-//     ],
-//     skillsandtools: [
-//         { label: "List your key skills", type: "select" },
-//         { label: "Which tools do you use?", type: "select" },
-//         { label: "Certifications?", type: "file" },
-//     ],
-//     portfolioexperience: [
-//         { label: "Worked on freelance platforms?", type: "select" },
-//         { label: "Upload sample work", type: "file" },
-//         { label: "Portfolio link", type: "url" },
-//     ]
-// };
-
-// export const categoryOrder = ["personaldeitailes", "skillsandtools", "portfolioexperience"];
-
-
-
-export type FreelancerCategory = {
-    id: number;
-    name: string;
-};
-
-export const freelancerCategories: FreelancerCategory[] = [
-    { id: 1, name: "Web Development"  },
-    { id: 2, name: "Graphic Design"  },
-    { id: 3, name: "Logo Design"  },
-    { id: 4, name: "Mobile App Development"  },
-    { id: 5, name: "Digital Marketing"  },
-    { id: 6, name: "SEO Services"  },
-    { id: 7, name: "Content Writing"  },
+// skills questions 
+export const freelancerCategories = [
+    { id: 1, name: "Web Development" },
+    { id: 2, name: "Graphic Design" },
+    { id: 3, name: "Logo Design" },
+    { id: 4, name: "Mobile App Development" },
+    { id: 5, name: "Digital Marketing" },
+    { id: 6, name: "SEO Services" },
+    { id: 7, name: "Content Writing" },
     { id: 8, name: "Translation" },
-    { id: 9, name: "Video Editing"  },
+    { id: 9, name: "Video Editing" },
     { id: 10, name: "Voice Over" },
-    { id: 11, name: "Virtual Assistance"  },
-    { id: 12, name: "E-learning & Tutoring"  },
-    { id: 13, name: "Data Entry"  },
-    { id: 14, name: "UI/UX Design"  },
-    { id: 15, name: "Game Development"  },
-    { id: 16, name: "Social Media Management"  },
-    { id: 17, name: "Photography"  },
+    { id: 11, name: "Virtual Assistance" },
+    { id: 12, name: "E-learning & Tutoring" },
+    { id: 13, name: "Data Entry" },
+    { id: 14, name: "UI/UX Design" },
+    { id: 15, name: "Game Development" },
+    { id: 16, name: "Social Media Management" },
+    { id: 17, name: "Photography" },
     { id: 18, name: "Accounting & Finance" },
 ];
 
@@ -52,9 +26,7 @@ export const Years = [
     { value: "2-5", label: "2–5 years" },
     { value: "5-10", label: "5–10 years" },
     { value: "10+", label: "More than 10 years" },
-]
-
-
+];
 
 export const freelancerCategoryTools: Record<string, string[]> = {
     "Web Development": [
@@ -211,3 +183,28 @@ export const freelancerCategoryTools: Record<string, string[]> = {
         "Zoho Books",
     ],
 };
+
+// profile questions
+
+export const motivation = [
+    { value: "solving_problems", label: "Solving challenging problems" },
+    { value: "client_success", label: "Helping clients succeed" },
+    { value: "learning", label: "Learning new skills or tech" },
+    { value: "income", label: "Earning a good income" },
+    { value: "freedom", label: "Having freedom and flexibility" },
+];
+
+export const workstyle = [
+    { value: "independent", label: "Independent and self-managed" },
+    { value: "collaborative", label: "Team-oriented and collaborative" },
+    { value: "flexible", label: "Flexible and adaptive" },
+    { value: "structured", label: "Organized and structured" },
+];
+
+export const communication = [
+    { value: "email", label: "Email" },
+    { value: "slack", label: "Slack" },
+    { value: "zoom", label: "Zoom" },
+    { value: "whatsapp", label: "WhatsApp" },
+    { value: "teams", label: "Microsoft Teams" },
+];

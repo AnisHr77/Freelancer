@@ -1,8 +1,6 @@
 'use client'
-import { useParams , useRouter } from "next/navigation";
-import { freelancerCategories } from "@/lib/questionsData";
-import { Years } from "@/lib/questionsData";
-import { freelancerCategoryTools } from "@/lib/questionsData";
+import {  useRouter } from "next/navigation";
+import { freelancerCategories , Years , freelancerCategoryTools } from "@/lib/questionsData";
 import Select from "react-select";
 import { useState } from "react";
 
@@ -22,9 +20,6 @@ const router = useRouter();
     const [selectcategory, setSelectcategory] = useState<Option[]>([]);
     const [selectyear, setSelectyear] = useState<Option | "">("");
     const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
-
-    const params = useParams();
-    const questioncategory = params.QuestionCategory;
 
     const categoryname = selectcategory.map((opt) => opt.value)
     const tools: string[] = categoryname.flatMap(tool => freelancerCategoryTools[tool]);
@@ -47,10 +42,7 @@ const router = useRouter();
     return (
         <>
             <div className="pl-10 py-10    ">
-                <div className=" grid gap-4 ">
-                    <p className=" font-bold text-[30px] text-[#3F5FFF] " >Tasklinker</p>
-                    <p className=" font-medium text-[20px] " >Please put your answer the input feild </p>
-                </div>
+                <p className=" font-medium text-[20px] " >Please put your answer in the input feild </p>
                 <form>
                     <label className="block pb-3 mt-5 " >What services do you offer?</label>
                     <Select

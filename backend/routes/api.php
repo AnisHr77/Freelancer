@@ -37,6 +37,8 @@ Route::get('/user/profile', function () {
 Route::get('/users', [UserController::class, 'index']);
 Route::post('/users', [UserController::class, 'store']);
 Route::put('/users/{id}', [UserController::class, 'update']);
+Route::delete('/users/{id}', [UserController::class, 'destroy']);
+
 
 // Conversation Routes
 Route::get('/conversations', [ConversationController::class, 'index']);

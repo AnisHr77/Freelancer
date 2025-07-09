@@ -24,7 +24,7 @@ export default function ActiveProjects() {
                         <div className="text-sm text-gray-600">{p.price}</div>
                         <div className="text-sm text-gray-600">{p.time}</div>
                         <div className="w-full md:w-1/4 bg-gray-200 h-2 rounded">
-                            <div className="bg-[#7A4D8B] h-2 rounded" style={{ width: `${p.progress}%` }} />
+                            <div className="bg-[#3F5FFF] h-2 rounded" style={{ width: `${p.progress}%` }} />
                         </div>
                     </div>
                 ))}

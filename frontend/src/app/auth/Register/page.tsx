@@ -17,6 +17,7 @@ const Page = () => {
         const lastname = formdata.get("lastname");
         const email = formdata.get("email");
         const password = formdata.get("password");
+        const role = formdata.get("role"); // ✅ Get role from the select input
 
         try {
             const response = await axios.post("http://localhost:8001/api/register", {
@@ -24,12 +25,13 @@ const Page = () => {
                 lastname,
                 email,
                 password,
-                password_confirmation: password
+                password_confirmation: password,
+                role, // ✅ Send role to backend
             });
 
             alert("Sign up success");
             console.log(response.data);
-            router.push('/auth/Login');  
+            router.push('/auth/Login');
         } catch (error: any) {
             handleApiError(error);
         }

@@ -48,7 +48,6 @@ export default function AnalyticsList() {
 
                 const count = dataList.length;
 
-
                 const avgData: AnalyticsData = {
                     freelancer_id: 0,
                     freelancer_name: "Average",
@@ -72,16 +71,16 @@ export default function AnalyticsList() {
         {
             name: "Progress",
             value: averageData.tasks_progress,
-            fill: "#7A4D8B",
+            fill: "#3f5fff",
         },
     ];
 
     return (
-        <div className="bg-white shadow rounded-xl p-24 text-center max-w-sm mx-auto">
-            <h3 className="font-bold text-lg mb-2">{averageData.freelancer_name}</h3>
+        <div className="bg-white shadow rounded-xl p-6 sm:p-10 md:p-12 max-w-xs sm:max-w-sm mx-auto text-center">
+            <h3 className="font-bold text-lg sm:text-xl mb-2">{averageData.freelancer_name}</h3>
 
             <div className="flex flex-col items-center justify-center w-full h-36 relative">
-                <ResponsiveContainer width={180} height={150}>
+                <ResponsiveContainer width="100%" height={150} minWidth={400}>
                     <RadialBarChart
                         innerRadius="70%"
                         outerRadius="100%"
@@ -104,16 +103,16 @@ export default function AnalyticsList() {
                     </RadialBarChart>
                 </ResponsiveContainer>
 
-                <div className="absolute text-xl font-bold text-[#7A4D8B]">
+                <div className="absolute text-xl sm:text-2xl font-bold text-[#3F5FFF]">
                     {averageData.tasks_progress}%
                 </div>
             </div>
 
             <div className="mt-4">
-                <p className="font-semibold text-[#7A4D8B]">
+                <p className="font-semibold text-[#3F5FFF] text-sm sm:text-base">
                     {averageData.response_rate}% Response Rate
                 </p>
-                <p className="text-sm text-gray-500">
+                <p className="text-xs sm:text-sm text-gray-500">
                     {averageData.completed_tasks} Completed Tasks ({averageData.completion_rate}%)
                 </p>
             </div>

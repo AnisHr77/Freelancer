@@ -25,6 +25,7 @@ const Page = () => {
 
         try {
             const csrfToken = getCookie('XSRF-TOKEN');
+
             const response = await axios.post('http://localhost:8001/login',
                 {
                     email,
@@ -38,9 +39,17 @@ const Page = () => {
                 }
             );
 
+            // ✅ Assume the backend returns user info with role like: { user: { role: 'admin' } }
+            const userRole = response.data.user?.role;
+
             alert("Sign in success");
-            router.push("/auth/Questions/profile");
-            console.log(response.data);
+
+            if (userRole === 'admin') {
+                router.push('/dashboard');
+            } else {
+                router.push('/Home');
+            }
+
         } catch (error: any) {
             handleApiError(error);
         }

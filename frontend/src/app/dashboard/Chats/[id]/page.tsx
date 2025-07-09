@@ -50,7 +50,7 @@ export default function ConversationPage({ params }: Props) {
             <DashSidebar />
             <main className="flex-1 p-6 max-w-4xl mx-auto">
                 <h1 className="text-2xl font-bold mb-6">
-                    Conversation <span className="text-[#7A4D8B]">#{conversationId}</span>
+                    Conversation <span className="text-[#3F5FFF]">#{conversationId}</span>
                 </h1>
 
                 <div className="space-y-4">
@@ -60,7 +60,7 @@ export default function ConversationPage({ params }: Props) {
                         const alignment = isSentByClient ? "justify-start" : "justify-end";
                         const bubbleColor = isSentByClient
                             ? "bg-white text-gray-900"
-                            : "bg-[#7A4D8B] text-white";
+                            : "bg-[#3F5FFF] text-white";
 
                         return (
                             <div key={msg.id} className={`flex ${alignment}`}>

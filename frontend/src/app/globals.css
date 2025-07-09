@@ -5,6 +5,8 @@
   --foreground: #171717;
 }
 
+
+
 @keyframes slideRight {
   from {
     transform: translateX(-800px);

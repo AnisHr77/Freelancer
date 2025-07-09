@@ -29,17 +29,17 @@ export default function UsersPage() {
     }, []);
 
     return (
-        <div className="flex min-h-screen bg-gray-100 text-gray-800">
+        <div className="flex flex-col md:flex-row min-h-screen bg-gray-100 text-gray-800">
             <DashSidebar />
 
-            <main className="flex-1 p-8">
-                <div className="mb-6 flex justify-between items-center">
+            <main className="flex-1 p-4 md:p-8">
+                <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div>
-                        <h1 className="text-3xl font-bold">User List</h1>
-                        <p className="text-gray-500">Manage all platform users</p>
+                        <h1 className="text-2xl sm:text-3xl font-bold">User List</h1>
+                        <p className="text-sm text-gray-500">Manage all platform users</p>
                     </div>
                     <button
-                        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow"
+                        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow w-full sm:w-auto"
                         onClick={() => setShowModal(true)}
                     >
                         Add User
@@ -60,44 +60,37 @@ export default function UsersPage() {
                     <table className="min-w-full text-sm text-left">
                         <thead className="bg-gray-50 text-xs text-gray-600 uppercase border-b">
                         <tr>
-                            <th className="px-6 py-4">Name</th>
-                            <th className="px-6 py-4">Email</th>
-                            <th className="px-6 py-4">Role</th>
-                            <th className="px-6 py-4">Joined</th>
-                            <th className="px-6 py-4 text-right">Status</th>
+                            <th className="px-4 py-3">Name</th>
+                            <th className="px-4 py-3">Email</th>
+                            <th className="px-4 py-3">Role</th>
+                            <th className="px-4 py-3">Joined</th>
+                            <th className="px-4 py-3 text-right">Status</th>
                         </tr>
                         </thead>
                         <tbody>
                         {users.map((user) => (
                             <tr key={user.id} className="border-b hover:bg-gray-50 transition">
-                                <td className="px-6 py-4 flex items-center gap-3">
+                                <td className="px-4 py-3 flex items-center gap-3 min-w-[180px]">
                                     <Image
-                                        src={
-                                            user.avatar_url ||
-                                            "data:image/png;base64,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"
-                                        }
+                                        src={"data:image/png;base64,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"}
                                         alt={user.name}
                                         width={36}
                                         height={36}
                                         className="rounded-full"
                                     />
-                                    <span className="font-medium">{user.name}</span>
+                                    <span className="font-medium truncate">{user.name}</span>
                                 </td>
-                                <td className="px-6 py-4 text-gray-600">{user.email}</td>
-                                <td className="px-6 py-4">
+                                <td className="px-4 py-3 text-gray-600 break-all min-w-[200px]">{user.email}</td>
+                                <td className="px-4 py-3">
                                     <select
                                         value={user.role}
                                         onChange={async (e) => {
                                             const newRole = e.target.value;
-
-                                            // 1. Mise à jour locale immédiate
                                             setUsers((prev) =>
                                                 prev.map((u) =>
                                                     u.id === user.id ? { ...u, role: newRole } : u
                                                 )
                                             );
-
-                                            // 2. Envoi au serveur
                                             try {
                                                 await axios.put(
                                                     `http://localhost:8001/api/users/${user.id}`,
@@ -106,8 +99,6 @@ export default function UsersPage() {
                                                 );
                                             } catch (error) {
                                                 console.error("Failed to update role", error);
-
-                                                // Optionnel : revert l’état en cas d’erreur
                                                 setUsers((prev) =>
                                                     prev.map((u) =>
                                                         u.id === user.id ? { ...u, role: user.role } : u
@@ -115,7 +106,7 @@ export default function UsersPage() {
                                                 );
                                             }
                                         }}
-                                        className={`px-2 py-1 rounded text-xs font-semibold uppercase ${
+                                        className={`px-2 py-1 rounded text-xs font-semibold uppercase w-full sm:w-auto ${
                                             user.role === "admin"
                                                 ? "bg-red-100 text-red-700"
                                                 : user.role === "freelancer"
@@ -128,10 +119,10 @@ export default function UsersPage() {
                                         <option value="client">Client</option>
                                     </select>
                                 </td>
-                                <td className="px-6 py-4 text-gray-500">
+                                <td className="px-4 py-3 text-gray-500 min-w-[120px]">
                                     {new Date(user.created_at).toLocaleDateString()}
                                 </td>
-                                <td className="px-6 py-4 text-right">
+                                <td className="px-4 py-3 text-right min-w-[100px]">
                                     <p className="font-medium text-green-500">Active</p>
                                 </td>
                             </tr>
@@ -144,7 +135,6 @@ export default function UsersPage() {
                             </tr>
                         )}
                         </tbody>
-
                     </table>
                 </div>
             </main>

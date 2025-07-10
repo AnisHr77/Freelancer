@@ -1,8 +1,11 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -11,24 +14,26 @@ class UserController extends Controller
         return response()->json(User::all());
     }
 
-
-// UserController.php
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email|unique:users',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:6',
             'role' => 'required|in:admin,freelancer,client',
-            'status' => 'required|in:active,inactive', // ajoute ici d'autres valeurs si besoin
+            'position' => 'nullable|string|max:255',
+            'department' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:20',
         ]);
 
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
-            'password' => bcrypt($validated['password']),
+            'password' => Hash::make($validated['password']),
             'role' => $validated['role'],
-            'status' => $validated['status'],
+            'position' => $validated['position'] ?? null,
+            'department' => $validated['department'] ?? null,
+            'phone' => $validated['phone'] ?? null,
         ]);
 
         return response()->json($user, 201);
@@ -39,34 +44,38 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $validated = $request->validate([
-            'role' => 'required|in:admin,freelancer,client', // ici "admin" n’est pas autorisé
-            'status' => 'in:active,inactive',
+            'name' => 'required|string|max:255',
+            'email' => ['required','email', Rule::unique('users')->ignore($user->id)],
+            'password' => 'nullable|string|min:6',
+            'role' => 'required|in:admin,freelancer,client',
+            'position' => 'nullable|string|max:255',
+            'department' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:20',
         ]);
 
-        $user->update($validated);
+        $user->name = $validated['name'];
+        $user->email = $validated['email'];
+        if (!empty($validated['password'])) {
+            $user->password = Hash::make($validated['password']);
+        }
+        $user->role = $validated['role'];
+        $user->position = $validated['position'] ?? null;
+        $user->department = $validated['department'] ?? null;
+        $user->phone = $validated['phone'] ?? null;
 
-        return response()->json(['message' => 'User updated']);
+        $user->save();
+
+        return response()->json($user);
     }
-
-
-
-    public function show(User $user)
-{
-return response()->json($user);
-}
-    // app/Http/Controllers/UserController.php
 
     public function destroy($id)
     {
         $user = User::find($id);
-
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }
 
         $user->delete();
-
         return response()->json(['message' => 'User deleted successfully']);
     }
-
 }

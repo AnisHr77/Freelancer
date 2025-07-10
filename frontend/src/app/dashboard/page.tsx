@@ -18,13 +18,13 @@ export default function Page() {
                 <section className="grid grid-cols-1 xl:grid-cols-3 gap-6">
                     <div className="col-span-2 space-y-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <AnalyticsCard percentage={90} completedTasks={1298} />
-                            <EarningChart income={108900} growth={2.3} />
+                            <AnalyticsCard  />
+                            <EarningChart />
                         </div>
                         <ActiveProjects />
                     </div>
                     <div className="space-y-6">
-                        <UserProfile name="John Doe" location="Ca, California" />
+                        <UserProfile  />
                         <ApplicationStatus />
                     </div>
                 </section>

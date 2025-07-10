@@ -16,11 +16,8 @@ Route::get('/dashboard/overview', [DashboardController::class, 'overview']);
 Route::get('/dashboard/earning-chart', [DashboardController::class, 'earningChart']);
 Route::get('/dashboard/analytics', [DashboardController::class, 'analytics']);
 Route::get('/dashboard/analyticsall', [DashboardController::class, 'analyticsAll']);
-Route::get('/dashboard/active-projects', [DashboardController::class, 'activeProjects']);
 Route::get('/dashboard/application-status', [DashboardController::class, 'applicationStatus']);
-
-// Project/Proposal Routes
-Route::get('/projects/active', [ProjectController::class, 'activeProjects']);
+Route::get('/dashboard/active-projects', [ProjectController::class, 'activeProjects']);
 Route::get('/proposals/user', [ProposalController::class, 'userProposals']);
 
 // Message/Review Routes

@@ -70,7 +70,7 @@ export default function DashSidebar() {
             <aside
                 ref={sidebarRef}
                 id="sidebar"
-                className={`fixed top-0 left-0 z-50 h-screen w-64 bg-[#111] text-white p-6 shadow-lg
+                className={`fixed top-0 left-0 z-50 h-screen  max-w-66 bg-[#111] text-white p-4 shadow-lg
           transform transition-transform duration-300 ease-in-out
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
           md:translate-x-0 md:static md:block md:h-auto md:w-72 flex flex-col`}

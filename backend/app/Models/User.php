@@ -11,7 +11,11 @@ class User extends Authenticatable
 {
     use HasFactory; // ✅ Enables factory()
 
-    protected $fillable = ['name', 'email', 'password', 'role'];
+    protected $fillable = [
+        'name', 'email', 'password', 'role',
+        'phone', 'position', 'department',
+        'birthday', 'hr_years', 'address', 'status'
+    ];
 
     public function projects(): HasMany
     {

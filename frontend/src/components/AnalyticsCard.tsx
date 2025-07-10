@@ -80,7 +80,7 @@ export default function AnalyticsList() {
             <h3 className="font-bold text-lg sm:text-xl mb-2">{averageData.freelancer_name}</h3>
 
             <div className="flex flex-col items-center justify-center w-full h-36 relative">
-                <ResponsiveContainer width="100%" height={150} minWidth={400}>
+                <ResponsiveContainer width="100%" height={150} minWidth={210}>
                     <RadialBarChart
                         innerRadius="70%"
                         outerRadius="100%"

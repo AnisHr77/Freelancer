@@ -14,10 +14,11 @@ class Proposal extends Model
         return $this->belongsTo(Project::class);
     }
 
-    public function freelancer(): BelongsTo
+    public function freelancer()
     {
-        return $this->belongsTo(User::class, 'freelancer_id');
+        return $this->belongsTo(User::class, 'freelancer_id', 'id');
     }
+
 
     public function contract(): HasOne
     {

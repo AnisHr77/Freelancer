@@ -1,20 +1,27 @@
 'use client';
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import DashSidebar from "@/components/dashSidebar";
 import AddUserModal from "@/components/AddUserModal";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 interface User {
     id: number;
     name: string;
     email: string;
     role: string;
+    status: string;
+    department?: string;
+    position?: string;
+    phone?: string;
     created_at: string;
 }
 
 export default function UsersPage() {
     const [showModal, setShowModal] = useState(false);
     const [users, setUsers] = useState<User[]>([]);
+    const [editingUser, setEditingUser] = useState<User | null>(null);
 
     useEffect(() => {
         fetchUsers();
@@ -36,109 +43,138 @@ export default function UsersPage() {
             setUsers((prev) => prev.filter((u) => u.id !== id));
         } catch (err) {
             console.error("Failed to delete user:", err);
-            alert("Failed to delete user.");
         }
     };
 
-    return (
-        <div className="flex flex-col md:flex-row min-h-screen bg-gray-100 text-gray-800">
-            <DashSidebar />
+    const handleAddUser = async (data: any) => {
+        try {
+            await axios.post("http://localhost:8001/api/users", data, {
+                withCredentials: true,
+            });
+            fetchUsers();
+            setShowModal(false);
+        } catch (err) {
+            console.error("Failed to add user:", err);
+            alert("Failed to add user. Check console.");
+        }
+    };
 
-            <main className="flex-1 p-4 md:p-8">
+    const handleUpdateUser = async (data: any) => {
+        if (!editingUser) return;
+        try {
+            await axios.put(
+                `http://localhost:8001/api/users/${editingUser.id}`,
+                data,
+                { withCredentials: true }
+            );
+            fetchUsers();
+            setShowModal(false);
+        } catch (err) {
+            console.error("Failed to update user:", err);
+            alert("Failed to update user. Check console.");
+        }
+    };
+
+    const openAddModal = () => {
+        setEditingUser(null);
+        setShowModal(true);
+    };
+    const openEditModal = (user: User) => {
+        setEditingUser(user);
+        setShowModal(true);
+    };
+
+    return (
+        <div className="flex flex-col md:flex-row min-h-screen bg-gray-50 text-gray-900">
+            <div className="w-64 flex-shrink-0">
+                <DashSidebar />
+            </div>
+
+            <main
+                className="flex-1 p-4 md:p-8 overflow-hidden max-h-screen"
+                // overflow-y-auto للتمرير العمودي للصفحة
+            >
                 <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div>
-                        <h1 className="text-2xl sm:text-3xl font-bold">User List</h1>
+                        <h1 className="text-2xl sm:text-3xl font-bold">Team List</h1>
                         <p className="text-sm text-gray-500">Manage all platform users</p>
                     </div>
                     <button
-                        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow w-full sm:w-auto"
-                        onClick={() => setShowModal(true)}
+                        className="bg-[#3F5FFF] hover:bg-[#354fc9] text-white px-4 py-2 rounded-lg shadow w-full sm:w-auto"
+                        onClick={openAddModal}
                     >
-                        Add User
+                        + Add User
                     </button>
-
-                    {showModal && (
-                        <AddUserModal
-                            onClose={() => setShowModal(false)}
-                            onUserAdded={fetchUsers}
-                        />
-                    )}
                 </div>
 
-                <div className="bg-white rounded-lg shadow overflow-x-auto">
-                    <table className="min-w-full text-sm text-left">
-                        <thead className="bg-gray-50 text-xs text-gray-600 uppercase border-b">
+                {showModal && (
+                    <AddUserModal
+                        user={editingUser}
+                        onClose={() => setShowModal(false)}
+                        onSubmit={editingUser ? handleUpdateUser : handleAddUser}
+                    />
+                )}
+
+                {/* صندوق الجدول: scroll أفقي فقط، ارتفاع محدود */}
+                <div className="bg-white rounded-xl shadow overflow-x-auto max-h-[600px]">
+                    <table className="min-w-max w-full text-sm whitespace-nowrap">
+                        <thead className="bg-gray-100 text-gray-600 text-xs uppercase sticky top-0 z-10">
                         <tr>
-                            <th className="px-4 py-3">Name</th>
-                            <th className="px-4 py-3">Email</th>
-                            <th className="px-4 py-3">Role</th>
-                            <th className="px-4 py-3">Joined</th>
-                            <th className="px-4 py-3 text-right">Actions</th>
+                            <th className="px-6 py-3 text-left">Name</th>
+                            <th className="px-6 py-3 text-left">Position</th>
+                            <th className="px-6 py-3 text-left">Department</th>
+                            <th className="px-6 py-3 text-left">Email</th>
+                            <th className="px-6 py-3 text-left">Phone</th>
+                            <th className="px-6 py-3 text-left">Status</th>
+                            <th className="px-6 py-3 text-right">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {users.map((user) => (
-                            <tr key={user.id} className="border-b hover:bg-gray-50 transition">
-                                <td className="px-4 py-3 flex items-center gap-3 min-w-[180px]">
-                                    <div className="w-9 h-9 bg-gray-300 rounded-full flex items-center justify-center font-bold text-white text-xs uppercase">
-                                        {user.name.slice(0, 2)}
-                                    </div>
-                                    <span className="font-medium truncate">{user.name}</span>
-                                </td>
-                                <td className="px-4 py-3 text-gray-600 break-all min-w-[200px]">{user.email}</td>
-                                <td className="px-4 py-3">
-                                    <select
-                                        value={user.role}
-                                        onChange={async (e) => {
-                                            const newRole = e.target.value;
-                                            setUsers((prev) =>
-                                                prev.map((u) =>
-                                                    u.id === user.id ? { ...u, role: newRole } : u
-                                                )
-                                            );
-                                            try {
-                                                await axios.put(
-                                                    `http://localhost:8001/api/users/${user.id}`,
-                                                    { role: newRole },
-                                                    { withCredentials: true }
-                                                );
-                                            } catch (error) {
-                                                console.error("Failed to update role", error);
-                                            }
-                                        }}
-                                        className={`px-2 py-1 rounded text-xs font-semibold uppercase w-full sm:w-auto ${
-                                            user.role === "admin"
-                                                ? "bg-red-100 text-red-700"
-                                                : user.role === "freelancer"
-                                                    ? "bg-blue-100 text-blue-700"
-                                                    : "bg-green-100 text-green-700"
-                                        }`}
-                                    >
-                                        <option value="admin">Admin</option>
-                                        <option value="freelancer">Freelancer</option>
-                                        <option value="client">Client</option>
-                                    </select>
-                                </td>
-                                <td className="px-4 py-3 text-gray-500 min-w-[120px]">
-                                    {new Date(user.created_at).toLocaleDateString()}
-                                </td>
-                                <td className="px-4 py-3 text-right min-w-[100px]">
-                                    <button
-                                        onClick={() => handleDeleteUser(user.id)}
-                                        className="text-red-600 hover:text-red-800 text-sm"
-                                    >
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
                         {users.length === 0 && (
                             <tr>
-                                <td colSpan={5} className="text-center py-10 text-gray-400">
+                                <td colSpan={7} className="text-center py-10 text-gray-400">
                                     No users found.
                                 </td>
                             </tr>
                         )}
+                        {users.map((user) => (
+                            <tr
+                                key={user.id}
+                                className="border-b hover:bg-gray-50 transition"
+                            >
+                                <td className="px-6 py-4 flex items-center gap-3">
+                                    <div className="w-9 h-9 bg-[#3F5FFF] rounded-full flex items-center justify-center text-white font-bold text-xs uppercase">
+                                        {user.name.slice(0, 2)}
+                                    </div>
+                                    <span>{user.name}</span>
+                                </td>
+                                <td className="px-6 py-4">{user.position || "—"}</td>
+                                <td className="px-6 py-4">{user.department || "—"}</td>
+                                <td className="px-6 py-4">{user.email}</td>
+                                <td className="px-6 py-4">{user.phone || "—"}</td>
+                                <td className="px-6 py-4">
+                    <span className="px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-semibold">
+                      Active
+                    </span>
+                                </td>
+                                <td className="px-6 py-4 text-right">
+                                    <div className="flex justify-end items-center gap-3">
+                                        <button
+                                            onClick={() => openEditModal(user)}
+                                            className="text-[#3F5FFF] hover:text-[#2c3cae] text-base"
+                                        >
+                                            <FaEdit />
+                                        </button>
+                                        <button
+                                            onClick={() => handleDeleteUser(user.id)}
+                                            className="text-red-500 hover:text-red-700 text-base"
+                                        >
+                                            <FaTrash />
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        ))}
                         </tbody>
                     </table>
                 </div>

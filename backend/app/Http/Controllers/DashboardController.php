@@ -15,7 +15,7 @@ class DashboardController extends Controller
 
     public function overview(Request $request)
     {
-        $userId = $request->user()->id ?? 1; // récupère l'utilisateur connecté ou 1 par défaut (à adapter)
+        $userId = $request->user()->id ?? 16; // récupère l'utilisateur connecté ou 1 par défaut (à adapter)
 
         $activeProjectsCount = Project::where('user_id', $userId)
             ->where('status', 'active')
@@ -37,7 +37,7 @@ class DashboardController extends Controller
 
     public function earningChart(Request $request)
     {
-        $userId = $request->user()->id ?? 2;
+        $userId = $request->user()->id ?? 16;
 
         $earnings = Contract::selectRaw('MONTH(end_date) as month, SUM(payment_amount) as income')
             ->where('status', 'completed')
@@ -48,6 +48,7 @@ class DashboardController extends Controller
             ->groupByRaw('MONTH(end_date)')
             ->get();
 
+        \Log::info('Earnings:', $earnings->toArray());
 
         $data = collect(range(1, 12))->map(function ($month) use ($earnings) {
             $found = $earnings->firstWhere('month', $month);
@@ -57,11 +58,9 @@ class DashboardController extends Controller
             ];
         });
 
-        $totalIncome = $data->reduce(function ($carry, $item) {
-            return $carry + (float) $item['income'];
-        }, 0);
+        $totalIncome = $data->sum('income');
 
-        $growth = rand(5, 25); // exemple de croissance aléatoire
+        $growth = rand(5, 25);
 
         return response()->json([
             'income' => $totalIncome,
@@ -73,7 +72,7 @@ class DashboardController extends Controller
 
     public function analytics(Request $request)
     {
-        $userId = $request->user()->id ?? 1;
+        $userId = $request->user()->id ?? 16;
 
         $completed = Contract::whereHas('proposal', function ($q) use ($userId) {
             $q->where('freelancer_id', $userId);
@@ -127,32 +126,6 @@ class DashboardController extends Controller
 
         return response()->json($data);
     }
-
-
-    public function activeProjects()
-    {
-        $contracts = \App\Models\Contract::with(['proposal.project', 'proposal.freelancer'])
-            ->whereIn('status', ['active', 'in_progress'])
-            ->get()
-            ->map(function ($contract) {
-                $start = Carbon::parse($contract->start_date);
-                $end = Carbon::parse($contract->end_date);
-
-                return [
-                    'name' => $contract->proposal->freelancer->name,
-                    'project' => $contract->proposal->project->title,
-                    'price' => '$' . number_format($contract->payment_amount),
-                    'time' => $start->diffForHumans($end, [
-                        'syntax' => \Carbon\CarbonInterface::DIFF_RELATIVE_TO_NOW,
-                        'parts' => 2,
-                    ]),
-                    'progress' => rand(30, 90),
-                ];
-            });
-
-        return response()->json($contracts);
-    }
-
 
     public function applicationStatus(Request $request)
     {

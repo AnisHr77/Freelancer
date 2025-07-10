@@ -11,8 +11,9 @@ class Contract extends Model
 
     public function proposal()
     {
-        return $this->belongsTo(Proposal::class, 'proposal_id', 'id');
+        return $this->belongsTo(Proposal::class);
     }
+
 
 
     public function reviews(): HasMany

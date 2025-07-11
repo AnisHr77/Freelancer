@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 
+=======
+use Illuminate\Http\Request;
+>>>>>>> 5f3930d ( Add api and token in backend and fix same thing in frontend)
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProposalController;
@@ -52,3 +56,12 @@ Route::apiResource('reviews', ReviewController::class);
 // Auth Routes
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']); // Only one login route!
+<<<<<<< HEAD
+=======
+
+
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return response()->json($request->user());
+});
+>>>>>>> 5f3930d ( Add api and token in backend and fix same thing in frontend)

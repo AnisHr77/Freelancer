@@ -1,12 +1,12 @@
 'use client';
 
-import Sidebar from "@/components/dashSidebar";
-import Topbar from "@/components/Topbar";
-import AnalyticsCard from "@/components/AnalyticsCard";
-import EarningChart from "@/components/EarningChart";
-import ActiveProjects from "@/components/ActiveProjects";
-import UserProfile from "@/components/UserProfile";
-import ApplicationStatus from "@/components/ApplicationStatus";
+import Sidebar from "@/components/Dashboard/dashSidebar";
+import Topbar from "@/components/Dashboard/Topbar";
+import AnalyticsCard from "@/components/Dashboard/AnalyticsCard";
+import EarningChart from "@/components/Dashboard/EarningChart";
+import ActiveProjects from "@/components/Dashboard/ActiveProjects";
+import UserProfile from "@/components/Dashboard/UserProfile";
+import ApplicationStatus from "@/components/Dashboard/ApplicationStatus";
 
 export default function Page() {
     return (

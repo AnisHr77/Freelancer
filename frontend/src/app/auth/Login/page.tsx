@@ -14,7 +14,6 @@ function getCookie(name: string): string | null {
     return match ? decodeURIComponent(match[2]) : null;
 }
 
-
 const Page = () => {
     const router = useRouter();
     const Signin = async (e: FormEvent<HTMLFormElement>) => {
@@ -24,6 +23,7 @@ const Page = () => {
         const password = formData.get("password");
 
         try {
+            await axios.get('http://localhost:8001/sanctum/csrf-cookie');
             const csrfToken = getCookie('XSRF-TOKEN');
 
             const response = await axios.post('http://localhost:8001/login',
@@ -38,6 +38,7 @@ const Page = () => {
                     },
                 }
             );
+<<<<<<< HEAD
 
             // ✅ Assume the backend returns user info with role like: { user: { role: 'admin' } }
             const userRole = response.data.user?.role;
@@ -50,6 +51,16 @@ const Page = () => {
                 router.push('/Home');
             }
 
+=======
+            if (response.data.user.role === "client") {
+                router.push('/home');
+            } else if(response.data.user.role === "freelancer") {
+                router.push("/auth/Questions/profile");
+            }else{
+                router.push("/dashboard");
+            }
+            console.log(response.data);
+>>>>>>> 5f3930d ( Add api and token in backend and fix same thing in frontend)
         } catch (error: any) {
             handleApiError(error);
         }

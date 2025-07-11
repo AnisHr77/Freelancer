@@ -1,5 +1,5 @@
 // app/dashboard/settings/page.tsx
-import DashSidebar from "@/components/dashSidebar";
+import DashSidebar from "@/components/Dashboard/dashSidebar";
 
 export default function SettingsPage() {
     return (

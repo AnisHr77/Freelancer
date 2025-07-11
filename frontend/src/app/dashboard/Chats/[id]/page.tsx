@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import DashSidebar from "@/components/dashSidebar";
+import DashSidebar from "@/components/Dashboard/dashSidebar";
 
 interface Message {
     id: number;

@@ -2,8 +2,13 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+<<<<<<< HEAD
 import DashSidebar from "@/components/dashSidebar";
 import AddUserModal from "@/components/AddUserModal";
+=======
+import DashSidebar from "@/components/Dashboard/dashSidebar";
+import AddUserModal from "@/components/Dashboard/AddUserModal";
+>>>>>>> 5f3930d ( Add api and token in backend and fix same thing in frontend)
 import { FaEdit, FaTrash } from "react-icons/fa";
 
 interface User {

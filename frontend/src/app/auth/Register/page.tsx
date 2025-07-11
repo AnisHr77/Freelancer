@@ -17,11 +17,7 @@ const Page = () => {
         const lastname = formdata.get("lastname");
         const email = formdata.get("email");
         const password = formdata.get("password");
-<<<<<<< HEAD
-        const role = formdata.get("role"); // ✅ Get role from the select input
-=======
         const role = formdata.get("role");
->>>>>>> 5f3930d ( Add api and token in backend and fix same thing in frontend)
 
         try {
             const response = await axios.post("http://localhost:8001/api/register", {
@@ -30,11 +26,7 @@ const Page = () => {
                 email,
                 password,
                 password_confirmation: password,
-<<<<<<< HEAD
-                role, // ✅ Send role to backend
-=======
                 role,
->>>>>>> 5f3930d ( Add api and token in backend and fix same thing in frontend)
             });
 
             alert("Sign up success");

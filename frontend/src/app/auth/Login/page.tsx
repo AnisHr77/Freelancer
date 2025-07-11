@@ -38,20 +38,7 @@ const Page = () => {
                     },
                 }
             );
-<<<<<<< HEAD
 
-            // ✅ Assume the backend returns user info with role like: { user: { role: 'admin' } }
-            const userRole = response.data.user?.role;
-
-            alert("Sign in success");
-
-            if (userRole === 'admin') {
-                router.push('/dashboard');
-            } else {
-                router.push('/Home');
-            }
-
-=======
             if (response.data.user.role === "client") {
                 router.push('/home');
             } else if(response.data.user.role === "freelancer") {
@@ -60,7 +47,6 @@ const Page = () => {
                 router.push("/dashboard");
             }
             console.log(response.data);
->>>>>>> 5f3930d ( Add api and token in backend and fix same thing in frontend)
         } catch (error: any) {
             handleApiError(error);
         }

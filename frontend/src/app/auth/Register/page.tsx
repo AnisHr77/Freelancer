@@ -39,7 +39,7 @@ const Page = () => {
 
     return (
         <div className='min-w-[320px] flex h-screen w-full'>
-            <div className="w-[60%]  ">
+            <div className="w-[60%] bg-gradient-to-br from-[#eaf0ff] via-white to-[#e2e9ff]  ">
                 <p className='text-[40px] font-semibold  text-[#3F5FFF]  ml-5 md:ml-18'>Tasklinker</p>
                 <p className='mt-1 text-[20px]  ml-5 md:ml-20 '>Welcom to our community</p>
                 <p className=' ml-5 md:ml-20 mt-2'>Sign up to get started!</p>

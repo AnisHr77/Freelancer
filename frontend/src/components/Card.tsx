@@ -11,7 +11,7 @@ interface CardProps {
 }
 export default function Card({ title, category, imageUrl, name, profileImage, price, rating }: CardProps) {
     return (
-        <div className=" relative pt-5 w-60 h-90 bg-white shadow-lg rounded-lg p-4 flex flex-col gap-2 ">
+        <div className="  cards   relative pt-5 w-60 h-90 bg-white shadow-lg rounded-lg p-4 flex flex-col gap-2 ">
             <Image alt="" src={imageUrl as string} width={200} height={200} className="w-full h-30 object-cover rounded-[20px]" />
             <p className="text-[gray] ">{category}</p>
             <p className="text-[#020236] font-semibold w-full h-5 ">{title}</p>

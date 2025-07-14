@@ -2,14 +2,10 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-<<<<<<< HEAD
-import DashSidebar from "@/components/dashSidebar";
-import AddUserModal from "@/components/AddUserModal";
-=======
 import DashSidebar from "@/components/Dashboard/dashSidebar";
 import AddUserModal from "@/components/Dashboard/AddUserModal";
->>>>>>> 5f3930d ( Add api and token in backend and fix same thing in frontend)
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit, FaTrash, FaPlus, FaSearch } from "react-icons/fa";
+import { FiFilter } from "react-icons/fi";
 
 interface User {
     id: number;
@@ -27,6 +23,7 @@ export default function UsersPage() {
     const [showModal, setShowModal] = useState(false);
     const [users, setUsers] = useState<User[]>([]);
     const [editingUser, setEditingUser] = useState<User | null>(null);
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
         fetchUsers();
@@ -89,27 +86,55 @@ export default function UsersPage() {
         setShowModal(true);
     };
 
+    const filteredUsers = users.filter(user =>
+        user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (user.position && user.position.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (user.department && user.department.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
+
     return (
-        <div className="flex flex-col md:flex-row min-h-screen bg-gray-50 text-gray-900">
+        <div className="flex h-screen bg-gray-50 text-gray-900">
             <div className="w-64 flex-shrink-0">
                 <DashSidebar />
             </div>
 
-            <main
-                className="flex-1 p-4 md:p-8 overflow-hidden max-h-screen"
-                // overflow-y-auto للتمرير العمودي للصفحة
-            >
-                <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                    <div>
-                        <h1 className="text-2xl sm:text-3xl font-bold">Team List</h1>
-                        <p className="text-sm text-gray-500">Manage all platform users</p>
+            <main className="flex-1 flex flex-col overflow-hidden">
+                <div className="p-4 md:p-8">
+                    <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                        <div>
+                            <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Team Management</h1>
+                            <p className="text-sm text-gray-500">Manage all platform users and their permissions</p>
+                        </div>
+                        <button
+                            className="bg-[#3F5FFF] hover:bg-[#354fc9] text-white px-4 py-2 rounded-lg shadow flex items-center gap-2 transition-colors duration-200"
+                            onClick={openAddModal}
+                        >
+                            <FaPlus className="text-sm" />
+                            <span>Add User</span>
+                        </button>
                     </div>
-                    <button
-                        className="bg-[#3F5FFF] hover:bg-[#354fc9] text-white px-4 py-2 rounded-lg shadow w-full sm:w-auto"
-                        onClick={openAddModal}
-                    >
-                        + Add User
-                    </button>
+
+                    <div className="mb-6 bg-white p-4 rounded-xl shadow-sm">
+                        <div className="flex flex-col md:flex-row gap-4">
+                            <div className="relative flex-1">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <FaSearch className="text-gray-400" />
+                                </div>
+                                <input
+                                    type="text"
+                                    className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-[#3F5FFF] focus:border-transparent"
+                                    placeholder="Search users..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                />
+                            </div>
+                            <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-600 hover:bg-gray-50 transition-colors duration-200">
+                                <FiFilter />
+                                <span>Filters</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 {showModal && (
@@ -120,68 +145,102 @@ export default function UsersPage() {
                     />
                 )}
 
-                {/* صندوق الجدول: scroll أفقي فقط، ارتفاع محدود */}
-                <div className="bg-white rounded-xl shadow overflow-x-auto max-h-[600px]">
-                    <table className="min-w-max w-full text-sm whitespace-nowrap">
-                        <thead className="bg-gray-100 text-gray-600 text-xs uppercase sticky top-0 z-10">
-                        <tr>
-                            <th className="px-6 py-3 text-left">Name</th>
-                            <th className="px-6 py-3 text-left">Position</th>
-                            <th className="px-6 py-3 text-left">Department</th>
-                            <th className="px-6 py-3 text-left">Email</th>
-                            <th className="px-6 py-3 text-left">Phone</th>
-                            <th className="px-6 py-3 text-left">Status</th>
-                            <th className="px-6 py-3 text-right">Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {users.length === 0 && (
-                            <tr>
-                                <td colSpan={7} className="text-center py-10 text-gray-400">
-                                    No users found.
-                                </td>
-                            </tr>
-                        )}
-                        {users.map((user) => (
-                            <tr
-                                key={user.id}
-                                className="border-b hover:bg-gray-50 transition"
-                            >
-                                <td className="px-6 py-4 flex items-center gap-3">
-                                    <div className="w-9 h-9 bg-[#3F5FFF] rounded-full flex items-center justify-center text-white font-bold text-xs uppercase">
-                                        {user.name.slice(0, 2)}
-                                    </div>
-                                    <span>{user.name}</span>
-                                </td>
-                                <td className="px-6 py-4">{user.position || "—"}</td>
-                                <td className="px-6 py-4">{user.department || "—"}</td>
-                                <td className="px-6 py-4">{user.email}</td>
-                                <td className="px-6 py-4">{user.phone || "—"}</td>
-                                <td className="px-6 py-4">
-                    <span className="px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-semibold">
-                      Active
-                    </span>
-                                </td>
-                                <td className="px-6 py-4 text-right">
-                                    <div className="flex justify-end items-center gap-3">
-                                        <button
-                                            onClick={() => openEditModal(user)}
-                                            className="text-[#3F5FFF] hover:text-[#2c3cae] text-base"
-                                        >
-                                            <FaEdit />
-                                        </button>
-                                        <button
-                                            onClick={() => handleDeleteUser(user.id)}
-                                            className="text-red-500 hover:text-red-700 text-base"
-                                        >
-                                            <FaTrash />
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        ))}
-                        </tbody>
-                    </table>
+                <div className="flex-1 overflow-hidden px-4 md:px-8 pb-8">
+                    <div className="bg-white rounded-xl shadow-sm border border-gray-200 h-full flex flex-col">
+                        <div className="overflow-y-auto flex-1">
+                            <table className="min-w-full divide-y divide-gray-200">
+                                <thead className="bg-gray-50 sticky top-0">
+                                <tr>
+                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Name
+                                    </th>
+                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Position
+                                    </th>
+                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Department
+                                    </th>
+                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Email
+                                    </th>
+                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Phone
+                                    </th>
+                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Status
+                                    </th>
+                                    <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Actions
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody className="bg-white divide-y divide-gray-200">
+                                {filteredUsers.length === 0 ? (
+                                    <tr>
+                                        <td colSpan={7} className="px-6 py-8 text-center text-gray-500">
+                                            {searchTerm ? "No matching users found" : "No users available"}
+                                        </td>
+                                    </tr>
+                                ) : (
+                                    filteredUsers.map((user) => (
+                                        <tr key={user.id} className="hover:bg-gray-50 transition-colors duration-150">
+                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                <div className="flex items-center">
+                                                    <div className="flex-shrink-0 h-10 w-10 bg-gradient-to-r from-[#3F5FFF] to-[#6A3BFF] rounded-full flex items-center justify-center text-white font-bold text-sm uppercase">
+                                                        {user.name.slice(0, 2)}
+                                                    </div>
+                                                    <div className="ml-4">
+                                                        <div className="text-sm font-medium text-gray-900">{user.name}</div>
+                                                        <div className="text-sm text-gray-500">{user.role}</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                <div className="text-sm text-gray-900">{user.position || "—"}</div>
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                <div className="text-sm text-gray-900">{user.department || "—"}</div>
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                {user.email}
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                {user.phone || "—"}
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                    <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                                                        user.status === "active"
+                                                            ? "bg-green-100 text-green-800"
+                                                            : "bg-gray-100 text-gray-800"
+                                                    }`}>
+                                                        {user.status.charAt(0).toUpperCase() + user.status.slice(1)}
+                                                    </span>
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                <div className="flex justify-end space-x-3">
+                                                    <button
+                                                        onClick={() => openEditModal(user)}
+                                                        className="text-indigo-600 hover:text-indigo-900 transition-colors duration-200"
+                                                        title="Edit"
+                                                    >
+                                                        <FaEdit />
+                                                    </button>
+                                                    <button
+                                                        onClick={() => handleDeleteUser(user.id)}
+                                                        className="text-red-600 hover:text-red-900 transition-colors duration-200"
+                                                        title="Delete"
+                                                    >
+                                                        <FaTrash />
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))
+                                )}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>

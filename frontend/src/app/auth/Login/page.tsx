@@ -40,7 +40,7 @@ const Page = () => {
             );
 
             if (response.data.user.role === "client") {
-                router.push('/home');
+                router.push('/Home');
             } else if(response.data.user.role === "freelancer") {
                 router.push("/auth/Questions/profile");
             }else{

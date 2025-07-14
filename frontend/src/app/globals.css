@@ -39,9 +39,40 @@
 
 .join-section{
   background-image: url('/freelancebackground.webp');
- 
   height: 400px;
   /* margin:0 20px 0 20px; */
   background-size: cover;
   background-position: center;
+}
+
+.cards{
+  animation: enter1 1s  linear ;
+  /* animation-timeline: view(); */
+  animation-range: entry 0%  cover 50%;
+}
+@keyframes enter1 {
+  from{
+    opacity: 0;
+    transform: translateX(-150px) ;
+  }
+  to{
+    opacity: 1;
+    transform: translate(0px);
+  }
+}
+
+.section2{
+  animation: enter2 1s  linear ;
+  /* animation-timeline: view(); */
+  animation-range: entry 0%  cover 50%;
+}
+@keyframes enter2 {
+  from{
+    opacity: 0;
+    transform: translateX(350px) ;
+  }
+  to{
+    opacity: 1;
+    transform: translate(0px);
+  }
 }

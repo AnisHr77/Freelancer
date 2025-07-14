@@ -76,7 +76,7 @@ export default function SkillsForm() {
                     />
                     <div className="flex justify-between">
                         <Link
-                            href="/auth/Questions/personal"
+                            href="/auth/Questions/profile"
                             className=" w-20 h-10 mt-10 rounded-[5px] flex items-center justify-center bg-[#3f5fff] text-white font-medium hover:bg-blue-700 transition "
                         >
                             Back

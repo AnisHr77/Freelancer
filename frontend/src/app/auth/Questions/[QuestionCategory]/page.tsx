@@ -13,7 +13,7 @@ export default function FreelancerQuestionPage() {
             <div className="pl-10 mt-5   grid gap-4 ">
                 <p className=" font-bold text-[45px] text-[#3F5FFF] " >Tasklinker</p>
             </div>
-            {QuestionCategory === "personal" && <ProfileForm />}
+            {QuestionCategory === "profile" && <ProfileForm />}
             {QuestionCategory === "skills" && <SkillsForm />}
             {QuestionCategory === "project" && <ProjectForm />}
         </div>

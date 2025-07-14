@@ -5,7 +5,10 @@ export default function Home() {
     return (
         <div className="">
             <Header />
-            <Popularservices/>
+            <div className="  ">
+                <Popularservices />
+            </div>
+
             <ServicesCards />
         </div>
     );

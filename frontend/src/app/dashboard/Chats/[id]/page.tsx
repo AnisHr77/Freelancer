@@ -2,21 +2,21 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import DashSidebar from "@/components/Dashboard/dashSidebar";
+import { ArrowLeft, User } from "lucide-react";
+import DashSidebar from "@/components/dashSidebar";
 
 interface Message {
     id: number;
     sender_id: number;
     sender_name: string;
+    sender_email?: string;
     message: string;
     created_at: string;
 }
 
-interface ConversationData {
-    id: number;
-    client_id: number;
-    freelancer_id: number;
-    messages: Message[];
+interface ConversationDetails {
+    user1: { id: number; name: string; email: string };
+    user2: { id: number; name: string; email: string };
 }
 
 interface Props {
@@ -26,61 +26,101 @@ interface Props {
 }
 
 export default function ConversationPage({ params }: Props) {
-    const [conversation, setConversation] = useState<ConversationData | null>(null);
+    const [messages, setMessages] = useState<Message[]>([]);
+    const [conversationDetails, setConversationDetails] = useState<ConversationDetails | null>(null);
     const [loading, setLoading] = useState(true);
-    const conversationId = params.id;
 
     useEffect(() => {
         axios
-            .get(`http://localhost:8001/api/conversations/${conversationId}`)
+            .get(`http://localhost:8001/api/conversations/${params.id}/messages`)
             .then((res) => {
-                setConversation(res.data);
-                setLoading(false);
+                setMessages(res.data.messages);
+                setConversationDetails(res.data.details);
             })
-            .catch(() => setLoading(false));
-    }, [conversationId]);
+            .catch((err) => console.error(err))
+            .finally(() => setLoading(false));
+    }, [params.id]);
 
-    if (loading) return <p>Loading...</p>;
-    if (!conversation) return <p>Conversation not found.</p>;
-
-    const { client_id, freelancer_id, messages } = conversation;
+    if (loading) {
+        return (
+            <div className="flex min-h-screen bg-gray-50">
+                <DashSidebar />
+                <div className="flex-1 flex items-center justify-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+                </div>
+            </div>
+        );
+    }
 
     return (
-        <div className="flex min-h-screen bg-white text-gray-800">
+        <div className="flex min-h-screen bg-gray-50">
             <DashSidebar />
-            <main className="flex-1 p-6 max-w-4xl mx-auto">
-                <h1 className="text-2xl font-bold mb-6">
-                    Conversation <span className="text-[#3F5FFF]">#{conversationId}</span>
-                </h1>
 
-                <div className="space-y-4">
-                    {messages.map((msg) => {
-                        const isSentByClient = msg.sender_id === client_id;
-                        // On suppose que le message envoyé par client est aligné à gauche, freelancer à droite
-                        const alignment = isSentByClient ? "justify-start" : "justify-end";
-                        const bubbleColor = isSentByClient
-                            ? "bg-white text-gray-900"
-                            : "bg-[#3F5FFF] text-white";
+            <main className="flex-1 flex flex-col max-w-4xl mx-auto bg-white shadow-sm">
+                <div className="sticky top-0 z-10 bg-white border-b border-gray-200 p-4">
+                    <div className="flex items-center justify-between">
+                        <button className="p-2 rounded-md hover:bg-gray-100">
+                            <a href="/dashboard/Chats">
+                            <ArrowLeft size={20} />
+                            </a>
+                        </button>
+                        <h1 className="text-lg font-semibold text-gray-800">Conversation #{params.id}</h1>
+                        <div className="w-6"></div>
+                    </div>
 
-                        return (
-                            <div key={msg.id} className={`flex ${alignment}`}>
-                                <div
-                                    className={`max-w-[70%] px-4 py-2 rounded-2xl shadow-md ${bubbleColor}`}
-                                    title={msg.sender_name}
-                                >
-                                    <p>{msg.message}</p>
-                                    <small className="text-xs text-gray-300 block text-right">
-                                        {new Date(msg.created_at).toLocaleTimeString([], {
-                                            hour: "2-digit",
-                                            minute: "2-digit",
-                                        })}
-                                    </small>
+                    {conversationDetails && (
+                        <div className="mt-4 flex items-center justify-between">
+                            <UserInfo user={conversationDetails.user1} />
+                            <div className="text-gray-400 mx-2">↔</div>
+                            <UserInfo user={conversationDetails.user2} />
+                        </div>
+                    )}
+                </div>
+
+                <div className="flex-1 p-4 overflow-y-auto space-y-4">
+                    {messages.length === 0 ? (
+                        <p className="text-center text-gray-500">No messages in this conversation</p>
+                    ) : (
+                        messages.map((msg) => {
+                            const isSenderUser1 = msg.sender_id === conversationDetails?.user1.id;
+                            return (
+                                <div key={msg.id} className="flex flex-col space-y-1">
+                                    <div className="flex items-center space-x-2">
+                                        <div className="bg-blue-100 p-2 rounded-full">
+                                            <User className="text-blue-600" size={16} />
+                                        </div>
+                                        <div>
+                                            <p className="text-sm font-medium text-gray-800">{msg.sender_name}</p>
+                                            <p className="text-xs text-gray-500">{new Date(msg.created_at).toLocaleString()}</p>
+                                        </div>
+                                    </div>
+                                    <div className="ml-10 p-3 rounded-lg shadow bg-blue-50">
+                                        <p className="text-gray-800">{msg.message}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        );
-                    })}
+                            );
+                        })
+                    )}
+                </div>
+
+                <div className="sticky bottom-0 bg-gray-50 border-t border-gray-200 p-4 text-center">
+                    <p className="text-sm text-gray-500">Admin view — observing conversation</p>
                 </div>
             </main>
+        </div>
+    );
+}
+
+function UserInfo({ user }: { user: { name: string; email: string } }) {
+    return (
+        <div className="flex items-center space-x-3">
+            <div className="bg-blue-100 p-2 rounded-full">
+                <User className="text-blue-600" size={20} />
+            </div>
+            <div>
+                <p className="font-medium">{user.name}</p>
+                <p className="text-xs text-gray-500">{user.email}</p>
+            </div>
         </div>
     );
 }

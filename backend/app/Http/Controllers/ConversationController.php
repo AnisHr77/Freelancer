@@ -9,17 +9,23 @@ class ConversationController extends Controller
 {
     public function index()
     {
-        $conversations = Conversation::with(['client', 'freelancer', 'messages' => function($q) {
-            $q->latest()->limit(1);
-        }])->get();
+        $conversations = Conversation::with([
+            'client',
+            'freelancer',
+            'messages' => function($q) {
+                $q->latest()->limit(1);
+            }
+        ])->get();
 
         $response = $conversations->map(function($conv) {
             return [
-                'id' => $conv->id,
-                'client_id' => $conv->client_id,
-                'freelancer_id' => $conv->freelancer_id,
-                'client_name' => $conv->client->name,
-                'freelancer_name' => $conv->freelancer->name,
+                'conversation_id' => $conv->id, // ✅ Correct naming for frontend
+                'user1_id' => $conv->client_id,
+                'user2_id' => $conv->freelancer_id,
+                'user1_name' => $conv->client->name,
+                'user2_name' => $conv->freelancer->name,
+                'user1_email' => $conv->client->email,
+                'user2_email' => $conv->freelancer->email,
                 'last_message' => $conv->messages->first()->message ?? null,
                 'last_message_at' => $conv->messages->first()->created_at ?? null,
             ];

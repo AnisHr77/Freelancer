@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\DB;
 
-use App\Models\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Message;
 
 class MessageController extends Controller
 {
@@ -18,10 +18,16 @@ class MessageController extends Controller
         $validated = $request->validate([
             'sender_id' => 'required|exists:users,id',
             'receiver_id' => 'required|exists:users,id',
-            'content' => 'required|string',
+            'message' => 'required|string',
         ]);
 
-        $message = Message::create($validated);
+        $message = Message::create([
+            'sender_id'   => $validated['sender_id'],
+            'receiver_id' => $validated['receiver_id'],
+            'message'     => $validated['message'],
+            'is_read'     => false,
+        ]);
+
         return response()->json($message, 201);
     }
 
@@ -32,7 +38,12 @@ class MessageController extends Controller
 
     public function update(Request $request, Message $message)
     {
-        $message->update($request->all());
+        $request->validate([
+            'message' => 'string|nullable',
+            'is_read' => 'boolean|nullable',
+        ]);
+
+        $message->update($request->only(['message', 'is_read']));
         return response()->json($message);
     }
 
@@ -42,42 +53,60 @@ class MessageController extends Controller
         return response()->json(['message' => 'Message deleted']);
     }
 
-    public function conversations()
+    // ✅ Admin: All conversations between user pairs
+    public function allConversations()
     {
-        $userId = 1; // Remplacer par auth()->id()
-
-        // récupérer les conversations uniques (sender + receiver)
-        $conversations = Message::select(DB::raw('
-            IF(sender_id = '.$userId.', receiver_id, sender_id) as user_id
-        '))
-            ->where('sender_id', $userId)
-            ->orWhere('receiver_id', $userId)
-            ->groupBy('user_id')
+        $conversations = DB::table('messages')
+            ->select(
+                DB::raw('LEAST(sender_id, receiver_id) AS user1'),
+                DB::raw('GREATEST(sender_id, receiver_id) AS user2'),
+                DB::raw('MAX(id) as last_message_id')
+            )
+            ->groupBy('user1', 'user2')
+            ->orderByDesc('last_message_id')
             ->get();
 
-        return response()->json($conversations);
+        $results = $conversations->map(function ($conv) {
+            $lastMessage = Message::with('sender:id,name', 'receiver:id,name')
+                ->find($conv->last_message_id);
+
+            return [
+                'conversation_id' => $conv->last_message_id,
+                'user1_id' => $conv->user1,
+                'user2_id' => $conv->user2,
+                'user1_name' => $lastMessage->sender->id == $conv->user1 ? $lastMessage->sender->name : $lastMessage->receiver->name,
+                'user2_name' => $lastMessage->sender->id == $conv->user2 ? $lastMessage->sender->name : $lastMessage->receiver->name,
+                'last_message' => $lastMessage->message,
+                'last_message_at' => $lastMessage->created_at,
+            ];
+        });
+
+        return response()->json($results);
     }
 
-    public function getMessages($id)
+    // ✅ Messages between two users
+    public function getMessages($otherUserId)
     {
-        $messages = Message::where('conversation_id', $id)
-            ->with('sender:id,name') // charge le nom du sender
+        $userId = auth()->id() ?? 1; // fallback for testing
+
+        $messages = Message::where(function ($q) use ($userId, $otherUserId) {
+            $q->where('sender_id', $userId)->where('receiver_id', $otherUserId);
+        })->orWhere(function ($q) use ($userId, $otherUserId) {
+            $q->where('sender_id', $otherUserId)->where('receiver_id', $userId);
+        })
+            ->with('sender:id,name')
             ->orderBy('created_at', 'asc')
             ->get()
-            ->map(function ($message) {
+            ->map(function ($msg) {
                 return [
-                    'id' => $message->id,
-                    'sender_id' => $message->sender_id,
-                    'sender_name' => $message->sender->name ?? 'Unknown',
-                    'message' => $message->message,
-                    'created_at' => $message->created_at,
+                    'id' => $msg->id,
+                    'sender_id' => $msg->sender_id,
+                    'sender_name' => $msg->sender->name ?? 'Unknown',
+                    'message' => $msg->message,
+                    'created_at' => $msg->created_at,
                 ];
             });
 
-        return response()->json([
-            'conversation_id' => (int) $id,
-            'messages' => $messages,
-        ]);
+        return response()->json(['messages' => $messages]);
     }
 }
-

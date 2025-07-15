@@ -12,7 +12,7 @@ const mainMenuItems = [
     { label: "Dashboard", icon: MdDashboard, href: "/dashboard" },
     { label: "Chats", icon: MdContacts, href: "/dashboard/Chats" },
     { label: "Users", icon: MdGroup, href: "/dashboard/users" },
-    { label: "Tax Report", icon: MdReceipt, href: "/dashboard/tax-report" },
+    { label: "Tax Report", icon: MdReceipt, href: "/dashboard/contracts" },
     { label: "Billing", icon: MdPayment, href: "/dashboard/billing" },
     { label: "Connected Services", icon: MdDevices, href: "/dashboard/services" },
 ];

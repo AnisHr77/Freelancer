@@ -65,6 +65,11 @@ Route::delete('/users/{id}', [UserController::class, 'destroy']);
 Route::get('/proposals/user', [ProposalController::class, 'userProposals']);
 Route::get('/reviews/user', [ReviewController::class, 'userReviews']);
 
+Route::get('/contracts', [ContractController::class, 'index']);
+Route::post('/contracts', [ContractController::class, 'store']);
+Route::get('/contracts/statistics', [ContractController::class, 'statistics']);
+
+
 // ======================
 // ✅ API Resource Routes
 // ======================

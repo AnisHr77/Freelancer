@@ -1,3 +1,5 @@
+# We realy need a designer to design all the pages if you think you'could contact me 
+
 # Freelance Platform
 
 **A complete web platform to connect freelancers and clients, manage projects, and streamline collaboration.**

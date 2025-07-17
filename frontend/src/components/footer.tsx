@@ -18,6 +18,7 @@ const Footer = () => {
                 >
                     <p className="w-65">
                         Stay Up to Date with our Latest Innovations: Sign Up for Our Newsletter!
+                        {/* ok */}
                     </p>
                     <Image
                         src="/dot.png"

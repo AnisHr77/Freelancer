@@ -4,8 +4,11 @@ import "./globals.css";
 import { Roboto } from "next/font/google";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import Footer from "@/components/footer";
-
+import {Montserrat} from "next/font/google";
 const roboto = Roboto({
+    subsets: ['latin']
+});
+const montserrat = Montserrat({
     subsets: ['latin']
 });
 const geistSans = Geist({
@@ -26,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en">
         <body
-            className={`${geistSans.variable} ${geistMono.variable} ${roboto.className} antialiased`}
+            className={`${geistSans.variable} ${geistMono.variable} ${montserrat.className} antialiased`}
         >
         <LayoutWrapper>{children}</LayoutWrapper>
         </body>

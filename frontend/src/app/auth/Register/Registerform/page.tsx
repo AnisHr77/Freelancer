@@ -54,7 +54,7 @@ export default function RegisterPage() {
                     </p>
                 </div>
                 <div className=" bg-[#E5E5EF] w-90 h-120 z-50 rounded-[10px]  mt-20 flex flex-col  items-center p-5">
-                    <h3 className=" font-bold " > Get your free account</h3>
+                    <h3 className=" font-bold  text-[20px] " > Get your free account</h3>
                     <form className=" flex flex-col gap-6 mt-5 " >
                         <div className="flex flex-col md:flex-row md:gap-10 ">
                             <input
@@ -108,7 +108,7 @@ export default function RegisterPage() {
                         className='w-full min-w-80 max-w-100  mx-5 md:mx-0 bg-[#4260DA] text-white h-10  rounded-[5px] flex justify-center items-center gap-2 border   cursor-pointer'>
                         <FcGoogle className='w-6 h-6' />Continue with Google
                     </button>
-                    <p className='flex gap-2  w-85   mt-1 justify-center 2xl:mt-15'>Already have account? <Link className='text-[#7A4D8B]' href="/auth/Login" >Sign in</Link></p>
+                    <p className='flex gap-2  w-85   mt-1 justify-center  2xl:mt-15'>Already have account? <Link className='text-[#7A4D8B]' href="/auth/Login" >Sign in</Link></p>
                 </div>
             </div>
         </>

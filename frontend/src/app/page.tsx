@@ -12,7 +12,7 @@ export default function HomePage() {
             <AuthCheck/>
             <Header />
             <ServicesCards/>
-            <Reviews />
+            <Reviews/>
             <Joinsection/>
         </div>
     );

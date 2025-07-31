@@ -4,7 +4,7 @@ import { Cards } from "@/lib/CardsData";
 
 export default function ServicesCards() {
     return (
-        <section className="relative w-full h-110 bg-[#7A4D8B] grid pt-10 " >
+        <section className="relative w-full h-auto pb-15 bg-[#7A4D8B] grid pt-10 " >
             <p className="text-white text-center text-[20px] md:text-[30px] lg:text-[40px] font-bold">What We Offer</p>
             <p className=" text-[#CFC9C9] text-center " >TaskLinker gives you everything you need to hire smarter and work faster.</p>
             <div className=" z-40 bg-transparent grid grid-cols-1 gap-10  lg:grid-cols-4 md:grid-cols-2 mt-10  ">

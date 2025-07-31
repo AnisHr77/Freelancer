@@ -55,7 +55,7 @@ export default function RegisterPage() {
                 </div>
                 <div className=" bg-[#E5E5EF] w-90 h-120 z-50 rounded-[10px]  mt-20 flex flex-col  items-center p-5">
                     <h3 className=" font-bold  text-[20px] " > Get your free account</h3>
-                    <form className=" flex flex-col gap-6 mt-5 " >
+                    <form onSubmit={Signup} className=" flex flex-col gap-6 mt-5 " >
                         <div className="flex flex-col md:flex-row md:gap-10 ">
                             <input
                                 type='text'

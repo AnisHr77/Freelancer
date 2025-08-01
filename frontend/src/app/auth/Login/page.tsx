@@ -53,8 +53,8 @@ export default function LoginPage() {
     return (
         <>
             <div className="   absolute inset-0  h-[520px] bg-[#7A4D8B] clip-slant " />
-            <div className="  flex justify-around items-center ">
-                <div className=" flex flex-col gap-6 ">
+            <div className="  flex justify-center md:justify-around items-center ">
+                <div className="   flex-col gap-6 hidden md:flex ">
                     <p className="  text-[white] text-[40px] ">
                         <span className=' font-bold  ' >Task</span>linker
                     </p>

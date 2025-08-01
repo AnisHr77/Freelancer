@@ -23,9 +23,9 @@ const Navbar = () => {
         <nav className="container max-w-screen min-w-[320px]">
             {/* Desktop Navbar */}
             <div className="hidden md:flex justify-around my-6 items-center">
-                <p className="  text-[#7A4D8B] text-[20px] ">
+                <Link href={"/"} className="  text-[#7A4D8B] text-[20px] ">
                     <span className=' font-bold ' >Task</span>linker
-                </p>
+                </Link>
                 <div className="flex gap-12 ml-10 ">
                     <Link className="hover:text-[#7A4D8B] active:font-medium text-[15px] " href="/">Find Talent</Link>
                     <Link className="hover:text-[#7A4D8B] active:font-medium text-[15px] " href="#">Find Work</Link>

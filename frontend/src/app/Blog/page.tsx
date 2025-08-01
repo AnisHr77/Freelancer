@@ -19,6 +19,7 @@ import { motivation, workstyle, communication } from "@/lib/questionsData";
 import Select from "react-select";
 import { useState } from "react";
 import Image from "next/image";
+import { url } from "inspector";
 type Option = {
     value: string;
     label: string;
@@ -26,81 +27,56 @@ type Option = {
 
 export default function WhatWeOffer() {
 
-      const router = useRouter();
-    
-        const submit = async () => {
-            console.log("form submited");
-            router.push("/auth/Questions/skills")
-        }
-    
-        const [selectcategory, setSelectcategory] = useState<Option[]>([]);
-        const [selectyear, setSelectyear] = useState<Option[]>([]);
-        const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
-    
-        const communications: Option[] = communication.map((communicate) => ({
-            value: communicate.value,
-            label: communicate.label,
-        }));
-    
-        const worksstyle: Option[] = workstyle.map((style) => ({
-            value: style.value,
-            label: style.label,
-        }));
-    
-        const motivations: Option[] = motivation.map((motivate) => ({
-            value: motivate.value,
-            label: motivate.label,
-        }))
+    const router = useRouter();
+
+    const submit = async () => {
+        console.log("form submited");
+        router.push("/auth/Questions/skills")
+    }
+
+    const [selectcategory, setSelectcategory] = useState<Option[]>([]);
+    const [selectyear, setSelectyear] = useState<Option[]>([]);
+    const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
+
+    const communications: Option[] = communication.map((communicate) => ({
+        value: communicate.value,
+        label: communicate.label,
+    }));
+
+    const worksstyle: Option[] = workstyle.map((style) => ({
+        value: style.value,
+        label: style.label,
+    }));
+
+    const motivations: Option[] = motivation.map((motivate) => ({
+        value: motivate.value,
+        label: motivate.label,
+    }))
     return (
         <div className=" flex justify-between  ">
-            <div className="">
-                <p className="  text-[#7A4D8B] ml-10 mt-10 text-[40px] ">
+            <div className=" flex flex-col justify-center items-center text-center ml-20 gap-12 mt-10 ">
+                <p className=" text-[30px] w-110 font-semibold " >Hey Adam. Ready for your
+                    next big opportunity?
+                </p>
+                <div className=" flex flex-col gap-4 ">
+                    <p>Build a profile to show the world what you can do</p>
+                    <hr></hr>
+                    <p>Apply on jobs posted from clients, around the world</p>
+                    <hr></hr>
+                    <p>Get paid safely and know we’re here to help</p>
+                </div>
+
+                <button className=" w-80 h-10 rounded-[20px] text-white bg-[#7A4D8B] " >Create Your Profile</button>
+            </div>
+            <div
+                style={{ backgroundImage: `url('/wave2.png')`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}
+                className="h-130 w-170 flex flex-col items-center pl-30 gap-2  "
+            >
+                <p className="  text-[white] ml-10 mt-10 text-[40px] ">
                     <span className=' font-bold  ' >Task</span>linker
                 </p>
-                <div className="pl-10 py-5 flex flex-col items-center md:items-start  ">
-                    <p className=" font-medium text-[20px] " >Please put your answer in the input feild </p>
-                    <form onSubmit={submit} >
-                        <label className="block pb-3 mt-5 " >What is your preferred communication tool?</label>
-                        <Select
-                            isMulti
-                            options={communications}
-                            value={selectcategory}
-                            onChange={(option) => setSelectcategory(option as Option[])}
-                            placeholder="Select services or type to search..."
-                            className="  w-80 md:w-150  h-10 border  rounded-[5px] "
-                            required
-                        />
-                        <label className="block pb-3 mt-5">What motivates you the most in your work?</label>
-                        <Select
-                            isMulti
-                            options={motivations}
-                            value={selectyear}
-                            onChange={(option) => setSelectyear(option as Option[])}
-                            placeholder="Select years of experience..."
-                            className="  w-80 md:w-150  h-10 border  rounded-[5px] "
-                            required
-                        />
-                        <label className="block pb-3 mt-5 ">How would you describe your work style?</label>
-                        <Select
-                            isMulti
-                            options={worksstyle}
-                            value={selectedOptions}
-                            onChange={(selected) => setSelectedOptions(selected as Option[])}
-                            placeholder="Select tools or type to search..."
-                            className="  w-80 md:w-150  h-10 border  rounded-[5px] "
-                            required
-                        />
-                        <button
-                            type="submit"
-                            className="w-30 h-10 rounded-[5px] bg-[#3F5FFF] text-white mt-10 ml-120 cursor-pointer border hover:text-[#3F5FFF] hover:bg-[white] hover:border-[#3F5FFF] active:opacity-50 "
-                        >
-                            Next
-                        </button>
-                    </form>
-                </div>
-            </div>
-            <div className="">
-                <img src={"/wave2.png"} className=" h-120 w-170 " />
+                <img src={"/Frame.png"} className=" w-70 h-60 " />
+                <p className=" text-center w-90 text-white font-medium " >Join our community of talented freelancers and connect with clients from around the world.</p>
             </div>
         </div>
     );

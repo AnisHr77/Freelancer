@@ -11,62 +11,97 @@
 
 
 // components/WhatWeOffer.tsx
+'use client'
 import { FaUserTie, FaShieldAlt, FaBolt, FaHandshake } from "react-icons/fa";
 import { motion } from "framer-motion";
-
-const offers = [
-    {
-        title: "Verified Talent",
-        icon: <FaUserTie className="text-3xl text-indigo-500" />,
-        desc: "Work with hand-picked freelancers ready to deliver excellence.",
-    },
-    {
-        title: "Secure Payments",
-        icon: <FaShieldAlt className="text-3xl text-green-500" />,
-        desc: "Built-in escrow protects your money until you're 100% satisfied.",
-    },
-    {
-        title: "Lightning Fast Matching",
-        icon: <FaBolt className="text-3xl text-yellow-500" />,
-        desc: "Get instantly connected with freelancers tailored to your needs.",
-    },
-    {
-        title: "Trust & Transparency",
-        icon: <FaHandshake className="text-3xl text-pink-500" />,
-        desc: "Ratings, reviews, and clear timelines keep your projects on track.",
-    },
-];
+import { useRouter } from "next/navigation";
+import { motivation, workstyle, communication } from "@/lib/questionsData";
+import Select from "react-select";
+import { useState } from "react";
+import Image from "next/image";
+type Option = {
+    value: string;
+    label: string;
+}
 
 export default function WhatWeOffer() {
+
+      const router = useRouter();
+    
+        const submit = async () => {
+            console.log("form submited");
+            router.push("/auth/Questions/skills")
+        }
+    
+        const [selectcategory, setSelectcategory] = useState<Option[]>([]);
+        const [selectyear, setSelectyear] = useState<Option[]>([]);
+        const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
+    
+        const communications: Option[] = communication.map((communicate) => ({
+            value: communicate.value,
+            label: communicate.label,
+        }));
+    
+        const worksstyle: Option[] = workstyle.map((style) => ({
+            value: style.value,
+            label: style.label,
+        }));
+    
+        const motivations: Option[] = motivation.map((motivate) => ({
+            value: motivate.value,
+            label: motivate.label,
+        }))
     return (
-        <section className="py-20 px-6 bg-gradient-to-br from-[#0f172a] to-[#1e293b] text-white">
-            <div className="max-w-6xl mx-auto text-center">
-                <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                    What <span className="text-indigo-400">We Offer</span>
-                </h2>
-                <p className="text-gray-300 mb-12 text-lg">
-                    TaskLinker gives you everything you need to hire smarter and work faster.
+        <div className=" flex justify-between  ">
+            <div className="">
+                <p className="  text-[#7A4D8B] ml-10 mt-10 text-[40px] ">
+                    <span className=' font-bold  ' >Task</span>linker
                 </p>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {offers.map((offer, index) => (
-                        // <motion.div
-                        //     key={index}
-                        //     initial={{ opacity: 0, y: 30 }}
-                        //     whileInView={{ opacity: 1, y: 0 }}
-                        //     transition={{ duration: 0.6, delay: index * 0.2 }}
-                        //     className="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-lg hover:shadow-indigo-500/30 transition-shadow hover:scale-[1.03] duration-300 cursor-pointer"
-                        // >
-                        <div className="">
-                            <div className="mb-4">{offer.icon}</div>
-                            <h3 className="text-xl font-semibold mb-2">{offer.title}</h3>
-                            <p className="text-gray-300 text-sm">{offer.desc}</p>
-                        </div>
-
-                        // </motion.div>
-                    ))}
+                <div className="pl-10 py-5 flex flex-col items-center md:items-start  ">
+                    <p className=" font-medium text-[20px] " >Please put your answer in the input feild </p>
+                    <form onSubmit={submit} >
+                        <label className="block pb-3 mt-5 " >What is your preferred communication tool?</label>
+                        <Select
+                            isMulti
+                            options={communications}
+                            value={selectcategory}
+                            onChange={(option) => setSelectcategory(option as Option[])}
+                            placeholder="Select services or type to search..."
+                            className="  w-80 md:w-150  h-10 border  rounded-[5px] "
+                            required
+                        />
+                        <label className="block pb-3 mt-5">What motivates you the most in your work?</label>
+                        <Select
+                            isMulti
+                            options={motivations}
+                            value={selectyear}
+                            onChange={(option) => setSelectyear(option as Option[])}
+                            placeholder="Select years of experience..."
+                            className="  w-80 md:w-150  h-10 border  rounded-[5px] "
+                            required
+                        />
+                        <label className="block pb-3 mt-5 ">How would you describe your work style?</label>
+                        <Select
+                            isMulti
+                            options={worksstyle}
+                            value={selectedOptions}
+                            onChange={(selected) => setSelectedOptions(selected as Option[])}
+                            placeholder="Select tools or type to search..."
+                            className="  w-80 md:w-150  h-10 border  rounded-[5px] "
+                            required
+                        />
+                        <button
+                            type="submit"
+                            className="w-30 h-10 rounded-[5px] bg-[#3F5FFF] text-white mt-10 ml-120 cursor-pointer border hover:text-[#3F5FFF] hover:bg-[white] hover:border-[#3F5FFF] active:opacity-50 "
+                        >
+                            Next
+                        </button>
+                    </form>
                 </div>
             </div>
-        </section>
+            <div className="">
+                <img src={"/wave2.png"} className=" h-120 w-170 " />
+            </div>
+        </div>
     );
 }

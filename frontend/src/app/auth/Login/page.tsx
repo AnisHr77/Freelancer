@@ -6,13 +6,28 @@ import axios from 'axios';
 import { FormEvent } from 'react';
 import { handleApiError } from '@/utils/handelerror';
 import { useRouter } from 'next/navigation';
-
+import { FC } from 'react';
+import { signIn } from 'next-auth/react';
 axios.defaults.withCredentials = true;
 
 function getCookie(name: string): string | null {
     const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
     return match ? decodeURIComponent(match[2]) : null;
 }
+interface GoogleSignInProps {
+    children?: React.ReactNode;
+}
+const GoogleSignIn: FC<GoogleSignInProps> = ({ children }) => {
+    const loginWithGoogle = () => signIn('google', { callbackUrl: '/' });
+    return (
+        <button
+            className='w-full min-w-80 max-w-100 mx-5 md:mx-0 bg-[#4260DA] text-white h-10 rounded-[5px] flex justify-center items-center gap-2 border cursor-pointer'
+            onClick={loginWithGoogle}
+        >
+            <FcGoogle className='w-6 h-6' />Continue with Google
+        </button>
+    );
+};
 export default function LoginPage() {
     const router = useRouter();
     const Signin = async (e: FormEvent<HTMLFormElement>) => {
@@ -96,10 +111,11 @@ export default function LoginPage() {
                         Or
                         <hr className='text-black mt-3 ml-1 w-35 md:w-35 h-5'></hr>
                     </div>
-                    <button
+                    {/* <button
                         className='w-full min-w-80 max-w-100  mx-5 md:mx-0 bg-[#4260DA] text-white h-10  rounded-[5px] flex justify-center items-center gap-2 border   cursor-pointer'>
                         <FcGoogle className='w-6 h-6' />Continue with Google
-                    </button>
+                    </button> */}
+                    <GoogleSignIn />
                     <p className='flex gap-2  w-85   mt-1 justify-center lg:mt-5 2xl:mt-15'>You Don't have account? <Link className='text-[#7A4D8B]' href="/auth/Register/Registerform" >Sign up</Link></p>
                 </div>
             </div>

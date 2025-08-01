@@ -5,6 +5,8 @@ import { Roboto } from "next/font/google";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import Footer from "@/components/footer";
 import {Montserrat} from "next/font/google";
+import { SessionProvider } from "next-auth/react";
+
 const roboto = Roboto({
     subsets: ['latin']
 });
@@ -31,6 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <body
             className={`${geistSans.variable} ${geistMono.variable} ${montserrat.className} antialiased`}
         >
+            
         <LayoutWrapper>{children}</LayoutWrapper>
         </body>
         </html>

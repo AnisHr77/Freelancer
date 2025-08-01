@@ -11,12 +11,13 @@ const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
     // Pages that should not have navbar/footer
     const isAuthPage = pathname.startsWith('/auth');
     const isDashboardPage = pathname.startsWith('/dashboard');
+    const isBlogPage = pathname.startsWith('/Blog');
 
     return (
         <>
-            {!isAuthPage && !isDashboardPage && <Navbar />}
+            {!isAuthPage && !isDashboardPage && !isBlogPage && <Navbar />}
             <main>{children}</main>
-            {!isAuthPage && !isDashboardPage && <Footer />}
+            {!isAuthPage && !isDashboardPage && !isBlogPage && <Footer />}
         </>
     );
 };

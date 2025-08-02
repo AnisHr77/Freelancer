@@ -1,11 +1,38 @@
 'use client'
 
-import { useState } from "react";
+import { countries } from "@/lib/coutries";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { handleApiError } from '@/utils/handelerror';
 
 export default function Role(e: React.FormEvent<HTMLFormElement>) {
-    const formData = new FormData(e.currentTarget);
-    const rools = formData.get("rool");
-    console.log(rools)
+    const router = useRouter();
+    const Signup = async () => {
+        e.preventDefault();
+        const formdata = new FormData(e.currentTarget);
+        const gender = formdata.get("gender");
+        const country = formdata.get("country");
+        const condition1 = formdata.get("check1");
+        const condition2 = formdata.get("check2");
+        const role = formdata.get("role");
+
+        try {
+            const response = await axios.post("http://localhost:8001/api/register", {
+                gender,
+                country,
+                condition1,
+                condition2,
+                role,
+            });
+
+            alert("informations send  success");
+            console.log(response.data);
+            router.push('/auth/Login');
+        } catch (error: any) {
+            handleApiError(error);
+        }
+    }
+
     return (
         <div className=" flex justify-center items-center  ">
             <img src={"/fame.png"} className=" absolute right-0 top-0 w-60 h-60 " />
@@ -20,17 +47,20 @@ export default function Role(e: React.FormEvent<HTMLFormElement>) {
                     </select>
                     <select name="country" className=" w-60 h-10 rounded-[5px] bg-[#E5E5EF] text-black  " required >
                         <option>choose your country</option>
+                        {countries.map((country, index) => (
+                            <option key={index}>{country}</option>
+                        ))}
                     </select>
                 </div>
                 <p className=" font-bold text-[20px] " >I am :</p>
                 <div className=" relative flex justify-center items-center gap-5 bg-[#E5E5EF] rounded-[5px] h-10 px-4 ">
                     <div className=" flex justify-center items-center gap-2 ">
-                        <input type="radio" name="rool" className=" rounded-[5px] " value="freelancer" />
+                        <input type="radio" name="role" className=" rounded-[5px] " value="freelancer" />
                         <label>Freelancer</label>
                     </div>
                     {/* <hr className=" text-black w-1 h-10 " ></hr> */}
                     <div className=" flex justify-center items-center gap-2 ">
-                        <input type="radio" name="rool" className=" rounded-[5px] " value="client" />
+                        <input type="radio" name="role" className=" rounded-[5px] " value="client" />
                         <label>Client</label>
                     </div>
                 </div>

@@ -56,7 +56,7 @@ export default function LoginPage() {
             if (response.data.user.role === "client") {
                 router.push('/Home');
             } else if (response.data.user.role === "freelancer") {
-                router.push("/auth/Questions/profile");
+                router.push("/auth/Questions");
             } else {
                 router.push("/dashboard");
             }

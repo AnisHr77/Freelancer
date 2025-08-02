@@ -161,7 +161,7 @@ export default function RegisterPage() {
 
             alert("Sign up success");
             console.log(response.data);
-            router.push('/auth/Login');
+            router.push('/auth/Role');
         } catch (error: any) {
             handleApiError(error);
         }

@@ -12,7 +12,9 @@ import Sidebar from "@/components/sidebar";
 export default function AfterLogin() {
 
     const router = useRouter();
-
+    const startquestions = () =>{
+        router.push("/auth/Questions/profile")
+    }
     return (
         <div className=" flex   flex-col-reverse justify-between lg:flex-row ">
             <div className=" flex flex-col justify-center items-center text-center lg:ml-20 gap-12 mt-10 pb-10 lg:pb-0 ">
@@ -26,7 +28,7 @@ export default function AfterLogin() {
                     <hr></hr>
                     <p>Get paid safely and know we’re here to help</p>
                 </div>
-                <button className=" w-80 h-10 rounded-[20px] text-white bg-[#7A4D8B]  hover:opacity-55 active:opacity-30 cursor-pointer " >Create Your Profile</button>
+                <button onClick={startquestions} className=" w-80 h-10 rounded-[20px] text-white bg-[#7A4D8B]  hover:opacity-55 active:opacity-30 cursor-pointer " >Create Your Profile</button>
             </div>
 
             <div className="">

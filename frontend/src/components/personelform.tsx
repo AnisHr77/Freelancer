@@ -4,6 +4,9 @@ import { motivation, workstyle, communication } from "@/lib/questionsData";
 import Select from "react-select";
 import { useState } from "react";
 import Image from "next/image";
+import Sidebar from "./sidebar";
+import { MdNavigateBefore } from "react-icons/md";
+import Link from "next/link";
 type Option = {
     value: string;
     label: string;
@@ -37,9 +40,12 @@ export default function ProfileForm() {
     }))
 
     return (
-        <div className="flex justify-around" >
-            <div className="pl-10 py-5 flex flex-col items-center md:items-start  ">
-                <p className=" font-medium text-[20px] " >Please put your answer in the input feild </p>
+        <div className=" flex " >
+            <div className="  py-5 flex flex-col items-center     ">
+                <div className="  mt-5   grid gap-4 ">
+                    <p className=" font-semibold text-[40px]   " >Create profile</p>
+                </div>
+                <Link href={"/"} ><MdNavigateBefore className=" w-12 h-12  " /></Link>
                 <form onSubmit={submit} >
                     <label className="block pb-3 mt-5 " >What is your preferred communication tool?</label>
                     <Select
@@ -48,7 +54,7 @@ export default function ProfileForm() {
                         value={selectcategory}
                         onChange={(option) => setSelectcategory(option as Option[])}
                         placeholder="Select services or type to search..."
-                        className="  w-80 md:w-150  h-10 border  rounded-[5px] "
+                        className="  w-80 md:w-100  h-10 border  rounded-[5px] "
                         required
                     />
                     <label className="block pb-3 mt-5">What motivates you the most in your work?</label>
@@ -58,7 +64,7 @@ export default function ProfileForm() {
                         value={selectyear}
                         onChange={(option) => setSelectyear(option as Option[])}
                         placeholder="Select years of experience..."
-                        className="  w-80 md:w-150  h-10 border  rounded-[5px] "
+                        className="  w-80 md:w-100  h-10 border  rounded-[5px] "
                         required
                     />
                     <label className="block pb-3 mt-5 ">How would you describe your work style?</label>
@@ -68,7 +74,7 @@ export default function ProfileForm() {
                         value={selectedOptions}
                         onChange={(selected) => setSelectedOptions(selected as Option[])}
                         placeholder="Select tools or type to search..."
-                        className="  w-80 md:w-150  h-10 border  rounded-[5px] "
+                        className="  w-80 md:w-100  h-10 border  rounded-[5px] "
                         required
                     />
                     <button
@@ -79,8 +85,8 @@ export default function ProfileForm() {
                     </button>
                 </form>
             </div>
-            <div className="hidden lg:flex ">
-                <Image alt="" src={"/Working.png"} width={200} height={100} className=" w-100 h-100 mt-10 " />
+            <div className=" ">
+                <Sidebar />
             </div>
         </div>
     );

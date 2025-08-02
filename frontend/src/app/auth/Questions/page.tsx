@@ -17,7 +17,7 @@ export default function AfterLogin() {
     }
     return (
         <div className=" flex   flex-col-reverse justify-between lg:flex-row ">
-            <div className=" flex flex-col justify-center items-center text-center lg:ml-20 gap-12 mt-10 pb-10 lg:pb-0 ">
+            <div className=" flex flex-col justify-center items-center text-center xl:ml-20 gap-12 mt-10 pb-10 lg:pb-0 ">
                 <p className=" text-[25px] md:text-[35px] lg:text-[30px] w-full lg:w-110 font-semibold " >Hey Adam. Ready for your
                     next big opportunity?
                 </p>

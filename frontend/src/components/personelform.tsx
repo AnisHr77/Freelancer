@@ -7,6 +7,7 @@ import Image from "next/image";
 import Sidebar from "./sidebar";
 import { MdNavigateBefore } from "react-icons/md";
 import Link from "next/link";
+import { freelancerCategories, Years, freelancerCategoryTools } from "@/lib/questionsData";
 type Option = {
     value: string;
     label: string;
@@ -14,10 +15,14 @@ type Option = {
 
 export default function ProfileForm() {
     const router = useRouter();
-
+    const [width, setWidth] = useState({ width: "0" });
     const submit = async () => {
         console.log("form submited");
-        router.push("/auth/Questions/skills")
+        // router.push("/auth/Questions/skills")
+        if (selectcategory) {
+            setWidth({ width: "50px" })
+        }
+
     }
 
     const [selectcategory, setSelectcategory] = useState<Option[]>([]);
@@ -28,7 +33,11 @@ export default function ProfileForm() {
         value: communicate.value,
         label: communicate.label,
     }));
-
+    const categoryOptions: Option[] = freelancerCategories.map((category) => ({
+        value: category.name,
+        label: category.name,
+    }));
+    
     const worksstyle: Option[] = workstyle.map((style) => ({
         value: style.value,
         label: style.label,
@@ -40,24 +49,27 @@ export default function ProfileForm() {
     }))
 
     return (
-        <div className=" flex " >
-            <div className="  py-5 flex flex-col items-center     ">
+        <div className="  flex   flex-col-reverse justify-between  lg:flex-row " >
+            <div className=" w-full  py-5 flex flex-col items-center lg:items-start     ">
                 <div className="  mt-5   grid gap-4 ">
-                    <p className=" font-semibold text-[40px]   " >Create profile</p>
+                    <p className=" font-semibold text-[40px] xl:ml-40 lg:ml-10 xl:w-100  " >Create profile</p>
                 </div>
-                <Link href={"/"} ><MdNavigateBefore className=" w-12 h-12  " /></Link>
-                <form onSubmit={submit} >
-                    <label className="block pb-3 mt-5 " >What is your preferred communication tool?</label>
+                <Link href={"/auth/Questions"} ><MdNavigateBefore className=" w-12 h-12 lg:ml-10 xl:ml-20 mt-5 " /></Link>
+                <div className=" w-80 md:w-100 h-1 lg:ml-10 xl:ml-25 mt-5 bg-[#d6d6d6] rounded-[20px] ">
+                    <div style={{ width: width.width }} className=" w-0 bg-[#7A4D8B] h-1 rounded-[20px] "></div>
+                </div>
+                <form onSubmit={submit} className="lg:ml-10 xl:ml-30 mt-10  flex flex-col items-center lg:items-start " >
+                    <label className="block pb-3   mt-5 font-semibold " >First, add a title to tell the world what you do.</label>
                     <Select
                         isMulti
-                        options={communications}
+                        options={categoryOptions}
                         value={selectcategory}
                         onChange={(option) => setSelectcategory(option as Option[])}
-                        placeholder="Select services or type to search..."
-                        className="  w-80 md:w-100  h-10 border  rounded-[5px] "
+                        placeholder="Example: Web developer | Web & Mobile"
+                        className="  w-80 md:w-100 mt-10 h-10 border bg-[#E5E5EF]   rounded-[5px] "
                         required
                     />
-                    <label className="block pb-3 mt-5">What motivates you the most in your work?</label>
+                    {/* <label className="block pb-3 mt-5">What motivates you the most in your work?</label>
                     <Select
                         isMulti
                         options={motivations}
@@ -76,16 +88,17 @@ export default function ProfileForm() {
                         placeholder="Select tools or type to search..."
                         className="  w-80 md:w-100  h-10 border  rounded-[5px] "
                         required
-                    />
+                    /> */}
                     <button
                         type="submit"
-                        className="w-30 h-10 rounded-[5px] bg-[#3F5FFF] text-white mt-10 ml-120 cursor-pointer border hover:text-[#3F5FFF] hover:bg-[white] hover:border-[#3F5FFF] active:opacity-50 "
+                        onClick={submit}
+                        className="w-80 h-10 rounded-[20px] lg:ml-10 bg-[#7A4D8B] text-white mt-15   cursor-pointer border hover:opacity-50     active:opacity-30 "
                     >
                         Next
                     </button>
                 </form>
             </div>
-            <div className=" ">
+            <div className="">
                 <Sidebar />
             </div>
         </div>

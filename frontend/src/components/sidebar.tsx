@@ -16,11 +16,11 @@ const Sidebar = () => {
                 <FaRankingStar className='w-10 h-10' />
                 <p className='w-10 h-10 bg-white rounded-full flex items-center text-[#007AFF] '>+97k</p>
             </div> */}
-            
+
             {/* desktop version */}
             <div
                 style={{ backgroundImage: `url('/wave2.png')`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}
-                className="h-130    flex-col items-center pl-30 gap-2 w-170  hidden lg:flex "
+                className="h-130    flex-col items-center pl-30 gap-2 lg:w-145 xl:w-170 hidden lg:flex "
             >
                 <p className="  text-[white] ml-10 mt-10 text-[40px] ">
                     <span className=' font-bold  ' >Task</span>linker

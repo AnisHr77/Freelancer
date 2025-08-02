@@ -21,7 +21,7 @@ const GoogleSignIn: FC<GoogleSignInProps> = ({ children }) => {
     const loginWithGoogle = () => signIn('google', { callbackUrl: '/' });
     return (
         <button
-            className='w-full min-w-80 max-w-100 mx-5 md:mx-0 bg-[#4260DA] text-white h-10 rounded-[5px] flex justify-center items-center gap-2 border cursor-pointer'
+            className='w-full min-w-80 max-w-100 mx-5 md:mx-0  bg-[white] text-black h-10 rounded-[5px] flex justify-center items-center gap-2 border cursor-pointer'
             onClick={loginWithGoogle}
         >
             <FcGoogle className='w-6 h-6' />Continue with Google
@@ -112,7 +112,7 @@ export default function LoginPage() {
                         <hr className='text-black mt-3 ml-1 w-35 md:w-35 h-5'></hr>
                     </div>
                     {/* <button
-                        className='w-full min-w-80 max-w-100  mx-5 md:mx-0 bg-[#4260DA] text-white h-10  rounded-[5px] flex justify-center items-center gap-2 border   cursor-pointer'>
+                        className='w-full min-w-80 max-w-100  mx-5 md:mx-0 bg-[white] text-black h-10  rounded-[5px] flex justify-center items-center gap-2 border   cursor-pointer'>
                         <FcGoogle className='w-6 h-6' />Continue with Google
                     </button> */}
                     <GoogleSignIn />

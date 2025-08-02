@@ -65,7 +65,7 @@ export default function WhatWeOffer() {
                     <hr></hr>
                     <p>Get paid safely and know we’re here to help</p>
                 </div>
-                <button className=" w-80 h-10 rounded-[20px] text-white bg-[#7A4D8B] " >Create Your Profile</button>
+                <button className=" w-80 h-10 rounded-[20px] text-white bg-[#7A4D8B]  hover:opacity-55 active:opacity-30 cursor-pointer " >Create Your Profile</button>
             </div>
 
             {/* desktop version */}

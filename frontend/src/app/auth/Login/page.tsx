@@ -116,7 +116,7 @@ export default function LoginPage() {
                         <FcGoogle className='w-6 h-6' />Continue with Google
                     </button> */}
                     <GoogleSignIn />
-                    <p className='flex gap-2  w-85   mt-1 justify-center lg:mt-5 2xl:mt-15'>You Don't have account? <Link className='text-[#7A4D8B]' href="/auth/Register/Registerform" >Sign up</Link></p>
+                    <p className='flex gap-2  w-85   mt-1 justify-center lg:mt-5 2xl:mt-15'>You Don't have account? <Link className='text-[#7A4D8B]' href="/auth/Register" >Sign up</Link></p>
                 </div>
             </div>
         </>

@@ -10,7 +10,6 @@ export default function FreelancerQuestionPage() {
 
     return (
         <div className=' w-screen ' >
-         
             {QuestionCategory === "profile" && <ProfileForm />}
             {QuestionCategory === "skills" && <SkillsForm />}
             {QuestionCategory === "project" && <ProjectForm />}

@@ -11,7 +11,7 @@ const Navbar = () => {
     const router = useRouter();
 
     const register = () => {
-        router.push("/auth/Register/Registerform");
+        router.push("/auth/Register");
     };
     const Login = () => {
         router.push("/auth/Login");

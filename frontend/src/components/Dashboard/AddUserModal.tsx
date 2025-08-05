@@ -10,7 +10,6 @@ interface User {
     position: string;
     department: string;
     phone: string;
-    // password فقط عند إضافة
 }
 
 interface Props {

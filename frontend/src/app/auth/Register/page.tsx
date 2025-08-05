@@ -40,7 +40,7 @@ const Page = () => {
     return (
         <div className='min-w-[320px] flex h-screen w-full'>
             <div className="w-[60%]   ">
-                <p className='text-[40px] font-semibold  text-[#3F5FFF]  ml-5 md:ml-18'>Tasklinker</p>
+                <p className='text-[40px] font-semibold  text-[#7a4d8b]  ml-5 md:ml-18'>Tasklinker</p>
                 <p className='mt-1 text-[20px]  ml-5 md:ml-20 '>Welcom to our community</p>
                 <p className=' ml-5 md:ml-20 mt-2'>Sign up to get started!</p>
                 <form onSubmit={Signup} className='flex flex-col px-5 md:pl-20 2xl:mt-10 mt-5'>
@@ -83,7 +83,7 @@ const Page = () => {
                             type='password'
                             name='password'
                             placeholder='Password'
-                            className=' w-80  md:w-full md:max-w-45 h-9 rounded-[5px] pl-2  border  active:border-[#3F5FFF]  '
+                            className=' w-80  md:w-full md:max-w-45 h-9 rounded-[5px] pl-2  border  active:border-[#7a4d8b]  '
                             required
                         />
                         <label className='mt-2 md:hidden'>Confirm Password</label>
@@ -91,7 +91,7 @@ const Page = () => {
                             type='password'
                             name='password_confirmation'
                             placeholder='Confirm Password'
-                            className=' w-80  md:w-full md:max-w-45 h-9 rounded-[5px] pl-2  border  active:border-[#3F5FFF]  '
+                            className=' w-80  md:w-full md:max-w-45 h-9 rounded-[5px] pl-2  border  active:border-[#7a4d8b]  '
                             required
                         />
                     </div>
@@ -104,7 +104,7 @@ const Page = () => {
                     </select>
                     <button
                         type='submit'
-                        className='w-full max-w-100 min-w-80 h-10 mt-6 bg-[#3F5FFF] rounded-[5px] text-white cursor-pointer hover:opacity-60 active:opacity-50 ' >
+                        className='w-full max-w-100 min-w-80 h-10 mt-6 bg-[#7a4d8b] rounded-[5px] text-white cursor-pointer hover:opacity-60 active:opacity-50 ' >
                         Join
                     </button>
                 </form>
@@ -117,9 +117,9 @@ const Page = () => {
                     className='w-full min-w-80 max-w-100  mx-5 md:mx-0  h-10  rounded-[5px] flex justify-center items-center gap-2 border md:ml-20 cursor-pointer'>
                     <FcGoogle className='w-6 h-6' />Continue with Google
                 </button>
-                <p className='flex gap-2  w-85 md:ml-30  mt-1 justify-center 2xl:mt-15'>Already have account? <Link className='text-[#3F5FFF]' href="/auth/Login" >Sign in</Link></p>
+                <p className='flex gap-2  w-85 md:ml-30  mt-1 justify-center 2xl:mt-15'>Already have account? <Link className='text-[#7a4d8b]' href="/auth/Login" >Sign in</Link></p>
             </div>
-            <div className="w-full max-w-[45%]  items-center text-center h-full bg-[#3F5FFF]    flex-col justify-center hidden md:flex">
+            <div className="w-full max-w-[45%]  items-center text-center h-full bg-[#7a4d8b]    flex-col justify-center hidden md:flex">
                 <Sidebar />
             </div>
         </div>

@@ -71,7 +71,7 @@ export default function AnalyticsList() {
         {
             name: "Progress",
             value: averageData.tasks_progress,
-            fill: "#3f5fff",
+            fill: "#7a4d8b",
         },
     ];
 
@@ -103,13 +103,13 @@ export default function AnalyticsList() {
                     </RadialBarChart>
                 </ResponsiveContainer>
 
-                <div className="absolute text-xl sm:text-2xl font-bold text-[#3F5FFF]">
+                <div className="absolute text-xl sm:text-2xl font-bold text-[#7a4d8b]">
                     {averageData.tasks_progress}%
                 </div>
             </div>
 
             <div className="mt-4">
-                <p className="font-semibold text-[#3F5FFF] text-sm sm:text-base">
+                <p className="font-semibold text-[#7a4d8b] text-sm sm:text-base">
                     {averageData.response_rate}% Response Rate
                 </p>
                 <p className="text-xs sm:text-sm text-gray-500">

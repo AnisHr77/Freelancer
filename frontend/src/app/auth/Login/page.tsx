@@ -55,7 +55,7 @@ const Page = () => {
     return (
         <div className='min-w-[320px] flex h-screen w-screen'>
             <div className="w-[60%] flex flex-col mt-5">
-                <p className='text-[40px] font-semibold text-[#3F5FFF] ml-5 md:ml-18'>Tasklinker</p>
+                <p className='text-[40px] font-semibold text-[#7a4d8b] ml-5 md:ml-18'>Tasklinker</p>
                 <p className='mt-5 text-[20px] ml-5 md:ml-20'>Welcome Back!</p>
                 <p className='w-50 ml-5 md:ml-20 mt-2'>Sign in to get started!</p>
 
@@ -78,7 +78,7 @@ const Page = () => {
                     />
                     <button
                         type='submit'
-                        className='w-full max-w-100 min-w-80 h-10 mt-6 bg-[#3F5FFF] rounded-[5px] text-white cursor-pointer hover:opacity-60 active:opacity-50'>
+                        className='w-full max-w-100 min-w-80 h-10 mt-6 bg-[#7a4d8b] rounded-[5px] text-white cursor-pointer hover:opacity-60 active:opacity-50'>
                         Sign in
                     </button>
                 </form>
@@ -96,11 +96,11 @@ const Page = () => {
                 </button>
 
                 <p className='flex gap-2 w-85 md:ml-30 mt-4 justify-center'>
-                    Don't have an account? <Link className='text-[#3F5FFF]' href="/auth/Register">Sign Up</Link>
+                    Don't have an account? <Link className='text-[#7a4d8b]' href="/auth/Register">Sign Up</Link>
                 </p>
             </div>
 
-            <div className="w-full max-w-[45%] items-center text-center h-full bg-[#3F5FFF] hidden md:flex flex-col justify-center">
+            <div className="w-full max-w-[45%] items-center text-center h-full bg-[#7a4d8b] hidden md:flex flex-col justify-center">
                 <Sidebar />
             </div>
         </div>

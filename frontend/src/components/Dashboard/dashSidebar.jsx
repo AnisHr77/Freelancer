@@ -61,7 +61,7 @@ export default function DashSidebar() {
                 aria-label={sidebarOpen ? "Close menu" : "Open menu"}
                 aria-expanded={sidebarOpen}
                 aria-controls="sidebar"
-                className="absolute top-8 right-4 z-50 md:hidden bg-white p-2 rounded-md text-neutral-800 hover:text-[#3F5FFF] transition"
+                className="absolute top-8 right-4 z-50 md:hidden bg-white p-2 rounded-md text-neutral-800 hover:text-[#7a4d8b] transition"
             >
                 {!sidebarOpen && <MdMenu size={24} />}
             </button>
@@ -102,7 +102,7 @@ export default function DashSidebar() {
                     ${
                                             pathname === href
                                                 ? "bg-[#1f1f1f] text-[#3F5FFF]"
-                                                : "hover:bg-[#1f1f1f] hover:text-[#3F5FFF]"
+                                                : "hover:bg-[#1f1f1f] hover:text-[#7a4d8b]"
                                         }`}
                                         onClick={() => setSidebarOpen(false)}
                                     >
@@ -116,10 +116,10 @@ export default function DashSidebar() {
 
                     {/* Preferences */}
                     <div className="pt-6">
-                        <p className="text-sm uppercase tracking-wide text-gray-500 mb-2 border-b border-b-neutral-800 pb-2">
+                        <p className="text-sm uppercase tracking-wide text-gray-500 mb-2 border-b border-b-neutral-800 pb-4">
                             Preference
                         </p>
-                        <ul className="space-y-1 md:space-y-2">
+                        <ul className="space-y-1 md:space-y-4">
                             {preferenceItems.map(({ label, icon: Icon, href }) => (
                                 <li key={label}>
                                     <Link
@@ -127,8 +127,8 @@ export default function DashSidebar() {
                                         className={`flex items-center gap-3 w-full px-3 py-2 rounded-lg transition-all duration-200 text-sm font-medium
                     ${
                                             pathname === href
-                                                ? "bg-[#1f1f1f] text-[#3F5FFF]"
-                                                : "hover:bg-[#1f1f1f] hover:text-[#3F5FFF]"
+                                                ? "bg-[#1f1f1f] text-[#7a4d8b]"
+                                                : "hover:bg-[#1f1f1f] hover:text-[#7a4d8b]"
                                         }`}
                                         onClick={() => setSidebarOpen(false)}
                                     >
@@ -142,7 +142,7 @@ export default function DashSidebar() {
 
                     {/* Logout Button */}
                     <div className="mt-auto pt-8">
-                        <button className="bg-neutral-800 flex items-center gap-3 w-full px-3 py-2 rounded-lg text-white hover:text-red-600 hover:bg-[#1f1f1f] transition text-sm font-medium">
+                        <button className="bg-neutral-800 flex items-center gap-3 w-full px-3 py-2 rounded-lg text-white hover:text-red-600 hover:bg-[#1f1f1f] transition text-sm font-medium pointer">
                             <MdLogout className="text-lg" />
                             Log Out
                         </button>

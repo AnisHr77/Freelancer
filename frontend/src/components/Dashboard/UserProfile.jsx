@@ -24,7 +24,7 @@ export default function UserProfile() {
     if (loading) return <div>Loading...</div>;
 
     return (
-        <div className="bg-[#3F5FFF] text-white p-6 rounded-xl flex flex-col items-center">
+        <div className="bg-[#7a4d8b] text-white p-6 rounded-xl flex flex-col items-center">
             <div className="w-16 h-16 bg-white rounded-full mb-2" />
             <h3 className="font-bold">{profile.name}</h3>
             <p className="text-sm">{profile.location}</p>
@@ -34,7 +34,7 @@ export default function UserProfile() {
                     className="
                         mt-4
                         bg-white
-                        text-[#3F5FFF]
+                        text-[#7a4d8b]
                         px-6
                         py-2
                         rounded-full

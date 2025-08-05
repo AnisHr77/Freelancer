@@ -42,20 +42,6 @@ class ProjectController extends Controller
         $project->delete();
         return response()->json(['message' => 'Project deleted']);
     }
-    public function activeProjects()
-    {
-        $userId = 1;
-
-        $projects = Project::select('id', 'title', 'description', 'budget', 'deadline', 'status')
-            ->where('user_id', $userId)
-            ->where('status', 'active')
-            ->orderBy('created_at', 'desc')
-            ->get();
-
-
-        return response()->json($projects);
-    }
-
 
 }
 

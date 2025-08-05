@@ -20,7 +20,7 @@ export default function Topbar() {
                     <input
                         type="text"
                         placeholder="Search"
-                        className="pl-10 pr-4 py-2 w-full bg-gray-100 border border-neutral-300 rounded-md shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-[#3F5FFF]"
+                        className="pl-10 pr-4 py-2 w-full bg-gray-100 border border-neutral-300 rounded-md shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-[#7a4d8b]"
                     />
                 </div>
 
@@ -41,7 +41,7 @@ export default function Topbar() {
                         <label
                             htmlFor="toggle"
                             className={`block w-full h-full rounded-full transition-colors duration-300 ${
-                                enabled ? "bg-[#3F5FFF]" : "bg-gradient-to-b from-gray-400 to-gray-200"
+                                enabled ? "bg-[#7a4d8b]" : "bg-gradient-to-b from-gray-400 to-gray-200"
                             }`}
                         ></label>
                         <span

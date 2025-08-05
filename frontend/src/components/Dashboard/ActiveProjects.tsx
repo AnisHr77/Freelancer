@@ -34,7 +34,7 @@ export default function ActiveProjects() {
                         <div className="text-sm text-gray-600">{new Date(p.deadline).toLocaleDateString()}</div>
                         <div className="w-full md:w-1/4 bg-gray-200 h-2 rounded">
                             {/* Progress can be added later when available */}
-                            <div className="bg-[#3F5FFF] h-2 rounded" style={{ width: `60%` }} />
+                            <div className="bg-[#7a4d8b] h-2 rounded" style={{ width: `60%` }} />
                         </div>
                     </div>
                 ))}

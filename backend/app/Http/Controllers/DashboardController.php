@@ -129,7 +129,7 @@ class DashboardController extends Controller
 
     public function applicationStatus(Request $request)
     {
-        $freelancerId = $request->user()->id ?? 2;
+        $freelancerId = $request->user()->id ?? 13;
 
         $proposals = Proposal::with('project')
             ->where('freelancer_id', $freelancerId)
@@ -138,7 +138,7 @@ class DashboardController extends Controller
             ->get();
 
         $data = $proposals->map(function ($proposal) {
-            $status = $proposal->status; // pending, rejected, accepted, etc.
+            $status = $proposal->status;
             $label = match ($status) {
                 'pending' => null,
                 'rejected' => 'Not selected',
@@ -157,4 +157,16 @@ class DashboardController extends Controller
 
         return response()->json($data);
     }
+
+    public function activeProjects(Request $request)
+    {
+        $userId = $request->query('user_id') ?? $request->user()->id ?? 13;
+
+        $activeProjects = Project::where('user_id', $userId)
+            ->where('status', 'active')
+            ->get();
+
+        return response()->json($activeProjects);
+    }
+
 }

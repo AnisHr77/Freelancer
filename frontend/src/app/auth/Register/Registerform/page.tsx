@@ -11,7 +11,7 @@ export default function ChooseRole() {
     return (
         <div className="min-h-screen bg-gradient-to-br from-[#eaf0ff] via-white to-[#e2e9ff] flex flex-col items-center">
             <div className="w-full text-center py-10">
-                <h1 className="text-4xl sm:text-5xl font-extrabold text-[#3F5FFF] tracking-wide drop-shadow-md">
+                <h1 className="text-4xl sm:text-5xl font-extrabold text-[#7a4d8b] tracking-wide drop-shadow-md">
                     Task<span className="text-[#3F5FFF]">linker</span>
                 </h1>
                 <p className="text-gray-600 text-lg mt-2">

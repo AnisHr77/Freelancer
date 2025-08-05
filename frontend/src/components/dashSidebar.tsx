@@ -25,19 +25,18 @@ const preferenceItems = [
 export default function DashSidebar() {
     const pathname = usePathname();
     const [sidebarOpen, setSidebarOpen] = useState(false);
-
     const sidebarRef = useRef(null);
     const burgerRef = useRef(null);
 
-    const toggleSidebar = () => setSidebarOpen((prev) => !prev);
+    const toggleSidebar = () => setSidebarOpen(prev => !prev);
 
     useEffect(() => {
-        function handleClickOutside(event) {
+        function handleClickOutside(event: MouseEvent) {
             if (
                 sidebarRef.current &&
-                !sidebarRef.current.contains(event.target) &&
+                !sidebarRef.current.contains(event.target as Node) &&
                 burgerRef.current &&
-                !burgerRef.current.contains(event.target)
+                !burgerRef.current.contains(event.target as Node)
             ) {
                 setSidebarOpen(false);
             }
@@ -52,6 +51,17 @@ export default function DashSidebar() {
         };
     }, [sidebarOpen]);
 
+    const getLinkClass = (href: string, isMain = true) => {
+        const isActive = pathname.toLowerCase() === href.toLowerCase();
+        return {
+            link: `flex items-center gap-3 w-full px-3 py-${isMain ? "3" : "2"} 
+        rounded-lg transition-all duration-200 text-sm font-medium
+        ${isActive ? "bg-[#1f1f1f] text-[#7a4d8b]" : "text-white hover:text-[#7a4d8b]"}
+        focus:outline-none focus-visible:outline-none`,
+            icon: `text-lg ${isActive ? "" : "text-white"} group-hover:text-[#7a4d8b]`
+        };
+    };
+
     return (
         <>
             {/* Burger Icon */}
@@ -61,7 +71,7 @@ export default function DashSidebar() {
                 aria-label={sidebarOpen ? "Close menu" : "Open menu"}
                 aria-expanded={sidebarOpen}
                 aria-controls="sidebar"
-                className="absolute top-8 right-4 z-50 md:hidden bg-white p-2 rounded-md text-neutral-800 hover:text-[#3F5FFF] transition"
+                className="absolute top-8 right-4 z-50 md:hidden bg-white p-2 rounded-md text-neutral-800 hover:text-[#7a4d8b] transition"
             >
                 {!sidebarOpen && <MdMenu size={24} />}
             </button>
@@ -70,10 +80,10 @@ export default function DashSidebar() {
             <aside
                 ref={sidebarRef}
                 id="sidebar"
-                className={`fixed top-0 left-0 z-50 h-screen  max-w-66 bg-[#111] text-white p-4 shadow-lg
-          transform transition-transform duration-300 ease-in-out
-          ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
-          md:translate-x-0 md:static md:block md:h-auto md:w-72 flex flex-col`}
+                className={`fixed top-0 left-0 z-50 h-screen max-w-66 bg-[#111] text-white p-4 shadow-lg
+        transform transition-transform duration-300 ease-in-out
+        ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
+        md:translate-x-0 md:static md:block md:h-auto md:w-72 flex flex-col`}
             >
                 {/* Close Button (Mobile) */}
                 <div className="md:hidden flex justify-end mb-4">
@@ -94,23 +104,21 @@ export default function DashSidebar() {
                             Main Menu
                         </p>
                         <ul className="flex flex-col space-y-6 border-b border-b-neutral-800 pb-4">
-                            {mainMenuItems.map(({ label, icon: Icon, href }) => (
-                                <li key={label}>
-                                    <Link
-                                        href={href}
-                                        className={`flex items-center gap-3 w-full px-3 py-3 rounded-lg transition-all duration-200 text-sm font-medium
-                    ${
-                                            pathname === href
-                                                ? "bg-[#1f1f1f] text-[#3F5FFF]"
-                                                : "hover:bg-[#1f1f1f] hover:text-[#3F5FFF]"
-                                        }`}
-                                        onClick={() => setSidebarOpen(false)}
-                                    >
-                                        <Icon className="text-lg" />
-                                        <span>{label}</span>
-                                    </Link>
-                                </li>
-                            ))}
+                            {mainMenuItems.map(({ label, icon: Icon, href }) => {
+                                const { link, icon } = getLinkClass(href, true);
+                                return (
+                                    <li key={label}>
+                                        <Link
+                                            href={href}
+                                            className={`${link} group`}
+                                            onClick={() => setSidebarOpen(false)}
+                                        >
+                                            <Icon className={icon} />
+                                            <span>{label}</span>
+                                        </Link>
+                                    </li>
+                                );
+                            })}
                         </ul>
                     </div>
 
@@ -120,23 +128,21 @@ export default function DashSidebar() {
                             Preference
                         </p>
                         <ul className="space-y-1 md:space-y-2">
-                            {preferenceItems.map(({ label, icon: Icon, href }) => (
-                                <li key={label}>
-                                    <Link
-                                        href={href}
-                                        className={`flex items-center gap-3 w-full px-3 py-2 rounded-lg transition-all duration-200 text-sm font-medium
-                    ${
-                                            pathname === href
-                                                ? "bg-[#1f1f1f] text-[#3F5FFF]"
-                                                : "hover:bg-[#1f1f1f] hover:text-[#3F5FFF]"
-                                        }`}
-                                        onClick={() => setSidebarOpen(false)}
-                                    >
-                                        <Icon className="text-lg" />
-                                        <span>{label}</span>
-                                    </Link>
-                                </li>
-                            ))}
+                            {preferenceItems.map(({ label, icon: Icon, href }) => {
+                                const { link, icon } = getLinkClass(href, false);
+                                return (
+                                    <li key={label}>
+                                        <Link
+                                            href={href}
+                                            className={`${link} group`}
+                                            onClick={() => setSidebarOpen(false)}
+                                        >
+                                            <Icon className={icon} />
+                                            <span>{label}</span>
+                                        </Link>
+                                    </li>
+                                );
+                            })}
                         </ul>
                     </div>
 

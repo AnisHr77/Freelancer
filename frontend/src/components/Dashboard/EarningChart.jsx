@@ -30,15 +30,15 @@ export default function EarningChart() {
         <div className="bg-white shadow-md rounded-xl p-6">
             <h2 className="text-lg font-bold text-gray-800 mb-1">Earning Reports</h2>
             <p className="text-2xl font-semibold text-black">${income.toLocaleString()}</p>
-            <p className="text-sm text-[#3F5FFF] mb-4">{growth}% growth this year</p>
+            <p className="text-sm text-[#7a4d8b] mb-4">{growth}% growth this year</p>
 
             <div className="h-52">
                 <ResponsiveContainer width="100%" height="100%">
                     <AreaChart data={data} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
                         <defs>
                             <linearGradient id="colorIncome" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="5%" stopColor="#C0E4D4" stopOpacity={0.9} />
-                                <stop offset="95%" stopColor="#B9F8CF" stopOpacity={0} />
+                                <stop offset="5%" stopColor="#7a4d8b" stopOpacity={0.9} />
+                                <stop offset="95%" stopColor="#7a4d8b" stopOpacity={0} />
                             </linearGradient>
                         </defs>
                         <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" vertical={false} />

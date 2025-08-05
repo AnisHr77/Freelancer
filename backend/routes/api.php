@@ -60,10 +60,10 @@ Route::post('/contracts', [ContractController::class, 'store']);
 Route::get('/contracts/statistics', [ContractController::class, 'statistics']);
 Route::apiResource('contracts', ContractController::class);
 
-// ✅ Surveys (Questions + Responses)
+
 Route::get('/surveys', [SurveyController::class, 'index']);
 Route::post('/surveys', [SurveyController::class, 'store']);
-Route::get('/surveys/full', [SurveyController::class, 'allSurveysWithQuestions']);
+Route::post('/surveys/answers', [SurveyController::class, 'submitAnswer']);
 
 // ✅ Projects, Proposals, Reviews
 Route::apiResource('projects', ProjectController::class);

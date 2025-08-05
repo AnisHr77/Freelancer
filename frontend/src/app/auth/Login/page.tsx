@@ -1,36 +1,48 @@
 'use client';
-
-import Link from 'next/link';
-import React, { FormEvent } from 'react';
-import axios from 'axios';
-import { handleApiError } from '@/utils/handelerror';
-import Sidebar from '@/components/sidebar';
 import { FcGoogle } from "react-icons/fc";
+import Sidebar from '@/components/sidebar';
+import Link from 'next/link';
+import axios from 'axios';
+import { FormEvent } from 'react';
+import { handleApiError } from '@/utils/handelerror';
 import { useRouter } from 'next/navigation';
+import { FC } from 'react';
+import { signIn } from 'next-auth/react';
 axios.defaults.withCredentials = true;
 
 function getCookie(name: string): string | null {
     const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
     return match ? decodeURIComponent(match[2]) : null;
 }
-
-const Page = () => {
+interface GoogleSignInProps {
+    children?: React.ReactNode;
+}
+const GoogleSignIn: FC<GoogleSignInProps> = ({ children }) => {
+    const loginWithGoogle = () => signIn('google', { callbackUrl: '/' });
+    return (
+        <button
+            className='w-full min-w-80 max-w-100 mx-5 md:mx-0  bg-[white] text-black h-10 rounded-[5px] flex justify-center items-center gap-2 border cursor-pointer'
+            onClick={loginWithGoogle}
+        >
+            <FcGoogle className='w-6 h-6' />Continue with Google
+        </button>
+    );
+};
+export default function LoginPage() {
     const router = useRouter();
     const Signin = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const formData = new FormData(e.currentTarget);
-        const email = formData.get("email");
-        const password = formData.get("password");
+        const formdata = new FormData(e.currentTarget);
+        const email = formdata.get("email");
+        const password = formdata.get("password");
 
         try {
             await axios.get('http://localhost:8001/sanctum/csrf-cookie');
             const csrfToken = getCookie('XSRF-TOKEN');
-
-            const response = await axios.post('http://localhost:8001/login',
-                {
-                    email,
-                    password,
-                },
+            const response = await axios.post("http://localhost:8001/login", {
+                email,
+                password,
+            },
                 {
                     withCredentials: true,
                     headers: {
@@ -39,20 +51,22 @@ const Page = () => {
                 }
             );
 
+            alert("Sign up success");
+            console.log(response.data);
             if (response.data.user.role === "client") {
                 router.push('/Home');
-            } else if(response.data.user.role === "freelancer") {
-                router.push("/auth/Questions/profile");
-            }else{
+            } else if (response.data.user.role === "freelancer") {
+                router.push("/auth/Questions");
+            } else {
                 router.push("/dashboard");
             }
-            console.log(response.data);
         } catch (error: any) {
             handleApiError(error);
         }
-    };
+    }
 
     return (
+<<<<<<< HEAD
         <div className='min-w-[320px] flex h-screen w-screen'>
             <div className="w-[60%] flex flex-col mt-5">
                 <p className='text-[40px] font-semibold text-[#7a4d8b] ml-5 md:ml-18'>Tasklinker</p>
@@ -98,13 +112,69 @@ const Page = () => {
                 <p className='flex gap-2 w-85 md:ml-30 mt-4 justify-center'>
                     Don't have an account? <Link className='text-[#7a4d8b]' href="/auth/Register">Sign Up</Link>
                 </p>
+=======
+        <>
+            <div className="   absolute inset-0  h-[520px] bg-[#7A4D8B] clip-slant " />
+            <div className="  flex justify-center md:justify-around items-center ">
+                <div className="   flex-col gap-6 hidden md:flex ">
+                    <p className="  text-[white] text-[40px] ">
+                        <span className=' font-bold  ' >Task</span>linker
+                    </p>
+                    <p className="text-white w-130 text-[20px] " >Connect faster. Work smarter. Achieve more with TaskLinker.<br />
+                        You have the talent and ambition—let us help you unlock new opportunities and collaborate with confidence across the globe.<br />
+                        Sign up today and get access to:<br />
+                        <ul className=" list-disc ml-10 " >
+                            <li>A secure and scalable freelance platform</li>
+                            <li>Smart tools for seamless client-freelancer collaboration</li>
+                            <li> A global network of top-tier projects and professionals</li>
+                        </ul>
+                    </p>
+                </div>
+                <div className=" bg-[#E5E5EF] w-90 h-120 z-50 rounded-[10px]  mt-20 flex flex-col  items-center p-5">
+                    <h3 className=" font-bold mt-10 text-[20px] " > Log in to your account</h3>
+                    <form onSubmit={Signin} className=" flex flex-col gap-6 mt-10 " >
+                        <input
+                            type='email'
+                            name='email'
+                            placeholder='Email'
+                            className=' w-full max-w-100 min-w-80 h-9 bg-white rounded-[5px] pl-2  border   '
+                            required
+                        />
+                        <input
+                            type='password'
+                            name='password'
+                            placeholder='Password'
+                            className='  w-full max-w-100 min-w-80 h-9 bg-white rounded-[5px] pl-2  border  active:border-[#3F5FFF]  '
+                            required
+                        />
+                        <button
+                            type='submit'
+                            className='w-full max-w-100 min-w-80 h-10  bg-[#7A4D8B] rounded-[5px] text-white cursor-pointer hover:opacity-60 active:opacity-50 ' >
+                            Login
+                        </button>
+                    </form>
+                    <div className="flex justify-center w-90  mt-3  ">
+                        <hr className='text-black mt-3 mr-1 w-35 md:w-35 h-5'></hr>
+                        Or
+                        <hr className='text-black mt-3 ml-1 w-35 md:w-35 h-5'></hr>
+                    </div>
+                    {/* <button
+                        className='w-full min-w-80 max-w-100  mx-5 md:mx-0 bg-[white] text-black h-10  rounded-[5px] flex justify-center items-center gap-2 border   cursor-pointer'>
+                        <FcGoogle className='w-6 h-6' />Continue with Google
+                    </button> */}
+                    <GoogleSignIn />
+                    <p className='flex gap-2  w-85   mt-1 justify-center lg:mt-5 2xl:mt-15'>You Don't have account? <Link className='text-[#7A4D8B]' href="/auth/Register" >Sign up</Link></p>
+                </div>
+>>>>>>> b32c692b16c5ef022624237846732aacdd0feada
             </div>
+        </>
 
+<<<<<<< HEAD
             <div className="w-full max-w-[45%] items-center text-center h-full bg-[#7a4d8b] hidden md:flex flex-col justify-center">
                 <Sidebar />
             </div>
         </div>
+=======
+>>>>>>> b32c692b16c5ef022624237846732aacdd0feada
     );
-};
-
-export default Page;
+}

@@ -147,7 +147,7 @@ export default function RegisterPage() {
         const lastname = formdata.get("lastname");
         const email = formdata.get("email");
         const password = formdata.get("password");
-        const role = formdata.get("role");
+        // const role = formdata.get("role");
 
         try {
             const response = await axios.post("http://localhost:8001/api/register", {
@@ -156,7 +156,7 @@ export default function RegisterPage() {
                 email,
                 password,
                 password_confirmation: password,
-                role,
+                role:"client",
             });
 
             alert("Sign up success");

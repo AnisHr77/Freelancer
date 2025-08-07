@@ -19,6 +19,24 @@ export const freelancerCategories = [
     { id: 17, name: "Photography" },
     { id: 18, name: "Accounting & Finance" },
 ];
+ "Web Development" 
+ "Graphic Design" 
+ "Logo Design" 
+ "Mobile App Development" 
+ "Digital Marketing" 
+ "SEO Services"  
+ "Content Writing"  
+ "Video Editing"  
+ "Voice Over" 
+ "Virtual Assistance"  
+ "E-learning & Tutoring"  
+ "Data Entry"  
+ "UI/UX Design"  
+ "Game Development"  
+ "Social Media Management" 
+ "Photography"  
+ "Accounting & Finance" 
+
 
 export const Years = [
     { value: "0-1", label: "Less than 1 year" },

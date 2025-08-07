@@ -8,20 +8,37 @@ import Sidebar from "./sidebar";
 import { MdNavigateBefore } from "react-icons/md";
 import Link from "next/link";
 import { freelancerCategories, Years, freelancerCategoryTools } from "@/lib/questionsData";
+import { handleApiError } from '@/utils/handelerror';
+import axios from "axios";
 type Option = {
     value: string;
     label: string;
 }
+// axios.defaults.withCredentials = true;
 
+// function getCookie(name: string): string | null {
+//     const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+//     return match ? decodeURIComponent(match[2]) : null;
+// }
 export default function ProfileForm() {
     const router = useRouter();
     const [width, setWidth] = useState({ width: "0" });
     const submit = async () => {
-        console.log("form submited");
-        // router.push("/auth/Questions/skills")
-        if (selectcategory) {
-            setWidth({ width: "50px" })
+        try {
+            await axios.get('http://localhost:8001/sanctum/csrf-cookie');
+            // const csrfToken = getCookie('XSRF-TOKEN');
+            const response = await axios.get("http://localhost:8001/surveys"
+            )
+            alert("success bro");
+            console.log(response.data)
+        } catch (error: any) {
+            handleApiError(error);
         }
+
+        // // router.push("/auth/Questions/skills")
+        // if (selectcategory) {
+        //     setWidth({ width: "50px" })
+        // }
 
     }
 
@@ -37,7 +54,7 @@ export default function ProfileForm() {
         value: category.name,
         label: category.name,
     }));
-    
+
     const worksstyle: Option[] = workstyle.map((style) => ({
         value: style.value,
         label: style.label,
@@ -91,7 +108,7 @@ export default function ProfileForm() {
                     /> */}
                     <button
                         type="submit"
-                        onClick={submit}
+                        // onClick={submit}
                         className="w-80 h-10 rounded-[20px] lg:ml-10 bg-[#7A4D8B] text-white mt-15   cursor-pointer border hover:opacity-50     active:opacity-30 "
                     >
                         Next
@@ -104,3 +121,7 @@ export default function ProfileForm() {
         </div>
     );
 }
+
+
+
+ 

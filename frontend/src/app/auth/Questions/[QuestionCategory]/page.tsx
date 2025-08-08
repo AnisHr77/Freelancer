@@ -9,14 +9,7 @@ export default function FreelancerQuestionPage() {
     const { QuestionCategory } = useParams();
 
     return (
-<<<<<<< HEAD
-        <div className='' >
-            <div className="pl-10 mt-5   grid gap-4 ">
-                <p className=" font-bold text-[45px] text-[#7a4d8b] " >Tasklinker</p>
-            </div>
-=======
         <div className=' w-screen ' >
->>>>>>> b32c692b16c5ef022624237846732aacdd0feada
             {QuestionCategory === "profile" && <ProfileForm />}
             {QuestionCategory === "skills" && <SkillsForm />}
             {QuestionCategory === "project" && <ProjectForm />}

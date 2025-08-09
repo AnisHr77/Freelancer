@@ -123,9 +123,9 @@ export default function Questionhandler({ questions, onAnswer }: QuestionHandler
     )
     console.log(selected)
     return (
-        <div className="">
+        <div className=" ml-25 mt-20  ">
             {questions.type === "select" &&
-                <div className="">
+                <div className=" flex flex-col gap-8 ">
                     <p>{questions.question}</p>
                     <select
                         value={selected}
@@ -154,11 +154,15 @@ export default function Questionhandler({ questions, onAnswer }: QuestionHandler
                 </div>
             } */}
             {questions.type === "text" &&
-                <div className="">
+                <div className="flex flex-col gap-8">
                     <p>{questions.question}</p>
-                    <input type="text" placeholder="enter ypur answer please"
+                    <input 
+                    type="text" 
+                    placeholder="enter ypur answer please"
                         value={selected}
-                        onChange={(e) => setSelected(e.target.value)} />
+                        onChange={(e) => setSelected(e.target.value)} 
+                        className=" w-100 h-10 rounded-[4px] border "
+                        />
                 </div>
             }
             {questions.type === "checkbox" &&
@@ -177,7 +181,7 @@ export default function Questionhandler({ questions, onAnswer }: QuestionHandler
                     ))}
                 </div>
             }
-            <button onClick={() => onAnswer(selected)}>Next</button>
+            <button onClick={() => onAnswer(selected)} className="  w-80 h-10 rounded-[20px] lg:ml-10 bg-[#7A4D8B] text-white mt-15   cursor-pointer border hover:opacity-50     active:opacity-30 " >Next</button>
         </div>
     );
 }

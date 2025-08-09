@@ -38,6 +38,16 @@ export default function FreelancerQuestionPage() {
             type: "select",
             options: ["react", "php", "python"],
         },
+        // {
+        //     id: 7,
+        //     question: "Your skills 2?",
+        //     type: "selectmelutiple",
+        //     options :[
+        //         { value: "Apple", label: "Apple" },
+        //         { value: "Banana", label: "Banana" },
+        //         { value: "Orange", label: "Orange" }
+        //     ],
+        // },
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -60,7 +70,7 @@ export default function FreelancerQuestionPage() {
         <div className="w-screen">
             <QuestionHandler
                 onAnswer={handleAnswers}
-                questions={currentQuestion}  
+                questions={currentQuestion}
             />
         </div>
     );

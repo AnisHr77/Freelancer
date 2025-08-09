@@ -100,7 +100,7 @@
 // }
 
 import { useState } from "react";
-
+import Select, { MultiValue } from "react-select";
 type Question = {
     id: Number
     type: string
@@ -112,7 +112,12 @@ type QuestionHandlerProps = {
     questions: Question;
     onAnswer: (value: (string | string[])) => void;
 };
+type Option = {
+    value: string;
+    label: string;
+}
 export default function Questionhandler({ questions, onAnswer }: QuestionHandlerProps) {
+    const [selectcategory, setSelectcategory] = useState<Option[]>([]);
     const [selected, setSelected] = useState<string | string[]>(
         questions.type === "checkbox" ? [] : ""
     )
@@ -132,6 +137,22 @@ export default function Questionhandler({ questions, onAnswer }: QuestionHandler
                     </select>
                 </div>
             }
+            {/* {questions.type === "selectmelutiple" &&
+                <div className="">
+                    <p>{questions.question}</p>
+                    <Select
+                        isMulti
+                        options={questions.options}
+                        value={selectcategory}
+                        onChange={(option: MultiValue<Option>) =>
+                            setSelectcategory([...option]) // spread to make it mutable
+                        }
+                        placeholder="Select services or type to search..."
+                        className="w-80 md:w-150 h-10 border rounded-[5px]"
+                        required
+                    />
+                </div>
+            } */}
             {questions.type === "text" &&
                 <div className="">
                     <p>{questions.question}</p>
